@@ -435,7 +435,7 @@ const getFallbackResponse = (message) => {
     }
 
     if (lowerMessage.includes('công nghệ') || lowerMessage.includes('tech') || lowerMessage.includes('skill')) {
-        return '💻 Các công nghệ chính:\n\n**Frontend:** React, Next.js, Three.js, Framer Motion, GSAP, Tailwind CSS\n**Backend:** Node.js, Python, Express\n**Database:** PostgreSQL, MongoDB\n**Other:** Docker, AWS, Git\n\nVới hơn 5 năm kinh nghiệm, tôi có thể đáp ứng nhiều loại dự án khác nhau!'
+        return '💻 Các công nghệ chính:\n\n**Frontend:** React, Next.js, Three.js, Framer Motion, GSAP, Tailwind CSS\n**Backend:** Node.js, Python, Express\n**Database:** PostgreSQL, MongoDB\n**Other:** Docker, AWS, Git\n\nVới hơn 3 năm kinh nghiệm, tôi có thể đáp ứng nhiều loại dự án khác nhau!'
     }
 
     if (lowerMessage.includes('liên hệ') || lowerMessage.includes('contact')) {

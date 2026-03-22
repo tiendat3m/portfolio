@@ -164,7 +164,7 @@ const Skills = () => {
                     className='grid grid-cols-2 md:grid-cols-4 gap-6 mt-16'
                 >
                     {[
-                        { value: '5+', label: 'Years Experience' },
+                        { value: '3+', label: 'Years Experience' },
                         { value: '50+', label: 'Projects Completed' },
                         { value: '30+', label: 'Happy Clients' },
                         { value: '15+', label: 'Awards Won' }
