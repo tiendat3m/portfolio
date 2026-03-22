@@ -34,7 +34,7 @@ You are a helpful AI assistant for a creative developer's portfolio website. You
 
 **Name:** Phan Tiến Đạt (Creative Developer & Designer)
 **Location:** Ho Chi Minh City, Vietnam
-**Experience:** 5+ years in web development
+**Experience:** 3+ years in web development
 **Email:** phantiendat14012002@gmail.com
 **Phone:** 0343759130
 **GitHub:** github.com/tiendat3m
@@ -151,7 +151,7 @@ A passionate creative developer who blends cutting-edge technology with stunning
 "Exceptional design skills combined with technical expertise. They transformed our outdated website into a modern, high-performing platform that our customers love."
 
 ## STATS
-- 5+ Years Experience
+- 3+ Years Experience
 - 50+ Projects Completed
 - 30+ Happy Clients
 - 15+ Awards Won
@@ -443,7 +443,7 @@ const getFallbackResponse = (message) => {
     }
 
     if (lowerMessage.includes('kinh nghiệm') || lowerMessage.includes('experience')) {
-        return '👨‍💻 Tôi có hơn 5 năm kinh nghiệm trong lĩnh vực phát triển web, chuyên về:\n\n• Xây dựng website và ứng dụng web\n• Phát triển giao diện tương tác 3D\n• Tối ưu hiệu suất và trải nghiệm người dùng\n• Tư vấn giải pháp kỹ thuật\n\nĐã làm việc với nhiều khách hàng từ startup đến doanh nghiệp lớn!'
+        return '👨‍💻 Tôi có hơn 3 năm kinh nghiệm trong lĩnh vực phát triển web, chuyên về:\n\n• Xây dựng website và ứng dụng web\n• Phát triển giao diện tương tác 3D\n• Tối ưu hiệu suất và trải nghiệm người dùng\n• Tư vấn giải pháp kỹ thuật\n\nĐã làm việc với nhiều khách hàng từ startup đến doanh nghiệp!'
     }
 
     return '🤖 Xin lỗi, trợ lý AI tạm thời không khả dụng. Tuy nhiên, tôi vẫn có thể giúp bạn!\n\nVui lòng liên hệ trực tiếp:\n• Email: phantiendat14012002@gmail.com\n• Phone: 0343759130\n• Zalo: 0343759130\n\nHoặc để lại tin nhắn trong form liên hệ, tôi sẽ phản hồi sớm nhất!'

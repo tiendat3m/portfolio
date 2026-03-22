@@ -295,12 +295,12 @@ const BlogPage = () => {
                                     Thoughts on web development, design, and creative technology.
                                     Sharing insights from building digital experiences.
                                 </p>
-                                {useSupabase && (
+                                {/* {useSupabase && (
                                     <p className='text-green-400 text-sm mt-2 flex items-center gap-2'>
                                         <span className='w-2 h-2 rounded-full bg-green-400 animate-pulse' />
                                         Connected to Supabase
                                     </p>
-                                )}
+                                )} */}
                             </div>
 
                             <div className='flex items-center gap-4'>

@@ -8,7 +8,7 @@ const socialLinks = [
     { icon: FaGithub, href: 'https://github.com/tiendat3m', label: 'GitHub' },
     { icon: FaLinkedin, href: 'https://www.linkedin.com/in/tiendat3m/', label: 'LinkedIn' },
     { icon: FaTwitter, href: 'https://x.com/APhan33064', label: 'X (Twitter)' },
-    { icon: FaInstagram, href: 'https://www.instagram.com/tiendat3m/', label: 'Instagram' }
+    { icon: FaInstagram, href: 'https://www.instagram.com/justdatt.3m/', label: 'Instagram' }
 
 ]
 

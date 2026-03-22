@@ -47,8 +47,10 @@ const About = () => {
                             animate={inView ? { opacity: 1 } : {}}
                             transition={{ delay: 0.4 }}
                         >
-                            <p>I'm a passionate developer and designer with over 5 years of experience creating award-winning digital experiences.</p>
-                            <p>I specialize in building immersive web applications using cutting-edge technologies like Three.js, GSAP, and React.</p>
+                            <p>I'm a passionate developer and designer based in Ho Chi Minh City, Vietnam, with 3+ years of experience creating immersive digital experiences.</p>
+                            <p>I specialize in building interactive web applications using cutting-edge technologies like React, Three.js, and modern animation libraries. My goal is to blend stunning visual design with performant code.</p>
+                            <p>When I'm not coding, I'm exploring new design trends, experimenting with 3D graphics, or contributing to open-source projects. I believe in continuous learning and staying updated with the latest technologies.</p>
+                            <p>I'm always excited to take on new challenges and collaborate on innovative projects. Whether you need a portfolio website, an interactive 3D experience, or a full-stack application, I'm here to bring your vision to life.</p>
                         </motion.div>
 
                         <motion.div
