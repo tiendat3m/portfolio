@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://portfolio-ebon-psi-59.vercel.app/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin
