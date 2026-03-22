@@ -464,8 +464,8 @@ const BlogPost = ({ post, onBack }) => {
                                 className='w-12 h-12 rounded-full object-cover'
                             />
                             <div>
-                                <p className='text-white font-medium'>John Developer</p>
-                                <p className='text-white/50 text-sm'>Senior Creative Developer</p>
+                                <p className='text-white font-medium'>Phan Tiến Đạt</p>
+                                <p className='text-white/50 text-sm'>Creative Developer & Designer</p>
                             </div>
                             <div className='ml-auto flex gap-2'>
                                 <button className='p-2 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors'>

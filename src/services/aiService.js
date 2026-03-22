@@ -32,12 +32,15 @@ You are a helpful AI assistant for a creative developer's portfolio website. You
 
 ## ABOUT THE DEVELOPER
 
-**Name:** John Developer (Creative Developer & Designer)
+**Name:** Phan Tiến Đạt (Creative Developer & Designer)
 **Location:** Ho Chi Minh City, Vietnam
-**Experience:** 3+ years in web development
-**Email:** phantiendat14012002@gmail.com.com
-**Phone:** +84 343 759 130
-**Website:** portfolio.com
+**Experience:** 5+ years in web development
+**Email:** phantiendat14012002@gmail.com
+**Phone:** 0343759130
+**GitHub:** github.com/tiendat3m
+**LinkedIn:** linkedin.com/in/tiendat3m
+**X (Twitter):** x.com/APhan33064
+**Instagram:** instagram.com/justdatt.3m
 
 **Bio:**
 A passionate creative developer who blends cutting-edge technology with stunning visual design. Specializes in building immersive web experiences that captivate users and elevate digital projects. With expertise in React, Three.js, and modern web technologies, I transform ideas into interactive realities.
@@ -165,7 +168,7 @@ A passionate creative developer who blends cutting-edge technology with stunning
 
 ## RESPONSE GUIDELINES
 
-- If asked about **pricing**: "For detailed pricing, please contact directly at hello@portfolio.com or call +84 123 456 789. Each project is unique and requires a custom quote."
+- If asked about **pricing**: "For detailed pricing, please contact directly at phantiendat14012002@gmail.com or call 0343759130. Each project is unique and requires a custom quote."
 - If asked about **availability**: "I'm currently available for new projects! Feel free to reach out to discuss your requirements."
 - If asked about **timeline**: "Project timelines vary based on complexity. A typical website takes 2-4 weeks, while more complex applications may take 2-3 months."
 - If asked about **technologies**: Provide specific recommendations based on project needs
@@ -424,7 +427,7 @@ const getFallbackResponse = (message) => {
     const lowerMessage = message.toLowerCase()
 
     if (lowerMessage.includes('giá') || lowerMessage.includes('price') || lowerMessage.includes('cost')) {
-        return '💰 Về giá cả, tôi khuyên bạn nên liên hệ trực tiếp để được tư vấn chi tiết. Mỗi dự án có yêu cầu khác nhau nên giá cũng sẽ khác nhau. Bạn có thể gửi email đến hello@portfolio.com hoặc gọi +84 123 456 789 nhé!'
+        return '💰 Về giá cả, tôi khuyên bạn nên liên hệ trực tiếp để được tư vấn chi tiết. Mỗi dự án có yêu cầu khác nhau nên giá cũng sẽ khác nhau. Bạn có thể gửi email đến phantiendat14012002@gmail.com hoặc gọi 0343759130 nhé!'
     }
 
     if (lowerMessage.includes('dịch vụ') || lowerMessage.includes('service')) {
@@ -436,14 +439,14 @@ const getFallbackResponse = (message) => {
     }
 
     if (lowerMessage.includes('liên hệ') || lowerMessage.includes('contact')) {
-        return '📬 Bạn có thể liên hệ qua:\n\n• Email: hello@portfolio.com\n• Phone: +84 123 456 789\n• Location: Ho Chi Minh City, Vietnam\n\nHoặc điền form liên hệ trên website, tôi sẽ phản hồi sớm nhất có thể!'
+        return '📬 Bạn có thể liên hệ qua:\n\n• Email: phantiendat14012002@gmail.com\n• Phone: 0343759130\n• Zalo: 0343759130\n• Location: Ho Chi Minh City, Vietnam\n\nHoặc điền form liên hệ trên website, tôi sẽ phản hồi sớm nhất có thể!'
     }
 
     if (lowerMessage.includes('kinh nghiệm') || lowerMessage.includes('experience')) {
         return '👨‍💻 Tôi có hơn 5 năm kinh nghiệm trong lĩnh vực phát triển web, chuyên về:\n\n• Xây dựng website và ứng dụng web\n• Phát triển giao diện tương tác 3D\n• Tối ưu hiệu suất và trải nghiệm người dùng\n• Tư vấn giải pháp kỹ thuật\n\nĐã làm việc với nhiều khách hàng từ startup đến doanh nghiệp lớn!'
     }
 
-    return '🤖 Xin lỗi, trợ lý AI tạm thời không khả dụng. Tuy nhiên, tôi vẫn có thể giúp bạn!\n\nVui lòng liên hệ trực tiếp:\n• Email: hello@portfolio.com\n• Phone: +84 123 456 789\n\nHoặc để lại tin nhắn trong form liên hệ, tôi sẽ phản hồi sớm nhất!'
+    return '🤖 Xin lỗi, trợ lý AI tạm thời không khả dụng. Tuy nhiên, tôi vẫn có thể giúp bạn!\n\nVui lòng liên hệ trực tiếp:\n• Email: phantiendat14012002@gmail.com\n• Phone: 0343759130\n• Zalo: 0343759130\n\nHoặc để lại tin nhắn trong form liên hệ, tôi sẽ phản hồi sớm nhất!'
 }
 
 // Check if AI is configured

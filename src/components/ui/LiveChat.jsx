@@ -90,8 +90,8 @@ const LiveChat = () => {
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`fixed bottom-24 right-8 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-shadow ${aiStatus.configured
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 shadow-purple-500/30 hover:shadow-purple-500/50'
-                        : 'bg-gradient-to-r from-green-500 to-green-600 shadow-green-500/30 hover:shadow-green-500/50'
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 shadow-purple-500/30 hover:shadow-purple-500/50'
+                    : 'bg-gradient-to-r from-green-500 to-green-600 shadow-green-500/30 hover:shadow-green-500/50'
                     }`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -196,8 +196,8 @@ const LiveChat = () => {
                                 <div className='flex justify-start'>
                                     <div className='flex items-center gap-2'>
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center ${aiStatus.configured
-                                                ? 'bg-gradient-to-r from-purple-500 to-pink-500'
-                                                : 'bg-green-500'
+                                            ? 'bg-gradient-to-r from-purple-500 to-pink-500'
+                                            : 'bg-green-500'
                                             }`}>
                                             {aiStatus.configured ? (
                                                 <HiSparkles className='w-4 h-4 text-white' />
@@ -264,7 +264,7 @@ const LiveChat = () => {
                         {/* Zalo Link */}
                         <div className='px-4 pb-4'>
                             <a
-                                href='https://zalo.me/your-zalo-id'
+                                href='https://zalo.me/0343759130'
                                 target='_blank'
                                 rel='noopener noreferrer'
                                 className='flex items-center justify-center gap-2 w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors'
