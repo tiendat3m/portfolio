@@ -60,8 +60,9 @@ const Footer = () => {
 
                         {/* Resume Download */}
                         <motion.a
-                            href="/resume.pdf"
-                            download
+                            href="/resume.html"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="ml-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent-primary to-accent-secondary text-white text-sm font-medium flex items-center gap-2 hover:shadow-lg hover:shadow-accent-primary/30 transition-all duration-300"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}

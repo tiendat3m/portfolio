@@ -60,7 +60,7 @@ const About = () => {
                             transition={{ delay: 0.5 }}
                         >
                             <a href='#contact' className='btn-primary'>Get In Touch</a>
-                            <a href='/resume.pdf' className='btn-outline' target='_blank'>Download CV</a>
+                            <a href='/resume.html' className='btn-outline' target='_blank'>Download CV</a>
                         </motion.div>
                     </motion.div>
 
