@@ -15,11 +15,11 @@ const skillCategories = [
         color: 'accent-primary',
         skills: [
             { name: 'React / Next.js', level: 95 },
-            { name: 'JavaScript / TypeScript', level: 90 },
+            { name: 'Angular', level: 88 },
+            { name: 'JavaScript / TypeScript', level: 92 },
             { name: 'HTML5 / CSS3', level: 95 },
             { name: 'Tailwind CSS', level: 90 },
-            { name: 'Three.js / WebGL', level: 80 },
-            { name: 'GSAP / Framer Motion', level: 85 }
+            { name: 'Framer Motion', level: 85 }
         ]
     },
     {
@@ -27,46 +27,47 @@ const skillCategories = [
         icon: <HiCode className='w-6 h-6' />,
         color: 'accent-secondary',
         skills: [
-            { name: 'Node.js / Express', level: 85 },
-            { name: 'Python / FastAPI', level: 80 },
+            { name: 'Node.js / Express', level: 75 },
+            { name: 'Laravel / PHP', level: 70 },
             { name: 'RESTful APIs', level: 90 },
-            { name: 'GraphQL', level: 75 },
-            { name: 'WebSocket', level: 70 },
-            { name: 'Microservices', level: 75 }
-        ]
-    },
-    {
-        title: 'Database & DevOps',
-        icon: <HiDatabase className='w-6 h-6' />,
-        color: 'accent-tertiary',
-        skills: [
-            { name: 'PostgreSQL / MongoDB', level: 85 },
-            { name: 'Redis', level: 75 },
-            { name: 'Docker / Kubernetes', level: 80 },
-            { name: 'AWS / GCP', level: 75 },
-            { name: 'CI/CD', level: 80 },
+            { name: 'MySQL / PostgreSQL', level: 80 },
+            { name: 'Supabase', level: 75 },
             { name: 'Git / GitHub', level: 95 }
         ]
     },
     {
-        title: 'Design & Tools',
+        title: 'Tools & Workflow',
+        icon: <HiDatabase className='w-6 h-6' />,
+        color: 'accent-tertiary',
+        skills: [
+            { name: 'VS Code', level: 95 },
+            { name: 'Git / GitHub', level: 90 },
+            { name: 'Docker', level: 70 },
+            { name: 'Postman', level: 85 },
+            { name: 'Vite / Webpack', level: 80 },
+            { name: 'Agile / Scrum', level: 85 }
+        ]
+    },
+    {
+        title: 'Design & Collaboration',
         icon: <HiSparkles className='w-6 h-6' />,
         color: 'accent-glow',
         skills: [
             { name: 'Figma', level: 85 },
-            { name: 'Adobe XD', level: 80 },
-            { name: 'Photoshop', level: 75 },
-            { name: 'Blender (3D)', level: 70 },
-            { name: 'UI/UX Design', level: 85 },
-            { name: 'Responsive Design', level: 95 }
+            { name: 'Responsive Design', level: 95 },
+            { name: 'UI/UX Principles', level: 80 },
+            { name: 'Cross-browser Testing', level: 85 },
+            { name: 'Performance Optimization', level: 80 },
+            { name: 'Team Collaboration', level: 90 }
         ]
     }
 ]
 
 const technologies = [
-    'React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL',
-    'MongoDB', 'Redis', 'Docker', 'AWS', 'Three.js', 'GSAP',
-    'Tailwind', 'GraphQL', 'REST API', 'Git', 'Figma', 'Blender'
+    'React', 'Next.js', 'Angular', 'TypeScript', 'JavaScript',
+    'Node.js', 'Laravel', 'Tailwind', 'Framer Motion',
+    'PostgreSQL', 'MySQL', 'Supabase', 'Docker',
+    'Git', 'REST API', 'Figma', 'VS Code'
 ]
 
 const Skills = () => {
@@ -165,9 +166,9 @@ const Skills = () => {
                 >
                     {[
                         { value: '3+', label: 'Years Experience' },
-                        { value: '50+', label: 'Projects Completed' },
-                        { value: '30+', label: 'Happy Clients' },
-                        { value: '15+', label: 'Awards Won' }
+                        { value: '12+', label: 'Projects Completed' },
+                        { value: '8+', label: 'Happy Clients' },
+                        { value: '5+', label: 'Long-term Collaborations' }
                     ].map((stat, index) => (
                         <div key={index} className='glass-card p-6 text-center'>
                             <motion.span

@@ -6,31 +6,31 @@ import { HiBriefcase, HiAcademicCap } from 'react-icons/hi'
 const experiences = [
     {
         type: 'work',
-        title: 'Senior Creative Developer',
-        company: 'Digital Agency X',
-        period: '2022 - Present',
-        description: 'Leading development of immersive web experiences for Fortune 500 clients. Implementing cutting-edge WebGL and Three.js solutions.'
+        title: 'Frontend Developer',
+        company: 'S3Corp',
+        period: '2023 - Present',
+        description: 'Developing enterprise web applications with React and Angular. Building responsive UIs, implementing REST API integrations, and collaborating with cross-functional teams.'
     },
     {
         type: 'work',
-        title: 'Full Stack Developer',
-        company: 'Tech Startup Y',
-        period: '2020 - 2022',
-        description: 'Built scalable web applications using React and Node.js. Led team of 4 developers and improved performance by 40%.'
+        title: 'Junior Frontend Developer',
+        company: 'S3Corp',
+        period: '2022 - 2023',
+        description: 'Started career building responsive web interfaces with React. Learned TypeScript, Tailwind CSS, and modern frontend development practices.'
     },
     {
         type: 'education',
-        title: 'Computer Science Degree',
-        company: 'University of Technology',
-        period: '2016 - 2020',
-        description: 'Graduated with honors. Specialized in Human-Computer Interaction and Visual Computing.'
+        title: 'Bachelor of Information Technology',
+        company: 'University of Information Technology',
+        period: '2018 - 2022',
+        description: 'Focused on Software Engineering. Learned programming fundamentals, data structures, web development, and software design patterns.'
     },
     {
         type: 'work',
-        title: 'Junior Developer',
-        company: 'Creative Studio Z',
-        period: '2018 - 2020',
-        description: 'Developed responsive websites and interactive animations. Collaborated with designers to create engaging user experiences.'
+        title: 'Internship',
+        company: 'S3Corp',
+        period: '2021 - 2022',
+        description: 'Gained hands-on experience in web development. Assisted in building React components and learning industry best practices.'
     }
 ]
 

@@ -256,6 +256,17 @@ const BlogPage = () => {
         ? posts
         : posts.filter(p => p.category === selectedCategory)
 
+    const totalComments = posts.reduce((sum, post) => {
+        if (typeof post.comments_count === 'number') return sum + post.comments_count
+        if (Array.isArray(post.comments)) return sum + post.comments.length
+        return sum
+    }, 0)
+
+    const monthlyReaders = posts.reduce((sum, post) => {
+        const readers = Number(post.monthly_readers)
+        return Number.isFinite(readers) ? sum + readers : sum
+    }, 0)
+
     // Show full blog post if selected
     if (selectedPost) {
         return <BlogPost post={selectedPost} onBack={() => setSelectedPost(null)} />
@@ -493,8 +504,8 @@ const BlogPage = () => {
                         {[
                             { value: posts.length, label: 'Articles Published' },
                             { value: categories.length - 1, label: 'Categories' },
-                            { value: '10K+', label: 'Monthly Readers' },
-                            { value: '50+', label: 'Comments' }
+                            { value: monthlyReaders, label: 'Monthly Readers' },
+                            { value: totalComments, label: 'Comments' }
                         ].map((stat, index) => (
                             <div key={index} className='glass-card p-6 text-center'>
                                 <span className='text-3xl font-bold gradient-text block mb-2'>

@@ -94,7 +94,7 @@ const Footer = () => {
                     <p className="text-white/30 text-sm">
                         Designed & Built with{' '}
                         <span className="text-accent-tertiary">♥</span>{' '}
-                        using React & Three.js
+                        using React, AI Integration & Modern Web Stack
                     </p>
                 </motion.div>
             </div>

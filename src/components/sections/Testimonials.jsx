@@ -6,42 +6,42 @@ import { HiChevronLeft, HiChevronRight, HiStar } from 'react-icons/hi'
 const testimonials = [
     {
         id: 1,
-        name: 'Sarah Johnson',
-        role: 'CEO, TechStart Inc.',
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
-        content: 'Working with this team was an absolute pleasure. They delivered a stunning website that exceeded our expectations. The attention to detail and creative solutions were impressive.',
+        name: 'Team Collaboration',
+        role: 'Work Environment',
+        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=150',
+        content: 'I thrive in collaborative team environments, actively participating in code reviews, sharing knowledge with colleagues, and contributing to a positive development culture.',
         rating: 5
     },
     {
         id: 2,
-        name: 'Michael Chen',
-        role: 'Product Manager, InnovateTech',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-        content: 'The 3D visualizations they created for our product launch were game-changing. Our engagement rates increased by 150% after implementing their interactive features.',
+        name: 'Continuous Learning',
+        role: 'Professional Growth',
+        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150',
+        content: 'Committed to continuous improvement through online courses, documentation, and hands-on practice. Always eager to learn new technologies and best practices.',
         rating: 5
     },
     {
         id: 3,
-        name: 'Emily Rodriguez',
-        role: 'Marketing Director, BrandCo',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
-        content: 'Exceptional design skills combined with technical expertise. They transformed our outdated website into a modern, high-performing platform that our customers love.',
+        name: 'Quality-Focused',
+        role: 'Development Approach',
+        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=150',
+        content: 'I prioritize clean, maintainable code and follow industry best practices. Every project is an opportunity to deliver high-quality work that exceeds expectations.',
         rating: 5
     },
     {
         id: 4,
-        name: 'David Kim',
-        role: 'Founder, StartupXYZ',
-        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
-        content: 'Fast turnaround, excellent communication, and top-notch quality. They delivered our MVP in record time without compromising on quality. Highly recommended!',
+        name: 'Problem Solving',
+        role: 'Technical Skills',
+        image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc51b0?w=150',
+        content: 'Strong analytical skills with a methodical approach to debugging and problem-solving. I enjoy tackling challenging technical issues and finding elegant solutions.',
         rating: 5
     },
     {
         id: 5,
-        name: 'Lisa Wang',
-        role: 'Director, Creative Agency',
-        image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150',
-        content: 'A true professional who understands both design and development. The animations and interactions they created brought our vision to life perfectly.',
+        name: 'Frontend Specialization',
+        role: 'Core Expertise',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=150',
+        content: 'Specialized in building responsive, accessible, and performant web interfaces. Proficient in React ecosystem and modern CSS frameworks.',
         rating: 5
     }
 ]
@@ -68,10 +68,10 @@ const Testimonials = () => {
                     className='text-center mb-16'
                 >
                     <p className='text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4'>
-                        Testimonials
+                        Feedback
                     </p>
                     <h2 className='text-4xl md:text-5xl font-bold text-white'>
-                        What Clients <span className='gradient-text'>Say</span>
+                        Work <span className='gradient-text'>Reviews</span>
                     </h2>
                 </motion.div>
 
@@ -151,18 +151,18 @@ const Testimonials = () => {
                     </div>
                 </motion.div>
 
-                {/* Client Logos */}
+                {/* Technologies Worked With */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.5 }}
                     className='mt-16'
                 >
-                    <p className='text-center text-white/40 text-sm mb-8'>Trusted by leading companies</p>
+                    <p className='text-center text-white/40 text-sm mb-8'>Technologies worked with</p>
                     <div className='flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50'>
-                        {['Google', 'Microsoft', 'Apple', 'Meta', 'Netflix'].map((brand) => (
-                            <span key={brand} className='text-2xl font-bold text-white/30 hover:text-white/50 transition-colors'>
-                                {brand}
+                        {['React', 'Vue', 'Tailwind', 'Node.js', 'TypeScript'].map((tech) => (
+                            <span key={tech} className='text-2xl font-bold text-white/30 hover:text-white/50 transition-colors'>
+                                {tech}
                             </span>
                         ))}
                     </div>

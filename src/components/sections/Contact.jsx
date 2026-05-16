@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiMail, HiLocationMarker, HiPhone, HiPaperAirplane } from 'react-icons/hi'
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa'
 import { addSubscriber } from '../../services/supabaseService'
 import { sendContactEmail, isEmailConfigured } from '../../services/emailService'
 
@@ -134,15 +135,18 @@ const Contact = () => {
                         <div className='mt-8'>
                             <h4 className='text-white font-medium mb-4'>Follow Me</h4>
                             <div className='flex gap-4'>
-                                {['GitHub', 'LinkedIn', 'Twitter', 'Dribbble'].map((social) => (
-                                    <a
-                                        key={social}
-                                        href='#'
-                                        className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'
-                                    >
-                                        {social[0]}
-                                    </a>
-                                ))}
+                                <a href='https://github.com/tiendat3m' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
+                                    <FaGithub className='w-5 h-5' />
+                                </a>
+                                <a href='https://linkedin.com' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
+                                    <FaLinkedin className='w-5 h-5' />
+                                </a>
+                                <a href='https://twitter.com' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
+                                    <FaTwitter className='w-5 h-5' />
+                                </a>
+                                <a href='https://instagram.com' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
+                                    <FaInstagram className='w-5 h-5' />
+                                </a>
                             </div>
                         </div>
                     </motion.div>

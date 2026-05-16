@@ -22,10 +22,10 @@ import Contact from './components/sections/Contact'
 
 // Pages
 import BlogPage from './pages/BlogPage'
+import BlogPostPage from './pages/BlogPostPage'
 import NotFound from './components/pages/NotFound'
 
 // UI
-import CustomCursor from './components/ui/CustomCursor'
 import NoiseOverlay from './components/ui/NoiseOverlay'
 import PageLoader from './components/ui/PageLoader'
 import ScrollToTop from './components/ui/ScrollToTop'
@@ -101,20 +101,18 @@ const HomePage = () => {
                     )
                 })
 
-                // 3D rotation on scroll for cards
+                // Simple scale effect for cards (lighter than 3D rotation)
                 gsap.utils.toArray('.glass-card').forEach((card) => {
                     gsap.fromTo(card,
-                        { rotateY: -5, rotateX: 5 },
+                        { scale: 0.98 },
                         {
-                            rotateY: 5,
-                            rotateX: -5,
-                            duration: 2,
-                            ease: 'power2.inOut',
+                            scale: 1,
+                            duration: 0.5,
+                            ease: 'power2.out',
                             scrollTrigger: {
                                 trigger: card,
-                                start: 'top bottom',
-                                end: 'bottom top',
-                                scrub: 1
+                                start: 'top 90%',
+                                toggleActions: 'play none none reverse'
                             }
                         }
                     )
@@ -133,7 +131,6 @@ const HomePage = () => {
 
             {!isLoading && (
                 <div ref={mainRef} className="relative">
-                    <CustomCursor />
                     <NoiseOverlay />
                     <ThemeToggle />
 
@@ -176,6 +173,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:id" element={<BlogPostPage />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Router>

@@ -14,38 +14,44 @@ const services = [
     {
         icon: <HiDesktopComputer className='w-8 h-8' />,
         title: 'Web Development',
-        description: 'Building responsive, high-performance web applications with modern technologies like React, Next.js, and Node.js.',
-        features: ['Custom Web Apps', 'E-commerce Solutions', 'CMS Development', 'API Integration']
-    },
-    {
-        icon: <HiDeviceMobile className='w-8 h-8' />,
-        title: 'Mobile Development',
-        description: 'Creating cross-platform mobile applications that deliver native-like experiences on iOS and Android.',
-        features: ['React Native Apps', 'PWA Development', 'App Optimization', 'Push Notifications']
+        description: 'Building responsive, high-performance web applications with modern technologies like React, Next.js, and Angular.',
+        features: ['Custom Web Apps', 'Dashboard Development', 'CMS Integration', 'API Integration']
     },
     {
         icon: <HiLightBulb className='w-8 h-8' />,
-        title: 'UI/UX Design',
-        description: 'Designing intuitive user interfaces and experiences that engage users and drive conversions.',
-        features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems']
+        title: 'UI/UX Implementation',
+        description: 'Transforming designs into pixel-perfect, responsive interfaces with smooth animations and interactions.',
+        features: ['Responsive Design', 'CSS Animations', 'Framer Motion', 'Accessibility']
     },
     {
         icon: <HiCode className='w-8 h-8' />,
-        title: '3D & WebGL',
-        description: 'Creating immersive 3D experiences and interactive visualizations for the web.',
-        features: ['Three.js Development', 'WebGL Shaders', '3D Product Views', 'Interactive Graphics']
+        title: 'Component Development',
+        description: 'Building reusable, scalable component libraries and design systems for consistent user interfaces.',
+        features: ['Design Systems', 'Component Libraries', 'Storybook', 'Documentation']
     },
     {
         icon: <HiLightningBolt className='w-8 h-8' />,
         title: 'Performance Optimization',
         description: 'Optimizing web applications for speed, SEO, and exceptional user experience.',
-        features: ['Core Web Vitals', 'Bundle Optimization', 'Caching Strategies', 'SEO Enhancement']
+        features: ['Core Web Vitals', 'Bundle Optimization', 'Lazy Loading', 'Code Splitting']
     },
     {
         icon: <HiCog className='w-8 h-8' />,
-        title: 'Consulting & Strategy',
-        description: 'Providing technical consulting and strategic guidance for your digital projects.',
-        features: ['Tech Stack Selection', 'Architecture Review', 'Code Audits', 'Team Training']
+        title: 'Frontend Architecture',
+        description: 'Designing scalable frontend architecture and state management solutions for complex applications.',
+        features: ['State Management', 'Project Setup', 'Best Practices', 'Code Reviews']
+    },
+    {
+        icon: <HiDesktopComputer className='w-8 h-8' />,
+        title: 'Enterprise Applications',
+        description: 'Developing robust enterprise-level applications with authentication, authorization, and data management.',
+        features: ['Admin Dashboards', 'Authentication Systems', 'Data Visualization', 'Reporting Tools']
+    },
+    {
+        icon: <HiDeviceMobile className='w-8 h-8' />,
+        title: 'AI Integration & AI Agents',
+        description: 'Integrating AI-powered features and lightweight AI agent workflows into web products to improve automation and user experience.',
+        features: ['Prompt Workflows', 'AI-assisted Content', 'Chat/Assistant UI', 'Automation Flows']
     }
 ]
 

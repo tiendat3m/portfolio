@@ -6,43 +6,53 @@ import { HiExternalLink, HiCode, HiX } from 'react-icons/hi'
 const projects = [
     {
         id: 1,
-        title: 'Immersive 3D Dashboard',
-        category: 'Web Development',
-        description: 'A real-time data visualization dashboard with interactive 3D elements and smooth animations.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
-        tags: ['React', 'Three.js', 'GSAP', 'D3.js'],
-        link: '#',
-        github: '#'
+        title: 'Todo List App',
+        category: 'Personal Project',
+        description: 'Task management app with clean UI and practical daily workflow. Built as a public project with full source code and live demo.',
+        image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800',
+        tags: ['React', 'Vite', 'JavaScript', 'CSS'],
+        link: 'https://todo-list-rouge-six-63.vercel.app/',
+        github: 'https://github.com/tiendat3m/TodoList'
     },
     {
         id: 2,
-        title: 'E-Commerce Platform',
-        category: 'Full Stack',
-        description: 'Modern e-commerce solution with AR product preview and AI-powered recommendations.',
-        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800',
-        tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Stripe'],
-        link: '#',
-        github: '#'
+        title: 'D-Movie',
+        category: 'Personal Project',
+        description: 'Movie browsing web app with modern interface and smooth UX. Publicly available with full source code and live deployment.',
+        image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800',
+        tags: ['React', 'Vite', 'REST API', 'Tailwind CSS'],
+        link: 'https://d-movie.vercel.app/',
+        github: 'https://github.com/tiendat3m/d-movie'
     },
     {
         id: 3,
-        title: 'Creative Agency Website',
-        category: 'Design & Development',
-        description: 'Award-winning agency website featuring scroll-driven animations and WebGL effects.',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
-        tags: ['React', 'Framer Motion', 'WebGL', 'Tailwind'],
-        link: '#',
-        github: '#'
+        title: 'Dongten',
+        category: 'Company Project',
+        description: 'Contributed to product development for dongten.net. Stack includes Angular (frontend), NestJS (backend), and Laravel (admin). Source code is private.',
+        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800',
+        tags: ['Angular', 'NestJS', 'Laravel Admin', 'Enterprise'],
+        link: 'https://dongten.net/',
+        github: null
     },
     {
         id: 4,
-        title: 'AI Content Generator',
-        category: 'AI/ML',
-        description: 'GPT-powered content creation tool with real-time collaboration features.',
-        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800',
-        tags: ['Python', 'OpenAI', 'React', 'FastAPI'],
-        link: '#',
-        github: '#'
+        title: 'Eskimo Travel (VN)',
+        category: 'Company Project',
+        description: 'Built and maintained admin features for eskimo.travel/vn, focusing on operational workflows, data management, and content control. Source code is private.',
+        image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800',
+        tags: ['Admin Panel', 'Dashboard', 'Operations', 'Private Source'],
+        link: 'https://www.eskimo.travel/vn',
+        github: null
+    },
+    {
+        id: 5,
+        title: 'Ganbaru Method',
+        category: 'Company Project',
+        description: 'Implemented and supported admin-side modules for ganbarumethod.com, including management screens and internal tools. Source code is private.',
+        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800',
+        tags: ['Admin Panel', 'Internal Tools', 'CMS Workflow', 'Private Source'],
+        link: 'https://ganbarumethod.com/',
+        github: null
     }
 ]
 
@@ -74,7 +84,6 @@ const Projects = () => {
                             transition={{ delay: index * 0.1 }}
                             className='group glass-card overflow-hidden cursor-pointer'
                             onClick={() => setSelectedProject(project)}
-                            whileHover={{ y: -10 }}
                         >
                             <div className='relative h-64 overflow-hidden'>
                                 <img src={project.image} alt={project.title} className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110' />
@@ -126,13 +135,19 @@ const Projects = () => {
                                         <span key={tag} className='text-sm px-4 py-2 bg-white/10 rounded-full text-white/60'>{tag}</span>
                                     ))}
                                 </div>
-                                <div className='flex gap-4'>
-                                    <a href={selectedProject.link} className='btn-primary flex items-center gap-2'>
+                                <div className='flex gap-4 flex-wrap'>
+                                    <a href={selectedProject.link} target='_blank' rel='noreferrer' className='btn-primary flex items-center gap-2'>
                                         <HiExternalLink /> Live Demo
                                     </a>
-                                    <a href={selectedProject.github} className='btn-outline flex items-center gap-2'>
-                                        <HiCode /> Source Code
-                                    </a>
+                                    {selectedProject.github ? (
+                                        <a href={selectedProject.github} target='_blank' rel='noreferrer' className='btn-outline flex items-center gap-2'>
+                                            <HiCode /> Source Code
+                                        </a>
+                                    ) : (
+                                        <span className='btn-outline opacity-60 cursor-not-allowed inline-flex items-center gap-2'>
+                                            <HiCode /> Private Source
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>

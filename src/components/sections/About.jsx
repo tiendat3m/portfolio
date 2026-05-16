@@ -4,11 +4,12 @@ import { useInView } from 'react-intersection-observer'
 
 const skills = [
     { name: 'React / Next.js', level: 95 },
-    { name: 'Three.js / WebGL', level: 88 },
+    { name: 'Angular', level: 88 },
     { name: 'JavaScript / TypeScript', level: 92 },
-    { name: 'Node.js / Express', level: 85 },
-    { name: 'Tailwind CSS / GSAP', level: 90 },
-    { name: 'Python / Django', level: 78 }
+    { name: 'HTML / CSS / Tailwind', level: 90 },
+    { name: 'Node.js / Express', level: 75 },
+    { name: 'AI Integration / Prompt Engineering', level: 78 },
+    { name: 'Git / REST APIs', level: 85 }
 ]
 
 const About = () => {
@@ -38,7 +39,7 @@ const About = () => {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.3 }}
                         >
-                            Crafting <span className='gradient-text'>Immersive</span> Digital Worlds
+                            Crafting <span className='gradient-text'>AI-Enhanced</span> Digital Products
                         </motion.h2>
 
                         <motion.div
@@ -47,10 +48,9 @@ const About = () => {
                             animate={inView ? { opacity: 1 } : {}}
                             transition={{ delay: 0.4 }}
                         >
-                            <p>I'm a passionate developer and designer based in Ho Chi Minh City, Vietnam, with 3+ years of experience creating immersive digital experiences.</p>
-                            <p>I specialize in building interactive web applications using cutting-edge technologies like React, Three.js, and modern animation libraries. My goal is to blend stunning visual design with performant code.</p>
-                            <p>When I'm not coding, I'm exploring new design trends, experimenting with 3D graphics, or contributing to open-source projects. I believe in continuous learning and staying updated with the latest technologies.</p>
-                            <p>I'm always excited to take on new challenges and collaborate on innovative projects. Whether you need a portfolio website, an interactive 3D experience, or a full-stack application, I'm here to bring your vision to life.</p>
+                            <p>I'm a Frontend Developer at S3Corp in Ho Chi Minh City with 3+ years of experience building scalable web applications.</p>
+                            <p>My expertise spans across React, Angular, and Next.js on the frontend, with growing experience in Node.js, Express, and Laravel for backend development. I also work with Docker and cloud deployment.</p>
+                            <p>I enjoy solving complex problems, learning new technologies, and building products that provide great user experiences. Recently, I’ve been exploring AI-powered UX, prompt workflows, and practical AI agent integration in web apps.</p>
                         </motion.div>
 
                         <motion.div

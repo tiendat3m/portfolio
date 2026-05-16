@@ -1,29 +1,16 @@
-﻿import React, { useState, useEffect } from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
 import { HiArrowDown } from 'react-icons/hi'
-import HeroScene from '../three/HeroScene'
 
 const Hero = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            setMousePosition({
-                x: (e.clientX / window.innerWidth) * 2 - 1,
-                y: -(e.clientY / window.innerHeight) * 2 + 1
-            })
-        }
-        window.addEventListener('mousemove', handleMouseMove)
-        return () => window.removeEventListener('mousemove', handleMouseMove)
-    }, [])
-
     const scrollToAbout = () => {
         document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
     }
 
     return (
-        <section id='hero' className='relative h-screen w-full overflow-hidden'>
-            <HeroScene mousePosition={mousePosition} />
+        <section id='hero' className='relative h-screen w-full overflow-hidden bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900'>
+            {/* Simple gradient background instead of 3D */}
+            <div className='absolute inset-0 bg-gradient-radial from-accent-primary/5 via-transparent to-transparent' />
 
             <div className='absolute inset-0 flex items-center justify-center z-10'>
                 <div className='container-custom text-center'>
@@ -38,7 +25,7 @@ const Hero = () => {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.8 }}
                         >
-                            Creative Developer & Designer
+                            Frontend Developer • AI Agent Enthusiast
                         </motion.p>
 
                         <motion.h1
@@ -48,9 +35,9 @@ const Hero = () => {
                             transition={{ delay: 1, duration: 0.8 }}
                         >
                             Building{' '}
-                            <span className='gradient-text'>Digital</span>
+                            <span className='gradient-text'>Modern & AI-Powered</span>
                             <br />
-                            Experiences
+                            Web Experiences
                         </motion.h1>
 
                         <motion.p
@@ -59,8 +46,9 @@ const Hero = () => {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.3 }}
                         >
-                            I craft immersive web experiences that blend cutting-edge technology
-                            with stunning visual design.
+                            Frontend Developer at S3Corp with 3+ years of experience building
+                            scalable web applications. Recently focused on integrating AI features,
+                            AI workflows, and AI agents into modern React/Angular products.
                         </motion.p>
 
                         <motion.div

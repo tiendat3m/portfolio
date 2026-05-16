@@ -18,6 +18,7 @@ const LiveChat = () => {
     const [isTyping, setIsTyping] = useState(false)
     const [aiStatus, setAiStatus] = useState(getAIStatus())
     const messagesEndRef = useRef(null)
+    const chatRef = useRef(null)
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -27,24 +28,40 @@ const LiveChat = () => {
         scrollToBottom()
     }, [messages])
 
+    useEffect(() => {
+        if (!isOpen) return
+
+        const handleClickOutside = (event) => {
+            if (chatRef.current && !chatRef.current.contains(event.target)) {
+                setIsOpen(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [isOpen])
+
     const handleSend = async () => {
-        if (!inputValue.trim()) return
+        const trimmedInput = inputValue.trim()
+        if (!trimmedInput || isTyping) return
 
         const userMessage = {
             id: Date.now(),
             type: 'user',
-            content: inputValue,
+            content: trimmedInput,
             time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
         }
 
         setMessages(prev => [...prev, userMessage])
-        const currentInput = inputValue
+        const currentInput = trimmedInput
         setInputValue('')
         setIsTyping(true)
 
         try {
             // Get conversation history for context
-            const conversationHistory = messages.map(msg => ({
+            const conversationHistory = [...messages, userMessage].map(msg => ({
                 type: msg.type,
                 content: msg.content
             }))
@@ -119,6 +136,7 @@ const LiveChat = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        ref={chatRef}
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -225,13 +243,13 @@ const LiveChat = () => {
                                     type='text'
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
-                                    onKeyPress={handleKeyPress}
+                                    onKeyDown={handleKeyPress}
                                     placeholder='Nhập tin nhắn...'
                                     className='flex-1 px-4 py-2 bg-dark-800 border border-white/10 rounded-full text-white placeholder-white/40 focus:outline-none focus:border-green-500 text-sm'
                                 />
                                 <button
                                     onClick={handleSend}
-                                    disabled={!inputValue.trim()}
+                                    disabled={!inputValue.trim() || isTyping}
                                     className='w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
                                 >
                                     <HiPaperAirplane className='w-5 h-5' />
@@ -241,22 +259,22 @@ const LiveChat = () => {
                             {/* Quick Actions */}
                             <div className='flex gap-2 mt-3'>
                                 <button
-                                    onClick={() => setInputValue('Tôi cần tư vấn')}
+                                    onClick={() => setInputValue('Mình cần Đạt tư vấn giải pháp phù hợp cho website/app của mình')}
                                     className='px-3 py-1 bg-white/5 rounded-full text-white/60 text-xs hover:bg-white/10 hover:text-white transition-colors'
                                 >
                                     Tư vấn
                                 </button>
                                 <button
-                                    onClick={() => setInputValue('Báo giá')}
-                                    className='px-3 py-1 bg-white/5 rounded-full text-white/60 text-xs hover:bg-white/10 hover:text-white transition-colors'
-                                >
-                                    Báo giá
-                                </button>
-                                <button
-                                    onClick={() => setInputValue('Hỗ trợ kỹ thuật')}
+                                    onClick={() => setInputValue('Đạt có thể hỗ trợ mình nâng cấp UI và tích hợp AI chatbox không?')}
                                     className='px-3 py-1 bg-white/5 rounded-full text-white/60 text-xs hover:bg-white/10 hover:text-white transition-colors'
                                 >
                                     Hỗ trợ
+                                </button>
+                                <button
+                                    onClick={() => setInputValue('Mình muốn trao đổi nhanh với Đạt về dự án, bắt đầu như thế nào?')}
+                                    className='px-3 py-1 bg-white/5 rounded-full text-white/60 text-xs hover:bg-white/10 hover:text-white transition-colors'
+                                >
+                                    Hợp tác
                                 </button>
                             </div>
                         </div>
