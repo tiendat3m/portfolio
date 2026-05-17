@@ -4,6 +4,13 @@
 
 import emailjs from '@emailjs/browser'
 
+// Helper function to show toast notification
+const showToast = (message, type = 'info') => {
+    window.dispatchEvent(new CustomEvent('show-toast', {
+        detail: { message, type }
+    }))
+}
+
 // EmailJS Configuration
 // Get these from: https://dashboard.emailjs.com/
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'your_service_id'
@@ -12,13 +19,6 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_publ
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY)
-
-// Helper function to show toast notification
-const showToast = (message, type = 'info') => {
-    window.dispatchEvent(new CustomEvent('show-toast', {
-        detail: { message, type }
-    }))
-}
 
 // Send contact form email
 export const sendContactEmail = async (formData) => {
@@ -38,11 +38,9 @@ export const sendContactEmail = async (formData) => {
         )
 
         console.log('Email sent successfully:', response)
-        showToast('Email sent successfully!', 'success')
         return { success: true, response }
     } catch (error) {
         console.error('Error sending email:', error)
-        showToast('Failed to send email. Please try again.', 'error')
         return { success: false, error }
     }
 }

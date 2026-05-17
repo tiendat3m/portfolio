@@ -149,7 +149,7 @@ export const getPostsByCategory = async (category) => {
 
 // ==================== SUBSCRIBERS ====================
 
-// Add subscriber
+// Add subscriber (no toast - let component handle messaging)
 export const addSubscriber = async (email) => {
     try {
         // Check if already subscribed
@@ -160,8 +160,7 @@ export const addSubscriber = async (email) => {
             .single()
 
         if (existing) {
-            showToast('You are already subscribed!', 'info')
-            return { data: existing, error: null, message: 'Already subscribed' }
+            return { data: existing, error: null, isAlreadySubscribed: true }
         }
 
         const { data, error } = await supabase
@@ -173,13 +172,9 @@ export const addSubscriber = async (email) => {
             .select()
 
         if (error) throw error
-        showToast('Successfully subscribed to newsletter!', 'success')
-        return { data: data[0], error: null }
+        return { data: data[0], error: null, isAlreadySubscribed: false }
     } catch (error) {
         console.error('Error adding subscriber:', error)
-        if (error.code !== 'PGRST205') {
-            showToast('Failed to subscribe', 'error')
-        }
         return { data: null, error }
     }
 }

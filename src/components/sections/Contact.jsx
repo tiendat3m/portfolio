@@ -49,18 +49,33 @@ const Contact = () => {
             messages.push(newMessage)
             localStorage.setItem('contactMessages', JSON.stringify(messages))
 
+            // Track results
+            let emailSent = false
+            let subscriberResult = null
+
             // Send email if EmailJS is configured
             if (isEmailConfigured()) {
-                await sendContactEmail(formData)
-            } else {
-                console.log('EmailJS not configured - message saved locally only')
+                const emailResult = await sendContactEmail(formData)
+                emailSent = emailResult.success
             }
 
-            // Also try to add email to subscribers
-            await addSubscriber(formData.email)
+            // Try to add email to subscribers
+            subscriberResult = await addSubscriber(formData.email)
+
+            // Determine appropriate message based on results
+            if (emailSent) {
+                if (subscriberResult.error) {
+                    showToast('Message sent successfully!', 'success')
+                } else if (subscriberResult.isAlreadySubscribed) {
+                    showToast('Message sent successfully! You were already subscribed.', 'success')
+                } else {
+                    showToast('Message sent successfully! You\'ve been subscribed to updates.', 'success')
+                }
+            } else {
+                showToast('Message saved successfully!', 'success')
+            }
 
             setIsSubmitted(true)
-            showToast('Message sent successfully!', 'success')
             setFormData({ name: '', email: '', message: '' })
 
             // Reset after 5 seconds
@@ -138,13 +153,13 @@ const Contact = () => {
                                 <a href='https://github.com/tiendat3m' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
                                     <FaGithub className='w-5 h-5' />
                                 </a>
-                                <a href='https://linkedin.com' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
+                                <a href='https://www.linkedin.com/in/tiendat3m/' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
                                     <FaLinkedin className='w-5 h-5' />
                                 </a>
-                                <a href='https://twitter.com' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
+                                <a href='https://x.com/APhan33064' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
                                     <FaTwitter className='w-5 h-5' />
                                 </a>
-                                <a href='https://instagram.com' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
+                                <a href='https://www.instagram.com/justdatt.3m/' target='_blank' rel='noopener noreferrer' className='w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors'>
                                     <FaInstagram className='w-5 h-5' />
                                 </a>
                             </div>
