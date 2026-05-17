@@ -51,28 +51,43 @@ const Contact = () => {
 
             // Track results
             let emailSent = false
+            let emailError = null
             let subscriberResult = null
 
-            // Send email if EmailJS is configured
+            // Send email if configured
             if (isEmailConfigured()) {
                 const emailResult = await sendContactEmail(formData)
                 emailSent = emailResult.success
+                emailError = emailResult.error
             }
 
             // Try to add email to subscribers
             subscriberResult = await addSubscriber(formData.email)
 
             // Determine appropriate message based on results
-            if (emailSent) {
-                if (subscriberResult.error) {
-                    showToast('Message sent successfully!', 'success')
-                } else if (subscriberResult.isAlreadySubscribed) {
-                    showToast('Message sent successfully! You were already subscribed.', 'success')
+            const isEmailConfiguredFlag = isEmailConfigured()
+
+            if (isEmailConfiguredFlag && emailSent) {
+                // Email sent successfully
+                if (subscriberResult.isAlreadySubscribed) {
+                    showToast('Message sent! You\'re already subscribed to updates.', 'success')
+                } else if (subscriberResult.error) {
+                    showToast('Message sent! (Newsletter subscription unavailable)', 'success')
                 } else {
-                    showToast('Message sent successfully! You\'ve been subscribed to updates.', 'success')
+                    showToast('Message sent! You\'ve been subscribed to updates.', 'success')
                 }
+            } else if (isEmailConfiguredFlag && !emailSent) {
+                // Email configured but failed - still saved locally
+                showToast('Message saved locally. Email delivery failed - please try again later.', 'error')
             } else {
-                showToast('Message saved successfully!', 'success')
+                // Email not configured - saved locally only
+                if (subscriberResult.isAlreadySubscribed) {
+                    showToast('Message saved! You\'re already subscribed.', 'success')
+                } else if (subscriberResult.error) {
+                    showToast('Message saved successfully!', 'success')
+                } else {
+                    showToast('Message saved! You\'ve been subscribed to updates.', 'success')
+                }
             }
 
             setIsSubmitted(true)
