@@ -2,57 +2,57 @@
 // Resend Free tier: 3,000 emails/month
 // Docs: https://resend.com/docs
 
-import { supabase } from '../supabase/config'
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+// Direct fetch to Edge Function (avoids CORS issues with SDK)
+async function invokeEdgeFunction(type, data) {
+    const response = await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({ type, data }),
+    })
+
+    if (!response.ok) {
+        const error = await response.json().catch(() => ({ message: 'Request failed' }))
+        throw new Error(error.error?.message || error.message || 'Request failed')
+    }
+
+    return response.json()
+}
 
 // Send contact form email via Supabase Edge Function
 export const sendContactEmail = async (formData) => {
     try {
-        const { data, error } = await supabase.functions.invoke('send-email', {
-            body: {
-                type: 'contact',
-                data: {
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    message: formData.message
-                }
-            }
+        const result = await invokeEdgeFunction('contact', {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message
         })
 
-        if (error) {
-            console.error('Error sending email:', error)
-            return { success: false, error }
-        }
-
-        console.log('Email sent successfully:', data)
-        return { success: true, response: data }
+        console.log('Email sent successfully:', result)
+        return { success: true, response: result }
     } catch (error) {
         console.error('Error sending email:', error)
-        return { success: false, error }
+        return { success: false, error: error.message }
     }
 }
 
 // Send newsletter welcome email
 export const sendNewsletterWelcome = async (email) => {
     try {
-        const { data, error } = await supabase.functions.invoke('send-email', {
-            body: {
-                type: 'newsletter',
-                data: {
-                    to_email: email
-                }
-            }
+        const result = await invokeEdgeFunction('newsletter', {
+            to_email: email
         })
 
-        if (error) {
-            console.error('Error sending newsletter email:', error)
-            return { success: false, error }
-        }
-
-        console.log('Newsletter email sent:', data)
-        return { success: true, response: data }
+        console.log('Newsletter email sent:', result)
+        return { success: true, response: result }
     } catch (error) {
         console.error('Error sending newsletter email:', error)
-        return { success: false, error }
+        return { success: false, error: error.message }
     }
 }
 
