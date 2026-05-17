@@ -2,7 +2,7 @@
 // Resend Free tier: 3,000 emails/month
 // Docs: https://resend.com/docs
 
-import { supabase } from './supabaseService'
+import { supabase } from '../supabase/config'
 
 // Send contact form email via Supabase Edge Function
 export const sendContactEmail = async (formData) => {

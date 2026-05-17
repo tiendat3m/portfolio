@@ -216,7 +216,20 @@ import { HiColorPalette } from "react-icons/hi";
 3. **Cho biết responsive breakpoints** nếu có yêu cầu đặc biệt
 4. **Mô tả visual style** (glassmorphism, gradient, glow, etc.)
 
+## 📤 Git Workflow - QUAN TRỌNG
+
+**Sau khi hoàn thành mỗi task, AI sẽ hỏi:**
+
+> "Bạn có muốn push changes lên git không?"
+
+### Quy trình:
+
+1. ✅ Hoàn thành task
+2. ✅ Hỏi user có muốn push không
+3. ✅ Nếu có → `git add .` → `git commit -m "message"` → `git push`
+4. ✅ Nếu không → kết thúc task
+
 ---
 
-_Last updated: 2026-03-22_
+_Last updated: 2026-05-17_
 _Project: Portfolio Website_
