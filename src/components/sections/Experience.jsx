@@ -22,7 +22,7 @@ const experiences = [
         type: 'education',
         title: 'Bachelor of Information Technology',
         company: 'University of Information Technology',
-        period: '2018 - 2022',
+        period: '2020 - 2024',
         description: 'Focused on Software Engineering. Learned programming fundamentals, data structures, web development, and software design patterns.'
     },
     {
