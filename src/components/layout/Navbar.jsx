@@ -29,8 +29,8 @@ const Navbar = () => {
 
             // Update active section based on scroll position
             const sections = navLinks
-                .filter(link => link.type === 'hash')
-                .map(link => link.href.substring(1))
+                .filter((link) => link.type === 'hash')
+                .map((link) => link.href.substring(1))
 
             for (const section of sections) {
                 const element = document.getElementById(section)
@@ -104,9 +104,10 @@ const Navbar = () => {
                 <Link
                     key={link.name}
                     to={link.href}
-                    className={isMobile
-                        ? `text-3xl font-bold py-4 ${isCurrentRoute ? 'text-white' : 'text-white/80 hover:text-white'}`
-                        : `relative text-sm font-medium transition-colors duration-300 ${isCurrentRoute ? 'text-white' : 'text-white/60 hover:text-white'}`
+                    className={
+                        isMobile
+                            ? `text-3xl font-bold py-4 ${isCurrentRoute ? 'text-white' : 'text-white/80 hover:text-white'}`
+                            : `relative text-sm font-medium transition-colors duration-300 ${isCurrentRoute ? 'text-white' : 'text-white/60 hover:text-white'}`
                     }
                     onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -165,10 +166,11 @@ const Navbar = () => {
     return (
         <>
             <motion.header
-                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled
-                    ? 'py-4 bg-dark-950/80 backdrop-blur-xl border-b border-white/5'
-                    : 'py-6 bg-transparent'
-                    }`}
+                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+                    isScrolled
+                        ? 'py-4 bg-dark-950/80 backdrop-blur-xl border-b border-white/5'
+                        : 'py-6 bg-transparent'
+                }`}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -248,7 +250,9 @@ const Navbar = () => {
 
                             <motion.a
                                 href="#contact"
-                                onClick={(e) => handleNavClick(e, { href: '#contact', type: 'hash' })}
+                                onClick={(e) =>
+                                    handleNavClick(e, { href: '#contact', type: 'hash' })
+                                }
                                 className="btn-primary mt-8"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}

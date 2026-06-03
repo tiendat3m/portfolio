@@ -12,46 +12,62 @@ import {
 
 const services = [
     {
-        icon: <HiDesktopComputer className='w-8 h-8' />,
+        icon: <HiDesktopComputer className="w-8 h-8" />,
         title: 'Web Development',
-        description: 'Building responsive, high-performance web applications with modern technologies like React, Next.js, and Angular.',
+        description:
+            'Building responsive, high-performance web applications with modern technologies like React, Next.js, and Angular.',
         features: ['Custom Web Apps', 'Dashboard Development', 'CMS Integration', 'API Integration']
     },
     {
-        icon: <HiLightBulb className='w-8 h-8' />,
+        icon: <HiLightBulb className="w-8 h-8" />,
         title: 'UI/UX Implementation',
-        description: 'Transforming designs into pixel-perfect, responsive interfaces with smooth animations and interactions.',
+        description:
+            'Transforming designs into pixel-perfect, responsive interfaces with smooth animations and interactions.',
         features: ['Responsive Design', 'CSS Animations', 'Framer Motion', 'Accessibility']
     },
     {
-        icon: <HiCode className='w-8 h-8' />,
+        icon: <HiCode className="w-8 h-8" />,
         title: 'Component Development',
-        description: 'Building reusable, scalable component libraries and design systems for consistent user interfaces.',
+        description:
+            'Building reusable, scalable component libraries and design systems for consistent user interfaces.',
         features: ['Design Systems', 'Component Libraries', 'Storybook', 'Documentation']
     },
     {
-        icon: <HiLightningBolt className='w-8 h-8' />,
+        icon: <HiLightningBolt className="w-8 h-8" />,
         title: 'Performance Optimization',
         description: 'Optimizing web applications for speed, SEO, and exceptional user experience.',
         features: ['Core Web Vitals', 'Bundle Optimization', 'Lazy Loading', 'Code Splitting']
     },
     {
-        icon: <HiCog className='w-8 h-8' />,
+        icon: <HiCog className="w-8 h-8" />,
         title: 'Frontend Architecture',
-        description: 'Designing scalable frontend architecture and state management solutions for complex applications.',
+        description:
+            'Designing scalable frontend architecture and state management solutions for complex applications.',
         features: ['State Management', 'Project Setup', 'Best Practices', 'Code Reviews']
     },
     {
-        icon: <HiDesktopComputer className='w-8 h-8' />,
+        icon: <HiDesktopComputer className="w-8 h-8" />,
         title: 'Enterprise Applications',
-        description: 'Developing robust enterprise-level applications with authentication, authorization, and data management.',
-        features: ['Admin Dashboards', 'Authentication Systems', 'Data Visualization', 'Reporting Tools']
+        description:
+            'Developing robust enterprise-level applications with authentication, authorization, and data management.',
+        features: [
+            'Admin Dashboards',
+            'Authentication Systems',
+            'Data Visualization',
+            'Reporting Tools'
+        ]
     },
     {
-        icon: <HiDeviceMobile className='w-8 h-8' />,
+        icon: <HiDeviceMobile className="w-8 h-8" />,
         title: 'AI Integration & AI Agents',
-        description: 'Integrating AI-powered features and lightweight AI agent workflows into web products to improve automation and user experience.',
-        features: ['Prompt Workflows', 'AI-assisted Content', 'Chat/Assistant UI', 'Automation Flows']
+        description:
+            'Integrating AI-powered features and lightweight AI agent workflows into web products to improve automation and user experience.',
+        features: [
+            'Prompt Workflows',
+            'AI-assisted Content',
+            'Chat/Assistant UI',
+            'Automation Flows'
+        ]
     }
 ]
 
@@ -59,23 +75,23 @@ const Services = () => {
     const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
 
     return (
-        <section id='services' className='section-padding relative'>
-            <div className='container-custom'>
+        <section id="services" className="section-padding relative">
+            <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className='text-center mb-16'
+                    className="text-center mb-16"
                 >
-                    <p className='text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4'>
+                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
                         What I Offer
                     </p>
-                    <h2 className='text-4xl md:text-5xl font-bold text-white'>
-                        My <span className='gradient-text'>Services</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                        My <span className="gradient-text">Services</span>
                     </h2>
                 </motion.div>
 
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
                         <motion.div
                             key={index}
@@ -83,21 +99,24 @@ const Services = () => {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -10 }}
-                            className='glass-card p-8 group cursor-pointer'
+                            className="glass-card p-8 group cursor-pointer"
                         >
-                            <div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center mb-6 group-hover:from-accent-primary/30 group-hover:to-accent-secondary/30 transition-colors'>
-                                <span className='text-accent-primary group-hover:text-white transition-colors'>
+                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center mb-6 group-hover:from-accent-primary/30 group-hover:to-accent-secondary/30 transition-colors">
+                                <span className="text-accent-primary group-hover:text-white transition-colors">
                                     {service.icon}
                                 </span>
                             </div>
 
-                            <h3 className='text-xl font-bold text-white mb-3'>{service.title}</h3>
-                            <p className='text-white/60 mb-6'>{service.description}</p>
+                            <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                            <p className="text-white/60 mb-6">{service.description}</p>
 
-                            <ul className='space-y-2'>
+                            <ul className="space-y-2">
                                 {service.features.map((feature, featureIndex) => (
-                                    <li key={featureIndex} className='flex items-center gap-2 text-white/70 text-sm'>
-                                        <span className='w-1.5 h-1.5 rounded-full bg-accent-primary' />
+                                    <li
+                                        key={featureIndex}
+                                        className="flex items-center gap-2 text-white/70 text-sm"
+                                    >
+                                        <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
                                         {feature}
                                     </li>
                                 ))}
@@ -111,18 +130,20 @@ const Services = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.6 }}
-                    className='text-center mt-16'
+                    className="text-center mt-16"
                 >
-                    <p className='text-white/60 mb-6'>Have a project in mind? Let's work together!</p>
-                    <a href='#contact' className='btn-primary'>
+                    <p className="text-white/60 mb-6">
+                        Have a project in mind? Let's work together!
+                    </p>
+                    <a href="#contact" className="btn-primary">
                         Get In Touch
                     </a>
                 </motion.div>
             </div>
 
             {/* Background decoration */}
-            <div className='absolute top-1/3 right-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[150px]' />
-            <div className='absolute bottom-1/3 left-0 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[150px]' />
+            <div className="absolute top-1/3 right-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[150px]" />
+            <div className="absolute bottom-1/3 left-0 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[150px]" />
         </section>
     )
 }

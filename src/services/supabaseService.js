@@ -2,9 +2,11 @@ import { supabase, TABLES } from '../supabase/config'
 
 // Helper function to show toast notification
 const showToast = (message, type = 'info') => {
-    window.dispatchEvent(new CustomEvent('show-toast', {
-        detail: { message, type }
-    }))
+    window.dispatchEvent(
+        new CustomEvent('show-toast', {
+            detail: { message, type }
+        })
+    )
 }
 
 // ==================== POSTS ====================
@@ -31,11 +33,7 @@ export const getPosts = async () => {
 // Get single post by ID
 export const getPost = async (id) => {
     try {
-        const { data, error } = await supabase
-            .from(TABLES.POSTS)
-            .select('*')
-            .eq('id', id)
-            .single()
+        const { data, error } = await supabase.from(TABLES.POSTS).select('*').eq('id', id).single()
 
         if (error) throw error
         return { data, error: null }
@@ -50,11 +48,13 @@ export const createPost = async (post) => {
     try {
         const { data, error } = await supabase
             .from(TABLES.POSTS)
-            .insert([{
-                ...post,
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString()
-            }])
+            .insert([
+                {
+                    ...post,
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString()
+                }
+            ])
             .select()
 
         if (error) throw error
@@ -96,10 +96,7 @@ export const updatePost = async (id, updates) => {
 // Delete post
 export const deletePost = async (id) => {
     try {
-        const { error } = await supabase
-            .from(TABLES.POSTS)
-            .delete()
-            .eq('id', id)
+        const { error } = await supabase.from(TABLES.POSTS).delete().eq('id', id)
 
         if (error) throw error
         showToast('Post deleted successfully!', 'success')
@@ -165,10 +162,12 @@ export const addSubscriber = async (email) => {
 
         const { data, error } = await supabase
             .from(TABLES.SUBSCRIBERS)
-            .insert([{
-                email,
-                created_at: new Date().toISOString()
-            }])
+            .insert([
+                {
+                    email,
+                    created_at: new Date().toISOString()
+                }
+            ])
             .select()
 
         if (error) throw error
@@ -198,10 +197,7 @@ export const getSubscribers = async () => {
 // Remove subscriber
 export const removeSubscriber = async (email) => {
     try {
-        const { error } = await supabase
-            .from(TABLES.SUBSCRIBERS)
-            .delete()
-            .eq('email', email)
+        const { error } = await supabase.from(TABLES.SUBSCRIBERS).delete().eq('email', email)
 
         if (error) throw error
         showToast('Successfully unsubscribed', 'success')
@@ -237,10 +233,12 @@ export const createUser = async (userData) => {
     try {
         const { data, error } = await supabase
             .from(TABLES.USERS)
-            .insert([{
-                ...userData,
-                created_at: new Date().toISOString()
-            }])
+            .insert([
+                {
+                    ...userData,
+                    created_at: new Date().toISOString()
+                }
+            ])
             .select()
 
         if (error) throw error
@@ -257,7 +255,8 @@ export const createUser = async (userData) => {
 export const subscribeToPosts = (callback) => {
     return supabase
         .channel('posts-channel')
-        .on('postgres_changes',
+        .on(
+            'postgres_changes',
             { event: '*', schema: 'public', table: TABLES.POSTS },
             (payload) => {
                 console.log('Posts change received:', payload)
@@ -271,7 +270,8 @@ export const subscribeToPosts = (callback) => {
 export const subscribeToSubscribers = (callback) => {
     return supabase
         .channel('subscribers-channel')
-        .on('postgres_changes',
+        .on(
+            'postgres_changes',
             { event: '*', schema: 'public', table: TABLES.SUBSCRIBERS },
             (payload) => {
                 console.log('Subscribers change received:', payload)

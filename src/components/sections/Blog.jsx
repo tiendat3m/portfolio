@@ -8,7 +8,8 @@ const defaultPosts = [
     {
         id: 1,
         title: 'Building Immersive 3D Web Experiences with Three.js',
-        excerpt: 'Learn how to create stunning 3D visualizations for the web using Three.js and React Three Fiber.',
+        excerpt:
+            'Learn how to create stunning 3D visualizations for the web using Three.js and React Three Fiber.',
         image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
         category: 'Development',
         date: 'Mar 15, 2026',
@@ -27,7 +28,8 @@ Three.js and React Three Fiber open up incredible possibilities for web developm
     {
         id: 2,
         title: 'The Future of Web Animation: Framer Motion vs GSAP',
-        excerpt: 'A deep dive comparison of two popular animation libraries and when to use each one.',
+        excerpt:
+            'A deep dive comparison of two popular animation libraries and when to use each one.',
         image: 'https://images.unsplash.com/photo-1550439062-609e1531270e?w=800',
         category: 'Animation',
         date: 'Mar 10, 2026',
@@ -42,7 +44,8 @@ Both libraries are excellent choices. The best one depends on your specific need
     {
         id: 3,
         title: 'Mastering Tailwind CSS: Advanced Techniques',
-        excerpt: 'Take your Tailwind CSS skills to the next level with these advanced tips and tricks.',
+        excerpt:
+            'Take your Tailwind CSS skills to the next level with these advanced tips and tricks.',
         image: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800',
         category: 'CSS',
         date: 'Mar 5, 2026',
@@ -80,71 +83,79 @@ const Blog = () => {
 
     return (
         <>
-            <section id='blog' className='section-padding relative'>
-                <div className='container-custom'>
+            <section id="blog" className="section-padding relative">
+                <div className="container-custom">
                     <motion.div
                         ref={ref}
                         initial={{ opacity: 0, y: 50 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
-                        className='text-center mb-16'
+                        className="text-center mb-16"
                     >
-                        <p className='text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4'>
+                        <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
                             Blog
                         </p>
-                        <h2 className='text-4xl md:text-5xl font-bold text-white mb-4'>
-                            Latest <span className='gradient-text'>Articles</span>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                            Latest <span className="gradient-text">Articles</span>
                         </h2>
-                        <p className='text-white/60 max-w-2xl mx-auto'>
+                        <p className="text-white/60 max-w-2xl mx-auto">
                             Thoughts on web development, design, and creative technology.
                         </p>
                     </motion.div>
 
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {previewPosts.map((post, index) => (
                             <motion.article
                                 key={post.id}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={inView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ delay: index * 0.1 }}
-                                className='glass-card overflow-hidden group cursor-pointer'
+                                className="glass-card overflow-hidden group cursor-pointer"
                             >
-                                <div className='relative h-48 overflow-hidden'>
+                                <div className="relative h-48 overflow-hidden">
                                     <img
                                         src={post.image}
                                         alt={post.title}
-                                        className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-105'
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                     />
-                                    <div className='absolute top-4 left-4'>
-                                        <span className='px-3 py-1 bg-accent-primary/90 text-white text-xs font-medium rounded-full'>
+                                    <div className="absolute top-4 left-4">
+                                        <span className="px-3 py-1 bg-accent-primary/90 text-white text-xs font-medium rounded-full">
                                             {post.category}
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className='p-6'>
-                                    <div className='flex items-center gap-4 text-white/50 text-sm mb-3'>
-                                        <span className='flex items-center gap-1'>
-                                            <HiCalendar className='w-4 h-4' />
+                                <div className="p-6">
+                                    <div className="flex items-center gap-4 text-white/50 text-sm mb-3">
+                                        <span className="flex items-center gap-1">
+                                            <HiCalendar className="w-4 h-4" />
                                             {post.date}
                                         </span>
-                                        <span className='flex items-center gap-1'>
-                                            <HiClock className='w-4 h-4' />
+                                        <span className="flex items-center gap-1">
+                                            <HiClock className="w-4 h-4" />
                                             {post.readTime}
                                         </span>
                                     </div>
 
-                                    <h3 className='text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-accent-primary transition-colors'>
-                                        <Link to={`/blog/${post.id}`} className='hover:text-accent-primary transition-colors'>
+                                    <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-accent-primary transition-colors">
+                                        <Link
+                                            to={`/blog/${post.id}`}
+                                            className="hover:text-accent-primary transition-colors"
+                                        >
                                             {post.title}
                                         </Link>
                                     </h3>
 
-                                    <p className='text-white/60 text-sm mb-4 line-clamp-2'>
+                                    <p className="text-white/60 text-sm mb-4 line-clamp-2">
                                         {post.excerpt}
                                     </p>
 
-                                    <Link to={`/blog/${post.id}`} className='flex items-center gap-2 text-accent-primary text-sm font-medium group-hover:gap-3 transition-all'>
-                                        Read More <HiArrowRight className='w-4 h-4' />
+                                    <Link
+                                        to={`/blog/${post.id}`}
+                                        className="flex items-center gap-2 text-accent-primary text-sm font-medium group-hover:gap-3 transition-all"
+                                    >
+                                        Read More <HiArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>
                             </motion.article>
@@ -156,16 +167,16 @@ const Blog = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.6 }}
-                        className='text-center mt-12'
+                        className="text-center mt-12"
                     >
-                        <Link to='/blog' className='btn-outline'>
+                        <Link to="/blog" className="btn-outline">
                             View All Articles
                         </Link>
                     </motion.div>
                 </div>
 
                 {/* Background decoration */}
-                <div className='absolute top-1/3 left-0 w-80 h-80 bg-accent-tertiary/10 rounded-full blur-[120px]' />
+                <div className="absolute top-1/3 left-0 w-80 h-80 bg-accent-tertiary/10 rounded-full blur-[120px]" />
             </section>
         </>
     )

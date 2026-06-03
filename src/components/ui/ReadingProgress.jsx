@@ -18,12 +18,12 @@ const ReadingProgress = () => {
 
     return (
         <motion.div
-            className='fixed top-0 left-0 right-0 z-[100] h-1 bg-dark-900/50'
+            className="fixed top-0 left-0 right-0 z-[100] h-1 bg-dark-900/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: progress > 0 ? 1 : 0 }}
         >
             <motion.div
-                className='h-full bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-tertiary'
+                className="h-full bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-tertiary"
                 style={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}
             />

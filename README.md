@@ -1,6 +1,6 @@
 # 🚀 Portfolio Website
 
-A modern, interactive portfolio website built with React, Three.js, and cutting-edge web technologies.
+A modern, interactive portfolio website built with React, Vite, Tailwind CSS, Supabase integrations, and animation-focused UI patterns.
 
 ![Portfolio Preview](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200)
 
@@ -10,7 +10,6 @@ A modern, interactive portfolio website built with React, Three.js, and cutting-
 
 - **Dark/Light Mode** - Toggle between themes with smooth transitions
 - **Animated Galaxy Background** - Dynamic gradient effects
-- **Custom Cursor** - Interactive cursor with trail effects
 - **Glass Morphism** - Modern frosted glass design
 - **Responsive Design** - Works on all devices
 - **Smooth Animations** - Framer Motion & GSAP powered
@@ -41,7 +40,7 @@ A modern, interactive portfolio website built with React, Three.js, and cutting-
 
 ### 🎯 Sections
 
-- **Hero** - 3D animated introduction
+- **Hero** - Animated introduction
 - **About** - Personal information
 - **Skills** - Progress bars with categories
 - **Services** - 6 service offerings
@@ -54,10 +53,9 @@ A modern, interactive portfolio website built with React, Three.js, and cutting-
 ### ⚡ Performance
 
 - **Vite** - Fast build tool
-- **Code Splitting** - Lazy loading
-- **Image Optimization** - WebP support
+- **Image Optimization** - Lazy loading and async image decoding
 - **SEO Optimized** - Meta tags & structured data
-- **PWA Ready** - Progressive web app support
+- **Deployment Ready** - Vercel-friendly SPA configuration
 
 ## 🛠️ Tech Stack
 
@@ -68,7 +66,6 @@ A modern, interactive portfolio website built with React, Three.js, and cutting-
 - **Tailwind CSS 3** - Styling
 - **Framer Motion** - Animations
 - **GSAP** - Scroll animations
-- **Three.js** - 3D graphics
 - **React Router** - Navigation
 - **React Icons** - Icon library
 
@@ -159,7 +156,6 @@ portfolio/
 │   │   ├── admin/          # Admin panel
 │   │   ├── layout/         # Navbar, Footer
 │   │   ├── sections/       # Page sections
-│   │   ├── three/          # 3D components
 │   │   └── ui/             # UI components
 │   ├── context/            # React contexts
 │   ├── pages/              # Page components
@@ -219,14 +215,14 @@ git push origin main
 ```
 
 2. **Connect to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Add environment variables
-   - Deploy!
+    - Go to [vercel.com](https://vercel.com)
+    - Import your GitHub repository
+    - Add environment variables
+    - Deploy!
 
 3. **Add Environment Variables in Vercel**
-   - Go to Project Settings → Environment Variables
-   - Add all variables from `.env`
+    - Go to Project Settings → Environment Variables
+    - Add all variables from `.env`
 
 ### Deploy to Netlify (Alternative)
 
@@ -241,6 +237,9 @@ npm run build
 npm run dev      # Start development server
 npm run build    # Build for production
 npm run preview  # Preview production build
+npm run lint     # Run ESLint quality checks
+npm run format   # Format code with Prettier
+npm run validate # Lint, format-check, and production build
 ```
 
 ## 📊 Features Checklist
@@ -249,7 +248,6 @@ npm run preview  # Preview production build
 
 - [x] Dark/Light mode toggle
 - [x] Animated galaxy background
-- [x] Custom cursor effects
 - [x] Responsive design
 - [x] Blog CRUD with Supabase
 - [x] Real-time sync
@@ -279,8 +277,8 @@ npm run preview  # Preview production build
 
 ## 🐛 Known Issues
 
-- Custom cursor disabled on touch devices
-- Some 3D effects may impact performance on older devices
+- Current admin password flow is intended for local/demo usage; production should use Supabase Auth + RLS
+- AI chatbot API keys should be moved to a serverless or Supabase Edge Function for production
 - AI chatbot requires API key for full functionality
 
 ## 📝 License
@@ -289,15 +287,14 @@ MIT License - feel free to use for personal or commercial projects.
 
 ## 👨‍💻 Author
 
-**John Developer**
+**Phan Tiến Đạt**
 
-- Email: hello@portfolio.com
+- Email: phantiendat14012002@gmail.com
 - Location: Ho Chi Minh City, Vietnam
-- Website: portfolio.com
+- GitHub: https://github.com/tiendat3m
 
 ## 🙏 Acknowledgments
 
-- [Three.js](https://threejs.org/) - 3D graphics
 - [Framer Motion](https://www.framer.com/motion/) - Animations
 - [GSAP](https://greensock.com/gsap/) - Scroll animations
 - [Tailwind CSS](https://tailwindcss.com/) - Styling

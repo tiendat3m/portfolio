@@ -412,80 +412,88 @@ const BlogPost = ({ post, onBack }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className='min-h-screen bg-dark-950 pt-24 pb-32'
+                className="min-h-screen bg-dark-950 pt-24 pb-32"
             >
                 {/* Header Image */}
-                <div className='relative h-[400px] overflow-hidden'>
+                <div className="relative h-[400px] overflow-hidden">
                     <img
                         src={post.image}
                         alt={post.title}
-                        className='w-full h-full object-cover'
+                        decoding="async"
+                        className="w-full h-full object-cover"
                     />
-                    <div className='absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/50 to-transparent' />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/50 to-transparent" />
 
                     {/* Back Button */}
                     <button
                         onClick={onBack}
-                        className='absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-dark-950/50 backdrop-blur-sm rounded-full text-white hover:bg-dark-950/80 transition-colors'
+                        className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-dark-950/50 backdrop-blur-sm rounded-full text-white hover:bg-dark-950/80 transition-colors"
                     >
-                        <HiArrowLeft className='w-5 h-5' />
+                        <HiArrowLeft className="w-5 h-5" />
                         Back to Blog
                     </button>
                 </div>
 
                 {/* Content */}
-                <div className='container-custom -mt-32 relative z-10'>
-                    <article className='max-w-3xl mx-auto'>
+                <div className="container-custom -mt-32 relative z-10">
+                    <article className="max-w-3xl mx-auto">
                         {/* Meta */}
-                        <div className='flex flex-wrap items-center gap-4 mb-6'>
-                            <span className='px-3 py-1 bg-accent-primary/90 text-white text-sm font-medium rounded-full'>
+                        <div className="flex flex-wrap items-center gap-4 mb-6">
+                            <span className="px-3 py-1 bg-accent-primary/90 text-white text-sm font-medium rounded-full">
                                 {post.category}
                             </span>
-                            <span className='flex items-center gap-1 text-white/50 text-sm'>
-                                <HiCalendar className='w-4 h-4' />
+                            <span className="flex items-center gap-1 text-white/50 text-sm">
+                                <HiCalendar className="w-4 h-4" />
                                 {post.date}
                             </span>
-                            <span className='flex items-center gap-1 text-white/50 text-sm'>
-                                <HiClock className='w-4 h-4' />
+                            <span className="flex items-center gap-1 text-white/50 text-sm">
+                                <HiClock className="w-4 h-4" />
                                 {post.readTime}
                             </span>
                         </div>
 
                         {/* Title */}
-                        <h1 className='text-3xl md:text-5xl font-bold text-white mb-8 leading-tight'>
+                        <h1 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
                             {post.title}
                         </h1>
 
                         {/* Author */}
-                        <div className='flex items-center gap-4 mb-8 pb-8 border-b border-white/10'>
+                        <div className="flex items-center gap-4 mb-8 pb-8 border-b border-white/10">
                             <img
-                                src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100'
-                                alt='Author'
-                                className='w-12 h-12 rounded-full object-cover'
+                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+                                alt="Author"
+                                loading="lazy"
+                                decoding="async"
+                                className="w-12 h-12 rounded-full object-cover"
                             />
                             <div>
-                                <p className='text-white font-medium'>Phan Tiến Đạt</p>
-                                <p className='text-white/50 text-sm'>Creative Developer & Designer</p>
+                                <p className="text-white font-medium">Phan Tiến Đạt</p>
+                                <p className="text-white/50 text-sm">
+                                    Creative Developer & Designer
+                                </p>
                             </div>
-                            <div className='ml-auto flex gap-2'>
-                                <button className='p-2 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors'>
-                                    <HiShare className='w-5 h-5' />
+                            <div className="ml-auto flex gap-2">
+                                <button className="p-2 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors">
+                                    <HiShare className="w-5 h-5" />
                                 </button>
-                                <button className='p-2 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors'>
-                                    <HiBookmark className='w-5 h-5' />
+                                <button className="p-2 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors">
+                                    <HiBookmark className="w-5 h-5" />
                                 </button>
                             </div>
                         </div>
 
                         {/* Article Content */}
-                        <div className='prose prose-invert prose-lg max-w-none'>
+                        <div className="prose prose-invert prose-lg max-w-none">
                             {content.split('\n').map((paragraph, index) => {
                                 const trimmed = paragraph.trim()
                                 if (!trimmed) return null
 
                                 if (trimmed.startsWith('##')) {
                                     return (
-                                        <h2 key={index} className='text-2xl font-bold text-white mt-12 mb-4'>
+                                        <h2
+                                            key={index}
+                                            className="text-2xl font-bold text-white mt-12 mb-4"
+                                        >
                                             {trimmed.replace('##', '').trim()}
                                         </h2>
                                     )
@@ -497,7 +505,7 @@ const BlogPost = ({ post, onBack }) => {
 
                                 if (trimmed.startsWith('-') || trimmed.startsWith('*')) {
                                     return (
-                                        <li key={index} className='text-white/70 ml-4 mb-2'>
+                                        <li key={index} className="text-white/70 ml-4 mb-2">
                                             {trimmed.replace(/^[-*]\s*/, '')}
                                         </li>
                                     )
@@ -505,14 +513,17 @@ const BlogPost = ({ post, onBack }) => {
 
                                 if (trimmed.match(/^\d+\./)) {
                                     return (
-                                        <li key={index} className='text-white/70 ml-4 mb-2 list-decimal'>
+                                        <li
+                                            key={index}
+                                            className="text-white/70 ml-4 mb-2 list-decimal"
+                                        >
                                             {trimmed.replace(/^\d+\.\s*/, '')}
                                         </li>
                                     )
                                 }
 
                                 return (
-                                    <p key={index} className='text-white/70 mb-6 leading-relaxed'>
+                                    <p key={index} className="text-white/70 mb-6 leading-relaxed">
                                         {trimmed}
                                     </p>
                                 )
@@ -520,30 +531,28 @@ const BlogPost = ({ post, onBack }) => {
                         </div>
 
                         {/* Tags */}
-                        <div className='mt-12 pt-8 border-t border-white/10'>
-                            <p className='text-white/50 text-sm mb-4'>Tags:</p>
-                            <div className='flex flex-wrap gap-2'>
-                                {['React', 'JavaScript', 'Web Development', 'Tutorial'].map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className='px-3 py-1 bg-white/5 text-white/60 text-sm rounded-full hover:bg-white/10 cursor-pointer transition-colors'
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
+                        <div className="mt-12 pt-8 border-t border-white/10">
+                            <p className="text-white/50 text-sm mb-4">Tags:</p>
+                            <div className="flex flex-wrap gap-2">
+                                {['React', 'JavaScript', 'Web Development', 'Tutorial'].map(
+                                    (tag) => (
+                                        <span
+                                            key={tag}
+                                            className="px-3 py-1 bg-white/5 text-white/60 text-sm rounded-full hover:bg-white/10 cursor-pointer transition-colors"
+                                        >
+                                            {tag}
+                                        </span>
+                                    )
+                                )}
                             </div>
                         </div>
 
                         {/* Share */}
-                        <div className='mt-8 p-6 glass-card'>
-                            <p className='text-white font-medium mb-4'>Enjoyed this article?</p>
-                            <div className='flex gap-4'>
-                                <button className='btn-primary'>
-                                    Share on Twitter
-                                </button>
-                                <button className='btn-outline'>
-                                    Subscribe for More
-                                </button>
+                        <div className="mt-8 p-6 glass-card">
+                            <p className="text-white font-medium mb-4">Enjoyed this article?</p>
+                            <div className="flex gap-4">
+                                <button className="btn-primary">Share on Twitter</button>
+                                <button className="btn-outline">Subscribe for More</button>
                             </div>
                         </div>
                     </article>

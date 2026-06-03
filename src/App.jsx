@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -56,32 +56,24 @@ const HomePage = () => {
     const mainRef = useRef(null)
 
     useEffect(() => {
-        // Simulate loading time for smooth entrance
+        // Keep the entrance lightweight so slower/60Hz displays feel responsive.
         const timer = setTimeout(() => {
             setIsLoading(false)
-        }, 2000)
+        }, 800)
 
         return () => clearTimeout(timer)
     }, [])
 
     useEffect(() => {
-        if (!isLoading && mainRef.current) {
-            // Initialize smooth scroll and parallax effects
-            const ctx = gsap.context(() => {
-                // Parallax effect for sections
-                gsap.utils.toArray('.parallax-section').forEach((section) => {
-                    gsap.to(section, {
-                        yPercent: -10,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: section,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: true
-                        }
-                    })
-                })
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+        if (prefersReducedMotion) {
+            return undefined
+        }
+
+        if (!isLoading && mainRef.current) {
+            // Initialize lightweight scroll reveal effects.
+            const ctx = gsap.context(() => {
                 // Fade in sections on scroll
                 gsap.utils.toArray('.fade-in-section').forEach((section) => {
                     gsap.fromTo(
@@ -95,23 +87,6 @@ const HomePage = () => {
                             scrollTrigger: {
                                 trigger: section,
                                 start: 'top 80%',
-                                toggleActions: 'play none none reverse'
-                            }
-                        }
-                    )
-                })
-
-                // Simple scale effect for cards (lighter than 3D rotation)
-                gsap.utils.toArray('.glass-card').forEach((card) => {
-                    gsap.fromTo(card,
-                        { scale: 0.98 },
-                        {
-                            scale: 1,
-                            duration: 0.5,
-                            ease: 'power2.out',
-                            scrollTrigger: {
-                                trigger: card,
-                                start: 'top 90%',
                                 toggleActions: 'play none none reverse'
                             }
                         }

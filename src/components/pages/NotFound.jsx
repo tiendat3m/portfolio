@@ -12,14 +12,14 @@ const NotFound = () => {
     }
 
     return (
-        <div className='min-h-screen bg-dark-950 flex items-center justify-center relative overflow-hidden'>
+        <div className="min-h-screen bg-dark-950 flex items-center justify-center relative overflow-hidden">
             {/* Background effects */}
-            <div className='absolute inset-0'>
-                <div className='absolute top-1/4 left-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-[150px]' />
-                <div className='absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[150px]' />
+            <div className="absolute inset-0">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-[150px]" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[150px]" />
             </div>
 
-            <div className='container-custom text-center relative z-10'>
+            <div className="container-custom text-center relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -27,7 +27,7 @@ const NotFound = () => {
                 >
                     {/* 404 Number */}
                     <motion.h1
-                        className='text-[150px] md:text-[200px] font-bold gradient-text leading-none mb-4'
+                        className="text-[150px] md:text-[200px] font-bold gradient-text leading-none mb-4"
                         initial={{ scale: 0.5 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
@@ -37,7 +37,7 @@ const NotFound = () => {
 
                     {/* Message */}
                     <motion.h2
-                        className='text-3xl md:text-4xl font-bold text-white mb-4'
+                        className="text-3xl md:text-4xl font-bold text-white mb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
@@ -46,7 +46,7 @@ const NotFound = () => {
                     </motion.h2>
 
                     <motion.p
-                        className='text-white/60 text-lg mb-12 max-w-md mx-auto'
+                        className="text-white/60 text-lg mb-12 max-w-md mx-auto"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
@@ -56,30 +56,24 @@ const NotFound = () => {
 
                     {/* Buttons */}
                     <motion.div
-                        className='flex flex-col sm:flex-row items-center justify-center gap-4'
+                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6 }}
                     >
-                        <button
-                            onClick={goHome}
-                            className='btn-primary flex items-center gap-2'
-                        >
-                            <HiHome className='w-5 h-5' />
+                        <button onClick={goHome} className="btn-primary flex items-center gap-2">
+                            <HiHome className="w-5 h-5" />
                             Back to Home
                         </button>
-                        <button
-                            onClick={goBack}
-                            className='btn-outline flex items-center gap-2'
-                        >
-                            <HiArrowLeft className='w-5 h-5' />
+                        <button onClick={goBack} className="btn-outline flex items-center gap-2">
+                            <HiArrowLeft className="w-5 h-5" />
                             Go Back
                         </button>
                     </motion.div>
 
                     {/* Animated elements */}
                     <motion.div
-                        className='mt-16 flex justify-center gap-4'
+                        className="mt-16 flex justify-center gap-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.8 }}
@@ -87,7 +81,7 @@ const NotFound = () => {
                         {[...Array(5)].map((_, i) => (
                             <motion.div
                                 key={i}
-                                className='w-3 h-3 rounded-full bg-accent-primary/50'
+                                className="w-3 h-3 rounded-full bg-accent-primary/50"
                                 animate={{
                                     y: [0, -20, 0],
                                     opacity: [0.5, 1, 0.5]

@@ -11,9 +11,9 @@ async function invokeEdgeFunction(type, data) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`
         },
-        body: JSON.stringify({ type, data }),
+        body: JSON.stringify({ type, data })
     })
 
     if (!response.ok) {

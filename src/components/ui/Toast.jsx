@@ -12,10 +12,10 @@ const Toast = ({ message, type = 'info', duration = 3000, onClose }) => {
     }, [duration, onClose])
 
     const icons = {
-        success: <HiCheck className='w-5 h-5' />,
-        error: <HiX className='w-5 h-5' />,
-        warning: <HiExclamation className='w-5 h-5' />,
-        info: <HiInformationCircle className='w-5 h-5' />
+        success: <HiCheck className="w-5 h-5" />,
+        error: <HiX className="w-5 h-5" />,
+        warning: <HiExclamation className="w-5 h-5" />,
+        info: <HiInformationCircle className="w-5 h-5" />
     }
 
     const colors = {
@@ -33,12 +33,9 @@ const Toast = ({ message, type = 'info', duration = 3000, onClose }) => {
             className={`fixed bottom-24 right-8 z-[400] px-6 py-4 rounded-lg border backdrop-blur-xl ${colors[type]} flex items-center gap-3`}
         >
             {icons[type]}
-            <span className='font-medium'>{message}</span>
-            <button
-                onClick={onClose}
-                className='ml-2 hover:opacity-70 transition-opacity'
-            >
-                <HiX className='w-4 h-4' />
+            <span className="font-medium">{message}</span>
+            <button onClick={onClose} className="ml-2 hover:opacity-70 transition-opacity">
+                <HiX className="w-4 h-4" />
             </button>
         </motion.div>
     )
@@ -67,11 +64,11 @@ export const useToast = () => {
 
     const addToast = (message, type = 'info', duration = 3000) => {
         const id = Date.now()
-        setToasts(prev => [...prev, { id, message, type, duration }])
+        setToasts((prev) => [...prev, { id, message, type, duration }])
     }
 
     const removeToast = (id) => {
-        setToasts(prev => prev.filter(toast => toast.id !== id))
+        setToasts((prev) => prev.filter((toast) => toast.id !== id))
     }
 
     return { toasts, addToast, removeToast }

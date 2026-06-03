@@ -14,7 +14,7 @@ const Newsletter = () => {
         setIsLoading(true)
 
         // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000))
+        await new Promise((resolve) => setTimeout(resolve, 1000))
 
         // Save to localStorage
         const subscribers = JSON.parse(localStorage.getItem('newsletter_subscribers') || '[]')
@@ -36,17 +36,15 @@ const Newsletter = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className='glass-card p-8 text-center'
+            className="glass-card p-8 text-center"
         >
-            <div className='w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-accent-primary to-accent-secondary flex items-center justify-center'>
-                <HiMail className='w-8 h-8 text-white' />
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-accent-primary to-accent-secondary flex items-center justify-center">
+                <HiMail className="w-8 h-8 text-white" />
             </div>
 
-            <h3 className='text-2xl font-bold text-white mb-4'>
-                Subscribe to Newsletter
-            </h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Subscribe to Newsletter</h3>
 
-            <p className='text-white/60 mb-6 max-w-md mx-auto'>
+            <p className="text-white/60 mb-6 max-w-md mx-auto">
                 Get the latest articles, tutorials, and updates delivered straight to your inbox.
             </p>
 
@@ -54,25 +52,28 @@ const Newsletter = () => {
                 <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className='flex items-center justify-center gap-2 text-green-400'
+                    className="flex items-center justify-center gap-2 text-green-400"
                 >
-                    <HiCheck className='w-6 h-6' />
-                    <span className='font-medium'>Successfully subscribed!</span>
+                    <HiCheck className="w-6 h-6" />
+                    <span className="font-medium">Successfully subscribed!</span>
                 </motion.div>
             ) : (
-                <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4 max-w-md mx-auto'>
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+                >
                     <input
-                        type='email'
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder='Enter your email'
+                        placeholder="Enter your email"
                         required
-                        className='flex-1 px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-accent-primary'
+                        className="flex-1 px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-accent-primary"
                     />
                     <button
-                        type='submit'
+                        type="submit"
                         disabled={isLoading}
-                        className='btn-primary whitespace-nowrap disabled:opacity-50'
+                        className="btn-primary whitespace-nowrap disabled:opacity-50"
                     >
                         {isLoading ? 'Subscribing...' : 'Subscribe'}
                     </button>

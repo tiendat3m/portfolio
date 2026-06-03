@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext(null)
 
-const ADMIN_PASSWORD = 'admin123' // Change this to your preferred password
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -25,6 +25,10 @@ export const AuthProvider = ({ children }) => {
     }, [isAuthenticated, user])
 
     const login = (password, username = 'Admin') => {
+        if (!ADMIN_PASSWORD) {
+            return { success: false, error: 'Admin login is not configured' }
+        }
+
         if (password === ADMIN_PASSWORD) {
             const userData = {
                 username,
@@ -59,17 +63,19 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{
-            isAuthenticated,
-            user,
-            login,
-            logout,
-            loginAsGuest,
-            showLoginModal,
-            setShowLoginModal,
-            isAdmin: user?.role === 'admin',
-            isGuest: user?.role === 'guest'
-        }}>
+        <AuthContext.Provider
+            value={{
+                isAuthenticated,
+                user,
+                login,
+                logout,
+                loginAsGuest,
+                showLoginModal,
+                setShowLoginModal,
+                isAdmin: user?.role === 'admin',
+                isGuest: user?.role === 'guest'
+            }}
+        >
             {children}
         </AuthContext.Provider>
     )

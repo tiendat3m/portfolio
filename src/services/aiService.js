@@ -9,7 +9,7 @@ const OPENAI_MODEL = import.meta.env.VITE_OPENAI_MODEL || 'gpt-3.5-turbo'
 
 // Google Gemini Configuration (FREE - 60 requests/minute)
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY
-const GEMINI_MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-pro'
+// The service tries supported Gemini models below for resilience.
 
 // Hugging Face Configuration (FREE - 1000 requests/day)
 const HF_API_KEY = import.meta.env.VITE_HF_API_KEY
@@ -17,14 +17,7 @@ const HF_MODEL = import.meta.env.VITE_HF_MODEL || 'microsoft/DialoGPT-medium'
 
 // Groq Configuration (FREE - Fast inference)
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY
-const GROQ_MODEL = import.meta.env.VITE_GROQ_MODEL || 'llama-3.1-8b-instant'
-
-// Helper function to show toast notification
-const showToast = (message, type = 'info') => {
-    window.dispatchEvent(new CustomEvent('show-toast', {
-        detail: { message, type }
-    }))
-}
+// The service tries supported Groq models below for resilience.
 
 // Portfolio context for AI
 const PORTFOLIO_CONTEXT = `
@@ -188,7 +181,7 @@ A passionate creative developer who blends cutting-edge technology with stunning
 const sendOpenAI = async (userMessage, conversationHistory) => {
     const messages = [
         { role: 'system', content: PORTFOLIO_CONTEXT },
-        ...conversationHistory.map(msg => ({
+        ...conversationHistory.map((msg) => ({
             role: msg.type === 'user' ? 'user' : 'assistant',
             content: msg.content
         })),
@@ -199,7 +192,7 @@ const sendOpenAI = async (userMessage, conversationHistory) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${OPENAI_API_KEY}`
+            Authorization: `Bearer ${OPENAI_API_KEY}`
         },
         body: JSON.stringify({
             model: OPENAI_MODEL,
@@ -226,10 +219,9 @@ const sendGemini = async (userMessage, conversationHistory) => {
     // Build conversation context
     let conversationText = PORTFOLIO_CONTEXT + '\n\nConversation:\n'
 
-    conversationHistory.forEach(msg => {
-        conversationText += msg.type === 'user'
-            ? `User: ${msg.content}\n`
-            : `Assistant: ${msg.content}\n`
+    conversationHistory.forEach((msg) => {
+        conversationText +=
+            msg.type === 'user' ? `User: ${msg.content}\n` : `Assistant: ${msg.content}\n`
     })
     conversationText += `User: ${userMessage}\nAssistant:`
 
@@ -247,9 +239,11 @@ const sendGemini = async (userMessage, conversationHistory) => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: conversationText }]
-                        }],
+                        contents: [
+                            {
+                                parts: [{ text: conversationText }]
+                            }
+                        ],
                         generationConfig: {
                             temperature: 0.7,
                             maxOutputTokens: 500
@@ -280,29 +274,26 @@ const sendGemini = async (userMessage, conversationHistory) => {
 const sendHuggingFace = async (userMessage, conversationHistory) => {
     // Build conversation
     let text = PORTFOLIO_CONTEXT + '\n\n'
-    conversationHistory.forEach(msg => {
+    conversationHistory.forEach((msg) => {
         text += msg.type === 'user' ? `Human: ${msg.content}\n` : `Assistant: ${msg.content}\n`
     })
     text += `Human: ${userMessage}\nAssistant:`
 
-    const response = await fetch(
-        `https://api-inference.huggingface.co/models/${HF_MODEL}`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${HF_API_KEY}`
-            },
-            body: JSON.stringify({
-                inputs: text,
-                parameters: {
-                    max_new_tokens: 500,
-                    temperature: 0.7,
-                    return_full_text: false
-                }
-            })
-        }
-    )
+    const response = await fetch(`https://api-inference.huggingface.co/models/${HF_MODEL}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${HF_API_KEY}`
+        },
+        body: JSON.stringify({
+            inputs: text,
+            parameters: {
+                max_new_tokens: 500,
+                temperature: 0.7,
+                return_full_text: false
+            }
+        })
+    })
 
     if (!response.ok) {
         throw new Error('Hugging Face API error')
@@ -319,7 +310,7 @@ const sendHuggingFace = async (userMessage, conversationHistory) => {
 const sendGroq = async (userMessage, conversationHistory) => {
     const messages = [
         { role: 'system', content: PORTFOLIO_CONTEXT },
-        ...conversationHistory.map(msg => ({
+        ...conversationHistory.map((msg) => ({
             role: msg.type === 'user' ? 'user' : 'assistant',
             content: msg.content
         })),
@@ -342,7 +333,7 @@ const sendGroq = async (userMessage, conversationHistory) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${GROQ_API_KEY}`
+                    Authorization: `Bearer ${GROQ_API_KEY}`
                 },
                 body: JSON.stringify({
                     model: model,
@@ -406,7 +397,6 @@ export const sendMessageToAI = async (userMessage, conversationHistory = []) => 
             usage: response.usage,
             provider: AI_PROVIDER
         }
-
     } catch (error) {
         console.error('AI Service Error:', error)
 
@@ -426,7 +416,11 @@ export const sendMessageToAI = async (userMessage, conversationHistory = []) => 
 const getFallbackResponse = (message) => {
     const lowerMessage = message.toLowerCase()
 
-    if (lowerMessage.includes('giá') || lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+    if (
+        lowerMessage.includes('giá') ||
+        lowerMessage.includes('price') ||
+        lowerMessage.includes('cost')
+    ) {
         return '💰 Về giá cả, tôi khuyên bạn nên liên hệ trực tiếp để được tư vấn chi tiết. Mỗi dự án có yêu cầu khác nhau nên giá cũng sẽ khác nhau. Bạn có thể gửi email đến phantiendat14012002@gmail.com hoặc gọi 0343759130 nhé!'
     }
 
@@ -434,7 +428,11 @@ const getFallbackResponse = (message) => {
         return '🛠️ Các dịch vụ chính bao gồm:\n\n• Web Development - Xây dựng website chuyên nghiệp\n• Mobile Development - Ứng dụng di động\n• UI/UX Design - Thiết kế giao diện\n• 3D/WebGL - Trải nghiệm 3D tương tác\n• Performance Optimization - Tối ưu hiệu suất\n• Consulting - Tư vấn kỹ thuật\n\nBạn muốn tìm hiểu thêm về dịch vụ nào?'
     }
 
-    if (lowerMessage.includes('công nghệ') || lowerMessage.includes('tech') || lowerMessage.includes('skill')) {
+    if (
+        lowerMessage.includes('công nghệ') ||
+        lowerMessage.includes('tech') ||
+        lowerMessage.includes('skill')
+    ) {
         return '💻 Các công nghệ chính:\n\n**Frontend:** React, Next.js, Three.js, Framer Motion, GSAP, Tailwind CSS\n**Backend:** Node.js, Python, Express\n**Database:** PostgreSQL, MongoDB\n**Other:** Docker, AWS, Git\n\nVới hơn 3 năm kinh nghiệm, tôi có thể đáp ứng nhiều loại dự án khác nhau!'
     }
 

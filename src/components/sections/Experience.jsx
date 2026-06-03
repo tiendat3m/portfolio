@@ -9,28 +9,32 @@ const experiences = [
         title: 'Frontend Developer',
         company: 'S3Corp',
         period: '2023 - Present',
-        description: 'Developing enterprise web applications with React and Angular. Building responsive UIs, implementing REST API integrations, and collaborating with cross-functional teams.'
+        description:
+            'Developing enterprise web applications with React and Angular. Building responsive UIs, implementing REST API integrations, and collaborating with cross-functional teams.'
     },
     {
         type: 'work',
         title: 'Junior Frontend Developer',
         company: 'S3Corp',
         period: '2022 - 2023',
-        description: 'Started career building responsive web interfaces with React. Learned TypeScript, Tailwind CSS, and modern frontend development practices.'
+        description:
+            'Started career building responsive web interfaces with React. Learned TypeScript, Tailwind CSS, and modern frontend development practices.'
     },
     {
         type: 'education',
         title: 'Bachelor of Information Technology',
         company: 'University of Information Technology',
         period: '2020 - 2024',
-        description: 'Focused on Software Engineering. Learned programming fundamentals, data structures, web development, and software design patterns.'
+        description:
+            'Focused on Software Engineering. Learned programming fundamentals, data structures, web development, and software design patterns.'
     },
     {
         type: 'work',
         title: 'Internship',
         company: 'S3Corp',
         period: '2021 - 2022',
-        description: 'Gained hands-on experience in web development. Assisted in building React components and learning industry best practices.'
+        description:
+            'Gained hands-on experience in web development. Assisted in building React components and learning industry best practices.'
     }
 ]
 
@@ -38,22 +42,24 @@ const Experience = () => {
     const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
 
     return (
-        <section id='experience' className='section-padding relative'>
-            <div className='container-custom'>
+        <section id="experience" className="section-padding relative">
+            <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className='text-center mb-16'
+                    className="text-center mb-16"
                 >
-                    <p className='text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4'>Journey</p>
-                    <h2 className='text-4xl md:text-5xl font-bold text-white'>
-                        Experience & <span className='gradient-text'>Education</span>
+                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
+                        Journey
+                    </p>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                        Experience & <span className="gradient-text">Education</span>
                     </h2>
                 </motion.div>
 
-                <div className='relative'>
-                    <div className='absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-tertiary' />
+                <div className="relative">
+                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-tertiary" />
 
                     {experiences.map((exp, index) => {
                         const isLeft = index % 2 === 0
@@ -65,17 +71,33 @@ const Experience = () => {
                                 transition={{ delay: index * 0.2 }}
                                 className={`relative flex items-start mb-12 ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
                             >
-                                <div className='absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-accent-primary transform -translate-x-1/2 mt-6 ring-4 ring-dark-950 z-10' />
+                                <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-accent-primary transform -translate-x-1/2 mt-6 ring-4 ring-dark-950 z-10" />
 
-                                <div className={`ml-20 md:ml-0 md:w-1/2 ${isLeft ? 'md:pr-12' : 'md:pl-12 md:ml-auto'}`}>
-                                    <div className={`glass-card p-6 ${isLeft ? 'md:text-right' : ''}`}>
-                                        <div className={`flex items-center gap-2 mb-2 ${isLeft ? 'md:justify-end' : ''}`}>
-                                            {exp.type === 'work' ? <HiBriefcase className='text-accent-primary' /> : <HiAcademicCap className='text-accent-secondary' />}
-                                            <span className='text-accent-primary text-sm'>{exp.period}</span>
+                                <div
+                                    className={`ml-20 md:ml-0 md:w-1/2 ${isLeft ? 'md:pr-12' : 'md:pl-12 md:ml-auto'}`}
+                                >
+                                    <div
+                                        className={`glass-card p-6 ${isLeft ? 'md:text-right' : ''}`}
+                                    >
+                                        <div
+                                            className={`flex items-center gap-2 mb-2 ${isLeft ? 'md:justify-end' : ''}`}
+                                        >
+                                            {exp.type === 'work' ? (
+                                                <HiBriefcase className="text-accent-primary" />
+                                            ) : (
+                                                <HiAcademicCap className="text-accent-secondary" />
+                                            )}
+                                            <span className="text-accent-primary text-sm">
+                                                {exp.period}
+                                            </span>
                                         </div>
-                                        <h3 className='text-xl font-bold text-white mb-1'>{exp.title}</h3>
-                                        <p className='text-accent-secondary font-medium mb-3'>{exp.company}</p>
-                                        <p className='text-white/60 text-sm'>{exp.description}</p>
+                                        <h3 className="text-xl font-bold text-white mb-1">
+                                            {exp.title}
+                                        </h3>
+                                        <p className="text-accent-secondary font-medium mb-3">
+                                            {exp.company}
+                                        </p>
+                                        <p className="text-white/60 text-sm">{exp.description}</p>
                                     </div>
                                 </div>
                             </motion.div>
@@ -84,7 +106,7 @@ const Experience = () => {
                 </div>
             </div>
 
-            <div className='absolute top-1/4 right-0 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[120px]' />
+            <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[120px]" />
         </section>
     )
 }

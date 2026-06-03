@@ -193,7 +193,7 @@ HiExclamation, HiBookmark, HiShare, HiDownload, HiSun, HiMoon
 
 ```javascript
 // Import và test
-import { HiColorPalette } from "react-icons/hi";
+import { HiColorPalette } from 'react-icons/hi'
 // Nếu lỗi → icon không tồn tại, tìm icon khác
 ```
 

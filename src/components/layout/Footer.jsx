@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaTwitter, FaDribbble, FaInstagram, FaYoutube } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa'
 import { HiDownload } from 'react-icons/hi'
 import { HiArrowUp } from 'react-icons/hi'
 
@@ -9,7 +9,6 @@ const socialLinks = [
     { icon: FaLinkedin, href: 'https://www.linkedin.com/in/tiendat3m/', label: 'LinkedIn' },
     { icon: FaTwitter, href: 'https://x.com/APhan33064', label: 'X (Twitter)' },
     { icon: FaInstagram, href: 'https://www.instagram.com/justdatt.3m/', label: 'Instagram' }
-
 ]
 
 const Footer = () => {
@@ -93,9 +92,8 @@ const Footer = () => {
                     viewport={{ once: true }}
                 >
                     <p className="text-white/30 text-sm">
-                        Designed & Built with{' '}
-                        <span className="text-accent-tertiary">♥</span>{' '}
-                        using React, AI Integration & Modern Web Stack
+                        Designed & Built with <span className="text-accent-tertiary">♥</span> using
+                        React, AI Integration & Modern Web Stack
                     </p>
                 </motion.div>
             </div>
