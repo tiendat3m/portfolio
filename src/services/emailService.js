@@ -33,7 +33,6 @@ export const sendContactEmail = async (formData) => {
             message: formData.message
         })
 
-        console.log('Email sent successfully:', result)
         return { success: true, response: result }
     } catch (error) {
         console.error('Error sending email:', error)
@@ -48,7 +47,6 @@ export const sendNewsletterWelcome = async (email) => {
             to_email: email
         })
 
-        console.log('Newsletter email sent:', result)
         return { success: true, response: result }
     } catch (error) {
         console.error('Error sending newsletter email:', error)

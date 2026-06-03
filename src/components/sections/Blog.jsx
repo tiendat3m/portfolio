@@ -3,74 +3,21 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiCalendar, HiClock, HiArrowRight } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
-
-const defaultPosts = [
-    {
-        id: 1,
-        title: 'Building Immersive 3D Web Experiences with Three.js',
-        excerpt:
-            'Learn how to create stunning 3D visualizations for the web using Three.js and React Three Fiber.',
-        image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
-        category: 'Development',
-        date: 'Mar 15, 2026',
-        readTime: '8 min read',
-        author: 'Admin',
-        content: `Three.js has revolutionized the way we think about web experiences. In this comprehensive guide, we will explore how to integrate Three.js with React using React Three Fiber, creating stunning 3D visualizations that captivate users and elevate your web projects to new heights.
-
-## Getting Started with Three.js
-
-Three.js is a powerful JavaScript library that makes WebGL accessible to everyone. It provides a high-level API for creating and displaying 3D graphics in the browser without having to deal with the complexities of raw WebGL.
-
-## Conclusion
-
-Three.js and React Three Fiber open up incredible possibilities for web development.`
-    },
-    {
-        id: 2,
-        title: 'The Future of Web Animation: Framer Motion vs GSAP',
-        excerpt:
-            'A deep dive comparison of two popular animation libraries and when to use each one.',
-        image: 'https://images.unsplash.com/photo-1550439062-609e1531270e?w=800',
-        category: 'Animation',
-        date: 'Mar 10, 2026',
-        readTime: '6 min read',
-        author: 'Admin',
-        content: `Animation libraries have become essential tools for modern web development. Framer Motion and GSAP are two of the most popular choices.
-
-## Conclusion
-
-Both libraries are excellent choices. The best one depends on your specific needs.`
-    },
-    {
-        id: 3,
-        title: 'Mastering Tailwind CSS: Advanced Techniques',
-        excerpt:
-            'Take your Tailwind CSS skills to the next level with these advanced tips and tricks.',
-        image: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800',
-        category: 'CSS',
-        date: 'Mar 5, 2026',
-        readTime: '10 min read',
-        author: 'Admin',
-        content: `Tailwind CSS has transformed how developers approach styling.
-
-## Conclusion
-
-With advanced techniques, you can build sophisticated, maintainable design systems.`
-    }
-]
+import { getStoredBlogPosts } from '../../data/defaultPosts'
 
 const Blog = () => {
     const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-    const [posts, setPosts] = useState(() => {
-        const saved = localStorage.getItem('blogPosts')
-        return saved ? JSON.parse(saved) : defaultPosts
-    })
+    const [posts, setPosts] = useState(getStoredBlogPosts)
 
     // Listen for localStorage changes from BlogPage
     useEffect(() => {
         const handleStorageChange = (e) => {
             if (e.key === 'blogPosts' && e.newValue) {
-                setPosts(JSON.parse(e.newValue))
+                try {
+                    setPosts(JSON.parse(e.newValue))
+                } catch {
+                    setPosts(getStoredBlogPosts())
+                }
             }
         }
 

@@ -3,8 +3,9 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiMail, HiLocationMarker, HiPhone, HiPaperAirplane } from 'react-icons/hi'
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa'
-import { addSubscriber } from '../../services/supabaseService'
-import { sendContactEmail, isEmailConfigured } from '../../services/emailService'
+
+const isEmailConfigured = () =>
+    Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY)
 
 const Contact = () => {
     const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
@@ -57,11 +58,13 @@ const Contact = () => {
 
             // Send email if configured
             if (isEmailConfigured()) {
+                const { sendContactEmail } = await import('../../services/emailService')
                 const emailResult = await sendContactEmail(formData)
                 emailSent = emailResult.success
             }
 
             // Try to add email to subscribers
+            const { addSubscriber } = await import('../../services/supabaseService')
             subscriberResult = await addSubscriber(formData.email)
 
             // Determine appropriate message based on results

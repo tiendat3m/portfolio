@@ -1,7 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiChat, HiX, HiPaperAirplane, HiUser, HiSparkles } from 'react-icons/hi'
-import { sendMessageToAI, isAIConfigured, getAIStatus } from '../../services/aiService'
+
+const AI_PROVIDER_LABELS = {
+    openai: 'OpenAI GPT',
+    gemini: 'Google Gemini',
+    huggingface: 'Hugging Face',
+    groq: 'Groq'
+}
 
 const LiveChat = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -11,14 +17,38 @@ const LiveChat = () => {
             type: 'bot',
             content: 'Xin chào! 👋 Tôi là trợ lý AI, tôi có thể giúp gì cho bạn?',
             time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
-            isAI: isAIConfigured()
+            isAI: false
         }
     ])
     const [inputValue, setInputValue] = useState('')
     const [isTyping, setIsTyping] = useState(false)
-    const [aiStatus] = useState(getAIStatus())
+    const [aiStatus, setAiStatus] = useState({
+        configured: false,
+        message: 'Loading assistant status...',
+        provider: null
+    })
     const messagesEndRef = useRef(null)
     const chatRef = useRef(null)
+    const aiServiceRef = useRef(null)
+
+    const loadAIService = useCallback(async () => {
+        if (aiServiceRef.current) {
+            return aiServiceRef.current
+        }
+
+        const service = await import('../../services/aiService')
+        aiServiceRef.current = service
+
+        const nextStatus = service.getAIStatus()
+        setAiStatus(nextStatus)
+        setMessages((prev) =>
+            prev.map((message, index) =>
+                index === 0 ? { ...message, isAI: service.isAIConfigured() } : message
+            )
+        )
+
+        return service
+    }, [])
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -43,6 +73,18 @@ const LiveChat = () => {
         }
     }, [isOpen])
 
+    useEffect(() => {
+        if (!isOpen) return
+
+        loadAIService().catch(() => {
+            setAiStatus({
+                configured: false,
+                message: 'AI assistant is not configured. Using fallback responses.',
+                provider: null
+            })
+        })
+    }, [isOpen, loadAIService])
+
     const handleSend = async () => {
         const trimmedInput = inputValue.trim()
         if (!trimmedInput || isTyping) return
@@ -60,6 +102,8 @@ const LiveChat = () => {
         setIsTyping(true)
 
         try {
+            const aiService = await loadAIService()
+
             // Get conversation history for context
             const conversationHistory = [...messages, userMessage].map((msg) => ({
                 type: msg.type,
@@ -67,7 +111,7 @@ const LiveChat = () => {
             }))
 
             // Call AI service
-            const response = await sendMessageToAI(currentInput, conversationHistory)
+            const response = await aiService.sendMessageToAI(currentInput, conversationHistory)
 
             const botMessage = {
                 id: Date.now() + 1,
@@ -107,11 +151,16 @@ const LiveChat = () => {
         }
     }
 
+    const providerLabel = aiStatus.provider ? AI_PROVIDER_LABELS[aiStatus.provider] : 'Live Chat'
+
     return (
         <>
             {/* Chat Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
+                onMouseEnter={() => {
+                    void loadAIService().catch(() => {})
+                }}
                 className={`fixed bottom-24 right-8 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-shadow ${
                     aiStatus.configured
                         ? 'bg-gradient-to-r from-purple-500 to-pink-500 shadow-purple-500/30 hover:shadow-purple-500/50'
@@ -170,9 +219,7 @@ const LiveChat = () => {
                                         {aiStatus.configured ? 'AI Assistant' : 'Live Chat'}
                                     </h4>
                                     <p className="text-white/70 text-xs">
-                                        {aiStatus.configured
-                                            ? 'Powered by OpenAI'
-                                            : 'Đang hoạt động'}
+                                        {aiStatus.configured ? `Powered by ${providerLabel}` : 'Đang hoạt động'}
                                     </p>
                                 </div>
                                 <div className="ml-auto flex items-center gap-1">

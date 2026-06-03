@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useDeferredValue, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiSearch, HiX } from 'react-icons/hi'
 
 const Search = ({ posts, onSelectPost }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [query, setQuery] = useState('')
-    const [results, setResults] = useState([])
+    const deferredQuery = useDeferredValue(query)
 
-    useEffect(() => {
-        if (query.trim()) {
-            const filtered = posts.filter(
-                (post) =>
-                    post.title.toLowerCase().includes(query.toLowerCase()) ||
-                    post.excerpt.toLowerCase().includes(query.toLowerCase()) ||
-                    post.category.toLowerCase().includes(query.toLowerCase())
-            )
-            setResults(filtered)
-        } else {
-            setResults([])
+    const results = useMemo(() => {
+        const normalizedQuery = deferredQuery.trim().toLowerCase()
+
+        if (!normalizedQuery) {
+            return []
         }
-    }, [query, posts])
+
+        return posts.filter(
+            (post) =>
+                post.title.toLowerCase().includes(normalizedQuery) ||
+                post.excerpt.toLowerCase().includes(normalizedQuery) ||
+                post.category.toLowerCase().includes(normalizedQuery)
+        )
+    }, [deferredQuery, posts])
 
     const handleSelect = (post) => {
         onSelectPost(post)

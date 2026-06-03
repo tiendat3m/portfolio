@@ -13,9 +13,32 @@ export default defineConfig({
         minify: 'esbuild',
         rollupOptions: {
             output: {
-                manualChunks: {
-                    vendor: ['react', 'react-dom', 'react-router-dom'],
-                    animations: ['framer-motion', 'gsap']
+                manualChunks(id) {
+                    if (!id.includes('node_modules')) {
+                        return undefined
+                    }
+
+                    if (id.includes('framer-motion') || id.includes('gsap')) {
+                        return 'animations'
+                    }
+
+                    if (id.includes('@supabase')) {
+                        return 'supabase'
+                    }
+
+                    if (id.includes('react-icons')) {
+                        return 'icons'
+                    }
+
+                    if (
+                        id.includes('react-router-dom') ||
+                        id.includes('/react/') ||
+                        id.includes('/react-dom/')
+                    ) {
+                        return 'vendor'
+                    }
+
+                    return undefined
                 }
             }
         }

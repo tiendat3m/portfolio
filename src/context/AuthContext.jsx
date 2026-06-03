@@ -1,8 +1,16 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 const AuthContext = createContext(null)
 
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD
+
+const parseStoredValue = (value) => {
+    try {
+        return value ? JSON.parse(value) : null
+    } catch {
+        return null
+    }
+}
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -10,8 +18,7 @@ export const AuthProvider = ({ children }) => {
         return saved === 'true'
     })
     const [user, setUser] = useState(() => {
-        const saved = localStorage.getItem('currentUser')
-        return saved ? JSON.parse(saved) : null
+        return parseStoredValue(localStorage.getItem('currentUser'))
     })
     const [showLoginModal, setShowLoginModal] = useState(false)
 
@@ -24,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         }
     }, [isAuthenticated, user])
 
-    const login = (password, username = 'Admin') => {
+    const login = useCallback((password, username = 'Admin') => {
         if (!ADMIN_PASSWORD) {
             return { success: false, error: 'Admin login is not configured' }
         }
@@ -41,16 +48,16 @@ export const AuthProvider = ({ children }) => {
             return { success: true }
         }
         return { success: false, error: 'Invalid password' }
-    }
+    }, [])
 
-    const logout = () => {
+    const logout = useCallback(() => {
         setIsAuthenticated(false)
         setUser(null)
         localStorage.removeItem('isAdminAuthenticated')
         localStorage.removeItem('currentUser')
-    }
+    }, [])
 
-    const loginAsGuest = (username) => {
+    const loginAsGuest = useCallback((username) => {
         const userData = {
             username: username || 'Guest',
             role: 'guest',
@@ -60,22 +67,25 @@ export const AuthProvider = ({ children }) => {
         setUser(userData)
         setShowLoginModal(false)
         return { success: true }
-    }
+    }, [])
+
+    const contextValue = useMemo(
+        () => ({
+            isAuthenticated,
+            user,
+            login,
+            logout,
+            loginAsGuest,
+            showLoginModal,
+            setShowLoginModal,
+            isAdmin: user?.role === 'admin',
+            isGuest: user?.role === 'guest'
+        }),
+        [isAuthenticated, user, login, logout, loginAsGuest, showLoginModal]
+    )
 
     return (
-        <AuthContext.Provider
-            value={{
-                isAuthenticated,
-                user,
-                login,
-                logout,
-                loginAsGuest,
-                showLoginModal,
-                setShowLoginModal,
-                isAdmin: user?.role === 'admin',
-                isGuest: user?.role === 'guest'
-            }}
-        >
+        <AuthContext.Provider value={contextValue}>
             {children}
         </AuthContext.Provider>
     )

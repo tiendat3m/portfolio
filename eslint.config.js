@@ -42,5 +42,11 @@ export default [
             'react/no-unescaped-entities': 'off',
             'react/prop-types': 'off'
         }
+    },
+    {
+        files: ['src/context/AuthContext.jsx', 'src/components/ui/Toast.jsx'],
+        rules: {
+            'react-refresh/only-export-components': 'off'
+        }
     }
 ]

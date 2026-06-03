@@ -259,7 +259,6 @@ export const subscribeToPosts = (callback) => {
             'postgres_changes',
             { event: '*', schema: 'public', table: TABLES.POSTS },
             (payload) => {
-                console.log('Posts change received:', payload)
                 callback(payload)
             }
         )
@@ -274,7 +273,6 @@ export const subscribeToSubscribers = (callback) => {
             'postgres_changes',
             { event: '*', schema: 'public', table: TABLES.SUBSCRIBERS },
             (payload) => {
-                console.log('Subscribers change received:', payload)
                 callback(payload)
             }
         )

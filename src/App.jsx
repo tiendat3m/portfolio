@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
@@ -20,17 +20,16 @@ import Testimonials from './components/sections/Testimonials'
 import Blog from './components/sections/Blog'
 import Contact from './components/sections/Contact'
 
-// Pages
-import BlogPage from './pages/BlogPage'
-import BlogPostPage from './pages/BlogPostPage'
-import NotFound from './components/pages/NotFound'
-
 // UI
 import NoiseOverlay from './components/ui/NoiseOverlay'
 import PageLoader from './components/ui/PageLoader'
 import ScrollToTop from './components/ui/ScrollToTop'
 import ThemeToggle from './components/ui/ThemeToggle'
-import LiveChat from './components/ui/LiveChat'
+
+const BlogPage = lazy(() => import('./pages/BlogPage'))
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
+const NotFound = lazy(() => import('./components/pages/NotFound'))
+const LiveChat = lazy(() => import('./components/ui/LiveChat'))
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -132,7 +131,10 @@ const HomePage = () => {
                     </div>
 
                     <ScrollToTop />
-                    <LiveChat />
+
+                    <Suspense fallback={null}>
+                        <LiveChat />
+                    </Suspense>
                 </div>
             )}
         </>
@@ -145,12 +147,14 @@ function App() {
         <AuthProvider>
             <Router>
                 <ScrollToTopOnRoute />
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/blog" element={<BlogPage />} />
-                    <Route path="/blog/:id" element={<BlogPostPage />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
+                <Suspense fallback={<PageLoader />}>
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/blog" element={<BlogPage />} />
+                        <Route path="/blog/:id" element={<BlogPostPage />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </Suspense>
             </Router>
         </AuthProvider>
     )
