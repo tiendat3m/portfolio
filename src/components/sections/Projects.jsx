@@ -77,44 +77,50 @@ const Projects = () => {
                     <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
                         Portfolio
                     </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                    <h2 className="text-4xl md:text-5xl font-black tracking-[-0.04em] text-white">
                         Featured <span className="gradient-text">Projects</span>
                     </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-white/60">
+                        Selected personal and company work focused on practical UI, admin workflows,
+                        and production web delivery.
+                    </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid gap-6 md:grid-cols-2">
                     {projects.map((project, index) => (
                         <motion.div
                             key={project.id}
                             initial={{ opacity: 0, y: 50 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: index * 0.1 }}
-                            className="group glass-card overflow-hidden cursor-pointer"
+                            className="group premium-card cursor-pointer rounded-3xl"
                             onClick={() => setSelectedProject(project)}
                         >
-                            <div className="relative h-64 overflow-hidden">
+                            <div className="relative h-56 overflow-hidden rounded-t-3xl">
                                 <img
                                     src={project.image}
                                     alt={project.title}
                                     loading="lazy"
                                     decoding="async"
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-dark-950/70 via-dark-950/10 to-transparent" />
                             </div>
-                            <div className="p-6">
-                                <p className="text-accent-primary text-sm mb-2">
+                            <div className="relative z-10 p-6">
+                                <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-accent-primary">
                                     {project.category}
                                 </p>
-                                <h3 className="text-xl font-bold text-white mb-2">
+                                <h3 className="mb-3 text-2xl font-bold tracking-[-0.03em] text-white">
                                     {project.title}
                                 </h3>
-                                <p className="text-white/60 text-sm mb-4">{project.description}</p>
+                                <p className="mb-5 text-sm leading-6 text-white/60">
+                                    {project.description}
+                                </p>
                                 <div className="flex flex-wrap gap-2">
                                     {project.tags.map((tag) => (
                                         <span
                                             key={tag}
-                                            className="text-xs px-3 py-1 bg-white/10 rounded-full text-white/60"
+                                            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60"
                                         >
                                             {tag}
                                         </span>

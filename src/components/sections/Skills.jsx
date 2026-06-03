@@ -90,30 +90,32 @@ const Skills = () => {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     className="text-center mb-16"
                 >
-                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
-                        Expertise
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                    <p className="section-kicker mb-4">Expertise</p>
+                    <h2 className="text-4xl md:text-5xl font-black tracking-[-0.04em] text-white">
                         Skills & <span className="gradient-text">Technologies</span>
                     </h2>
                 </motion.div>
 
                 {/* Skill Categories */}
-                <div className="grid md:grid-cols-2 gap-8 mb-16">
+                <div className="grid md:grid-cols-2 gap-6 mb-16">
                     {skillCategories.map((category, catIndex) => (
                         <motion.div
                             key={catIndex}
                             initial={{ opacity: 0, y: 30 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: catIndex * 0.1 }}
-                            className="glass-card p-6"
+                            className="premium-card rounded-3xl p-6"
                         >
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className={`text-${category.color}`}>{category.icon}</div>
+                            <div className="relative z-10 flex items-center gap-3 mb-6">
+                                <div
+                                    className={`rounded-2xl bg-white/5 p-3 text-${category.color}`}
+                                >
+                                    {category.icon}
+                                </div>
                                 <h3 className="text-xl font-bold text-white">{category.title}</h3>
                             </div>
 
-                            <div className="space-y-4">
+                            <div className="relative z-10 space-y-4">
                                 {category.skills.map((skill, skillIndex) => (
                                     <div key={skillIndex}>
                                         <div className="flex justify-between mb-1">
@@ -124,7 +126,7 @@ const Skills = () => {
                                                 {skill.level}%
                                             </span>
                                         </div>
-                                        <div className="h-2 bg-dark-800 rounded-full overflow-hidden">
+                                        <div className="h-2 rounded-full bg-white/10 overflow-hidden">
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 animate={inView ? { width: `${skill.level}%` } : {}}
@@ -158,8 +160,7 @@ const Skills = () => {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                                 transition={{ delay: 0.6 + index * 0.03 }}
-                                whileHover={{ scale: 1.1, y: -5 }}
-                                className="px-4 py-2 glass-card text-white/70 hover:text-white hover:border-accent-primary cursor-default transition-colors"
+                                className="premium-card rounded-full px-4 py-2 text-white/70 hover:text-white cursor-default"
                             >
                                 {tech}
                             </motion.span>
@@ -180,7 +181,7 @@ const Skills = () => {
                         { value: '8+', label: 'Happy Clients' },
                         { value: '5+', label: 'Long-term Collaborations' }
                     ].map((stat, index) => (
-                        <div key={index} className="glass-card p-6 text-center">
+                        <div key={index} className="premium-card rounded-3xl p-6 text-center">
                             <motion.span
                                 initial={{ opacity: 0 }}
                                 animate={inView ? { opacity: 1 } : {}}

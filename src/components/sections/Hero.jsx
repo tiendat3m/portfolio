@@ -1,6 +1,12 @@
 ﻿import React from 'react'
 import { motion } from 'framer-motion'
-import { HiArrowDown } from 'react-icons/hi'
+import { HiArrowDown, HiSparkles, HiLightningBolt, HiShieldCheck } from 'react-icons/hi'
+
+const highlights = [
+    { icon: HiSparkles, label: 'AI-ready UI' },
+    { icon: HiLightningBolt, label: 'Performance focused' },
+    { icon: HiShieldCheck, label: 'Production mindset' }
+]
 
 const Hero = () => {
     const scrollToAbout = () => {
@@ -10,54 +16,56 @@ const Hero = () => {
     return (
         <section
             id="hero"
-            className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 pt-24 pb-10 sm:pt-28 sm:pb-12"
+            className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 pt-28 pb-16 sm:pt-32"
         >
-            {/* Simple gradient background instead of 3D */}
-            <div className="absolute inset-0 bg-gradient-radial from-accent-primary/5 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(99,102,241,0.18),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(34,211,238,0.12),transparent_28%),linear-gradient(180deg,rgba(2,6,23,0)_0%,rgba(2,6,23,0.32)_100%)]" />
+            <div className="absolute left-1/2 top-28 h-72 w-72 -translate-x-1/2 rounded-full bg-accent-primary/10 blur-[110px]" />
 
-            <div className="relative z-10 flex min-h-[calc(100vh-8rem)] items-center justify-center">
-                <div className="container-custom text-center">
+            <div className="relative z-10 flex min-h-[calc(100vh-10rem)] items-center">
+                <div className="container-custom">
                     <motion.div
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 28 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.5 }}
+                        transition={{ duration: 0.7, delay: 0.15 }}
+                        className="mx-auto max-w-5xl text-center"
                     >
                         <motion.p
-                            className="text-accent-glow text-[11px] sm:text-sm md:text-base font-medium tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 sm:mb-6 leading-relaxed"
+                            className="section-kicker mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.8 }}
+                            transition={{ delay: 0.25 }}
                         >
                             Frontend Developer • AI Agent Enthusiast
                         </motion.p>
 
                         <motion.h1
-                            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 sm:mb-8 leading-tight"
+                            className="mx-auto mb-6 max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-6xl md:text-7xl lg:text-8xl"
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1, duration: 0.8 }}
+                            transition={{ delay: 0.35, duration: 0.7 }}
                         >
-                            Building <span className="gradient-text">Modern & AI-Powered</span>
-                            <br />
-                            Web Experiences
+                            Building clean, scalable
+                            <span className="gradient-text"> AI-powered </span>
+                            web products.
                         </motion.h1>
 
                         <motion.p
-                            className="text-white/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed"
+                            className="mx-auto mb-8 max-w-3xl text-base leading-8 text-white/60 sm:text-lg md:text-xl"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 1.3 }}
+                            transition={{ delay: 0.45 }}
                         >
                             Frontend Developer at S3Corp with 3+ years of experience building
-                            scalable web applications. Recently focused on integrating AI features,
-                            AI workflows, and AI agents into modern React/Angular products.
+                            scalable React/Angular applications, admin workflows, and polished user
+                            interfaces with a strong focus on performance and real-world product
+                            quality.
                         </motion.p>
 
                         <motion.div
                             className="flex flex-col sm:flex-row items-center justify-center gap-4"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1.6 }}
+                            transition={{ delay: 0.55 }}
                         >
                             <a href="#projects" className="btn-primary">
                                 View My Work
@@ -65,6 +73,22 @@ const Hero = () => {
                             <a href="#contact" className="btn-outline">
                                 Get In Touch
                             </a>
+                        </motion.div>
+
+                        <motion.div
+                            className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3"
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7 }}
+                        >
+                            {highlights.map(({ icon: Icon, label }) => (
+                                <div key={label} className="premium-card rounded-2xl px-4 py-3">
+                                    <div className="relative z-10 flex items-center justify-center gap-2 text-sm font-medium text-white/70">
+                                        <Icon className="h-4 w-4 text-accent-primary" />
+                                        {label}
+                                    </div>
+                                </div>
+                            ))}
                         </motion.div>
                     </motion.div>
                 </div>
@@ -74,8 +98,8 @@ const Hero = () => {
                 onClick={scrollToAbout}
                 className="absolute bottom-3 sm:bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white transition-colors"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{ delay: 2, y: { repeat: Infinity, duration: 2 } }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9 }}
             >
                 <HiArrowDown className="w-6 h-6" />
             </motion.button>
