@@ -9,7 +9,7 @@ const projects = [
         title: 'Todo List App',
         category: 'Personal Project',
         description:
-            'Task management app with clean UI and practical daily workflow. Built as a public project with full source code and live demo.',
+            'A task management app designed around simple daily workflows, with clean UI structure, responsive layout, and a public codebase to demonstrate frontend fundamentals clearly.',
         image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800',
         tags: ['React', 'Vite', 'JavaScript', 'CSS'],
         link: 'https://todo-list-rouge-six-63.vercel.app/',
@@ -20,7 +20,7 @@ const projects = [
         title: 'D-Movie',
         category: 'Personal Project',
         description:
-            'Movie browsing web app with modern interface and smooth UX. Publicly available with full source code and live deployment.',
+            'A movie discovery web app focused on polished browsing experience, API-driven content rendering, and a modern responsive interface with public source code and live demo.',
         image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800',
         tags: ['React', 'Vite', 'REST API', 'Tailwind CSS'],
         link: 'https://d-movie.vercel.app/',
@@ -31,9 +31,9 @@ const projects = [
         title: 'Dongten',
         category: 'Company Project',
         description:
-            'Contributed to product development for dongten.net. Stack includes Angular (frontend), NestJS (backend), and Laravel (admin). Source code is private.',
+            'Worked across the main product and admin system for dongten.net, handling full frontend implementation with Angular, backend tasks with NestJS, and admin-side development with Laravel in a private commercial codebase.',
         image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800',
-        tags: ['Angular', 'NestJS', 'Laravel Admin', 'Enterprise'],
+        tags: ['Angular Frontend', 'NestJS Backend', 'Laravel Admin', 'Enterprise'],
         link: 'https://dongten.net/',
         github: null
     },
@@ -42,9 +42,9 @@ const projects = [
         title: 'Eskimo Travel (VN)',
         category: 'Company Project',
         description:
-            'Built and maintained admin features for eskimo.travel/vn, focusing on operational workflows, data management, and content control. Source code is private.',
+            'Built and maintained admin frontend screens for operational workflows, data management, and content control, focusing on practical internal tools that support daily business operations.',
         image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800',
-        tags: ['Admin Panel', 'Dashboard', 'Operations', 'Private Source'],
+        tags: ['Admin Frontend', 'Dashboard UI', 'Operations', 'Private Source'],
         link: 'https://www.eskimo.travel/vn',
         github: null
     },
@@ -53,9 +53,9 @@ const projects = [
         title: 'Ganbaru Method',
         category: 'Company Project',
         description:
-            'Implemented and supported admin-side modules for ganbarumethod.com, including management screens and internal tools. Source code is private.',
+            'Implemented and supported admin frontend modules for management workflows and internal business screens, with emphasis on usability, clarity, and maintainable UI structure.',
         image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800',
-        tags: ['Admin Panel', 'Internal Tools', 'CMS Workflow', 'Private Source'],
+        tags: ['Admin Frontend', 'Internal Tools', 'Management Screens', 'Private Source'],
         link: 'https://ganbarumethod.com/',
         github: null
     }

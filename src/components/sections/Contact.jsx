@@ -121,6 +121,10 @@ const Contact = () => {
                     <h2 className="text-4xl md:text-5xl font-bold text-white">
                         Let's <span className="gradient-text">Connect</span>
                     </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-white/60">
+                        I’m open to frontend opportunities, product-focused teams, and selected
+                        freelance work where clean delivery and practical UI matter.
+                    </p>
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 gap-12">
@@ -130,7 +134,20 @@ const Contact = () => {
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.2 }}
                     >
-                        <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                        <h3 className="text-2xl font-bold text-white mb-6">
+                            Open to Opportunities
+                        </h3>
+
+                        <div className="premium-card rounded-3xl p-5 mb-6">
+                            <div className="relative z-10">
+                                <p className="section-kicker mb-3">Current Focus</p>
+                                <p className="text-white/70 leading-7 text-sm sm:text-base">
+                                    Frontend Engineer roles, product-focused teams, admin/dashboard
+                                    interfaces, and modern React or Angular projects with strong UX
+                                    and maintainable delivery.
+                                </p>
+                            </div>
+                        </div>
 
                         <div className="space-y-6">
                             <div className="flex items-start gap-4">
@@ -210,7 +227,7 @@ const Contact = () => {
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.3 }}
                     >
-                        <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
+                        <h3 className="text-2xl font-bold text-white mb-6">Start a Conversation</h3>
 
                         {isSubmitted ? (
                             <motion.div
@@ -223,7 +240,8 @@ const Contact = () => {
                                 </div>
                                 <h4 className="text-xl font-bold text-white mb-2">Message Sent!</h4>
                                 <p className="text-white/60">
-                                    Thank you for reaching out. I'll get back to you soon!
+                                    Thanks for reaching out. I’ll review your message and get back
+                                    to you as soon as possible.
                                 </p>
                             </motion.div>
                         ) : (
@@ -235,7 +253,7 @@ const Contact = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        placeholder="Your name"
+                                        placeholder="Your name or company"
                                         className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-accent-primary"
                                     />
                                 </div>
@@ -262,7 +280,7 @@ const Contact = () => {
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Tell me about your project..."
+                                        placeholder="Tell me about the role, product, or project you’d like to discuss..."
                                         rows={5}
                                         className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-accent-primary resize-none"
                                     />
@@ -278,7 +296,7 @@ const Contact = () => {
                                     ) : (
                                         <>
                                             <HiPaperAirplane className="w-5 h-5" />
-                                            Send Message
+                                            Send Inquiry
                                         </>
                                     )}
                                 </button>

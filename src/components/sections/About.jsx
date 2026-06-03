@@ -39,8 +39,9 @@ const About = () => {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.3 }}
                         >
-                            Crafting <span className="gradient-text">AI-Enhanced</span> Digital
-                            Products
+                            Frontend engineer focused on
+                            <span className="gradient-text"> product quality </span>
+                            and practical delivery
                         </motion.h2>
 
                         <motion.div
@@ -50,20 +51,21 @@ const About = () => {
                             transition={{ delay: 0.4 }}
                         >
                             <p>
-                                I'm a Frontend Developer at S3Corp in Ho Chi Minh City with 3+ years
-                                of experience building scalable web applications.
+                                I’m a Frontend Developer at S3Corp based in Ho Chi Minh City with 3+
+                                years of experience building web applications used in real business
+                                environments.
                             </p>
                             <p>
-                                My expertise spans across React, Angular, and Next.js on the
-                                frontend, with growing experience in Node.js, Express, and Laravel
-                                for backend development. I also work with Docker and cloud
-                                deployment.
+                                My main strengths are React, Angular, JavaScript/TypeScript, and UI
+                                implementation for dashboards, admin tools, and customer-facing
+                                interfaces. I also work with REST APIs, backend collaboration, and
+                                deployment workflows when needed.
                             </p>
                             <p>
-                                I enjoy solving complex problems, learning new technologies, and
-                                building products that provide great user experiences. Recently,
-                                I’ve been exploring AI-powered UX, prompt workflows, and practical
-                                AI agent integration in web apps.
+                                I care about shipping clean, maintainable code and improving the
+                                usability of the products I work on. Recently, I’ve also been
+                                exploring AI integration patterns where they create clear value for
+                                users and teams.
                             </p>
                         </motion.div>
 

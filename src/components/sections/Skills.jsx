@@ -5,55 +5,56 @@ import { HiCode, HiDesktopComputer, HiDatabase, HiSparkles } from 'react-icons/h
 
 const skillCategories = [
     {
-        title: 'Frontend Development',
+        title: 'Primary Frontend Stack',
         icon: <HiDesktopComputer className="w-6 h-6" />,
         color: 'accent-primary',
+        summary:
+            'Build responsive product interfaces, dashboards, and admin workflows with modern component-based frontend architecture.',
         skills: [
-            { name: 'React / Next.js', level: 95 },
-            { name: 'Angular', level: 88 },
-            { name: 'JavaScript / TypeScript', level: 92 },
-            { name: 'HTML5 / CSS3', level: 95 },
-            { name: 'Tailwind CSS', level: 90 },
-            { name: 'Framer Motion', level: 85 }
+            'React / Next.js',
+            'Angular',
+            'JavaScript / TypeScript',
+            'HTML5 / CSS3',
+            'Tailwind CSS',
+            'Framer Motion'
         ]
     },
     {
-        title: 'Backend Development',
+        title: 'Backend Collaboration',
         icon: <HiCode className="w-6 h-6" />,
         color: 'accent-secondary',
+        summary:
+            'Comfortable working with API integration, admin systems, and supporting backend tasks when product delivery requires it.',
         skills: [
-            { name: 'Node.js / Express', level: 75 },
-            { name: 'Laravel / PHP', level: 70 },
-            { name: 'RESTful APIs', level: 90 },
-            { name: 'MySQL / PostgreSQL', level: 80 },
-            { name: 'Supabase', level: 75 },
-            { name: 'Git / GitHub', level: 95 }
+            'Node.js / Express',
+            'Laravel / PHP',
+            'RESTful APIs',
+            'MySQL / PostgreSQL',
+            'Supabase',
+            'Git / GitHub'
         ]
     },
     {
-        title: 'Tools & Workflow',
+        title: 'Workflow & Delivery',
         icon: <HiDatabase className="w-6 h-6" />,
         color: 'accent-tertiary',
-        skills: [
-            { name: 'VS Code', level: 95 },
-            { name: 'Git / GitHub', level: 90 },
-            { name: 'Docker', level: 70 },
-            { name: 'Postman', level: 85 },
-            { name: 'Vite / Webpack', level: 80 },
-            { name: 'Agile / Scrum', level: 85 }
-        ]
+        summary:
+            'Used to shipping features in team environments with version control, review flows, and practical debugging/tooling habits.',
+        skills: ['VS Code', 'Git / GitHub', 'Docker', 'Postman', 'Vite / Webpack', 'Agile / Scrum']
     },
     {
         title: 'Design & Collaboration',
         icon: <HiSparkles className="w-6 h-6" />,
         color: 'accent-glow',
+        summary:
+            'Focus on clear UI implementation, responsive behaviour, and collaboration with teammates, designers, and product stakeholders.',
         skills: [
-            { name: 'Figma', level: 85 },
-            { name: 'Responsive Design', level: 95 },
-            { name: 'UI/UX Principles', level: 80 },
-            { name: 'Cross-browser Testing', level: 85 },
-            { name: 'Performance Optimization', level: 80 },
-            { name: 'Team Collaboration', level: 90 }
+            'Figma',
+            'Responsive Design',
+            'UI/UX Principles',
+            'Cross-browser Testing',
+            'Performance Optimization',
+            'Team Collaboration'
         ]
     }
 ]
@@ -94,6 +95,10 @@ const Skills = () => {
                     <h2 className="text-4xl md:text-5xl font-black tracking-[-0.04em] text-white">
                         Skills & <span className="gradient-text">Technologies</span>
                     </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-white/60">
+                        A practical overview of the tools, workflows, and product-facing frontend
+                        capabilities I use most in day-to-day work.
+                    </p>
                 </motion.div>
 
                 {/* Skill Categories */}
@@ -115,31 +120,20 @@ const Skills = () => {
                                 <h3 className="text-xl font-bold text-white">{category.title}</h3>
                             </div>
 
-                            <div className="relative z-10 space-y-4">
-                                {category.skills.map((skill, skillIndex) => (
-                                    <div key={skillIndex}>
-                                        <div className="flex justify-between mb-1">
-                                            <span className="text-white/80 text-sm">
-                                                {skill.name}
-                                            </span>
-                                            <span className="text-accent-primary text-sm">
-                                                {skill.level}%
-                                            </span>
-                                        </div>
-                                        <div className="h-2 rounded-full bg-white/10 overflow-hidden">
-                                            <motion.div
-                                                initial={{ width: 0 }}
-                                                animate={inView ? { width: `${skill.level}%` } : {}}
-                                                transition={{
-                                                    delay: catIndex * 0.1 + skillIndex * 0.05,
-                                                    duration: 1,
-                                                    ease: 'easeOut'
-                                                }}
-                                                className={`h-full bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-tertiary rounded-full`}
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
+                            <div className="relative z-10">
+                                <p className="mb-5 text-sm leading-6 text-white/60">
+                                    {category.summary}
+                                </p>
+                                <div className="flex flex-wrap gap-2">
+                                    {category.skills.map((skill) => (
+                                        <span
+                                            key={skill}
+                                            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/75"
+                                        >
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </motion.div>
                     ))}

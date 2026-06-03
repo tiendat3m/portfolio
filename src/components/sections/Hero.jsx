@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import { HiArrowDown, HiSparkles, HiLightningBolt, HiShieldCheck } from 'react-icons/hi'
 
 const highlights = [
-    { icon: HiSparkles, label: 'AI-ready UI' },
+    { icon: HiSparkles, label: 'Product-minded frontend' },
     { icon: HiLightningBolt, label: 'Performance focused' },
-    { icon: HiShieldCheck, label: 'Production mindset' }
+    { icon: HiShieldCheck, label: 'Production-ready delivery' }
 ]
 
 const Hero = () => {
@@ -35,7 +35,7 @@ const Hero = () => {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.25 }}
                         >
-                            Frontend Developer • AI Agent Enthusiast
+                            Frontend Developer • React / Angular • Ho Chi Minh City
                         </motion.p>
 
                         <motion.h1
@@ -44,9 +44,9 @@ const Hero = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.35, duration: 0.7 }}
                         >
-                            Building clean, scalable
-                            <span className="gradient-text"> AI-powered </span>
-                            web products.
+                            Building reliable frontend experiences for
+                            <span className="gradient-text"> real products </span>
+                            and business workflows.
                         </motion.h1>
 
                         <motion.p
@@ -55,10 +55,9 @@ const Hero = () => {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.45 }}
                         >
-                            Frontend Developer at S3Corp with 3+ years of experience building
-                            scalable React/Angular applications, admin workflows, and polished user
-                            interfaces with a strong focus on performance and real-world product
-                            quality.
+                            I build responsive web applications, admin dashboards, and internal
+                            tools with React, Angular, and modern frontend practices — with a focus
+                            on maintainability, UX quality, and performance in production.
                         </motion.p>
 
                         <motion.div

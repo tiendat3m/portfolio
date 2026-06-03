@@ -10,7 +10,7 @@ const experiences = [
         company: 'S3Corp',
         period: '2023 - Present',
         description:
-            'Developing enterprise web applications with React and Angular. Building responsive UIs, implementing REST API integrations, and collaborating with cross-functional teams.'
+            'Build and maintain business web applications with React and Angular, focusing on responsive UI, admin workflows, API integration, and day-to-day product delivery with cross-functional teams.'
     },
     {
         type: 'work',
@@ -18,7 +18,7 @@ const experiences = [
         company: 'S3Corp',
         period: '2022 - 2023',
         description:
-            'Started career building responsive web interfaces with React. Learned TypeScript, Tailwind CSS, and modern frontend development practices.'
+            'Worked on responsive frontend features, reusable components, and internal product improvements while strengthening fundamentals in React, TypeScript, and team-based development practices.'
     },
     {
         type: 'education',
@@ -26,7 +26,7 @@ const experiences = [
         company: 'University of Information Technology',
         period: '2020 - 2024',
         description:
-            'Focused on Software Engineering. Learned programming fundamentals, data structures, web development, and software design patterns.'
+            'Studied software engineering fundamentals including programming, data structures, web development, and software design — providing the technical base for product-focused frontend work.'
     },
     {
         type: 'work',
@@ -34,7 +34,7 @@ const experiences = [
         company: 'S3Corp',
         period: '2021 - 2022',
         description:
-            'Gained hands-on experience in web development. Assisted in building React components and learning industry best practices.'
+            'Supported frontend implementation tasks, built basic React components, and gained hands-on experience with real project workflows, code reviews, and delivery standards.'
     }
 ]
 

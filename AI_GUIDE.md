@@ -2,21 +2,19 @@
 
 ## 📋 Project Overview
 
-Đây là một **portfolio website cá nhân** được xây dựng với phong cách hiện đại, dark theme, có 3D animations và các hiệu ứng mượt mà. Mục đích: showcase công việc, kỹ năng và kinh nghiệm của developer/designer.
+Đây là một **portfolio website cá nhân** theo hướng modern product/frontend portfolio. Mục đích chính là showcase kinh nghiệm thực tế, project đã làm, kỹ năng frontend, và cách developer trình bày năng lực cho recruiter hoặc khách hàng.
 
 ## 🛠️ Tech Stack
 
-| Công nghệ                    | Phiên bản         | Mục đích                    |
-| ---------------------------- | ----------------- | --------------------------- |
-| React                        | 18.2.0            | UI framework                |
-| Vite                         | 5.0.8             | Build tool & dev server     |
-| Tailwind CSS                 | 3.4.0             | Utility-first CSS           |
-| Framer Motion                | 10.16.16          | Animations & transitions    |
-| GSAP                         | 3.12.4            | Scroll-triggered animations |
-| Three.js / React Three Fiber | 0.160.0 / 8.15.12 | 3D graphics                 |
-| React Three Drei             | 9.92.7            | Three.js helpers            |
-| React Icons                  | 4.12.0            | Icon library                |
-| React Intersection Observer  | 10.0.3            | Scroll-based triggers       |
+| Công nghệ                   | Phiên bản | Mục đích                    |
+| --------------------------- | --------- | --------------------------- |
+| React                       | 18.2.0    | UI framework                |
+| Vite                        | 5.0.8     | Build tool & dev server     |
+| Tailwind CSS                | 3.4.0     | Utility-first CSS           |
+| Framer Motion               | 10.16.16  | Animations & transitions    |
+| GSAP                        | 3.12.4    | Scroll-triggered animations |
+| React Icons                 | 4.12.0    | Icon library                |
+| React Intersection Observer | 10.0.3    | Scroll-based triggers       |
 
 ## 📁 Cấu trúc thư mục
 
@@ -36,7 +34,7 @@ portfolio/
 │   │   │   ├── Navbar.jsx       # Navigation bar (8 links)
 │   │   │   └── Footer.jsx       # Footer with social links & resume
 │   │   ├── sections/
-│   │   │   ├── Hero.jsx         # Hero section with 3D scene
+│   │   │   ├── Hero.jsx         # Hero section
 │   │   │   ├── About.jsx        # About me section
 │   │   │   ├── Skills.jsx       # Skills with progress bars ✨ NEW
 │   │   │   ├── Services.jsx     # Services offered ✨ NEW
@@ -45,10 +43,7 @@ portfolio/
 │   │   │   ├── Testimonials.jsx # Client testimonials carousel ✨ NEW
 │   │   │   ├── Blog.jsx         # Blog articles grid ✨ NEW
 │   │   │   └── Contact.jsx      # Contact form
-│   │   ├── three/
-│   │   │   └── HeroScene.jsx    # Three.js 3D scene
 │   │   ├── ui/
-│   │   │   ├── CustomCursor.jsx # Custom cursor effect
 │   │   │   ├── NoiseOverlay.jsx # Film grain/noise effect
 │   │   │   ├── PageLoader.jsx   # Loading animation
 │   │   │   ├── ScrollToTop.jsx  # Scroll to top button ✨ NEW
@@ -81,7 +76,7 @@ colors: {
 
 - `container-custom` - Container with max-width & padding
 - `section-padding` - Section vertical padding
-- `glass-card` - Glassmorphism card effect
+- `glass-card` / `premium-card` - Card styles for portfolio sections
 - `gradient-text` - Gradient text effect
 - `btn-primary` / `btn-outline` - Button styles
 
@@ -126,7 +121,7 @@ npm run preview
 
 - **Framer Motion**: Cho UI animations, page transitions
 - **GSAP**: Cho scroll-triggered animations, parallax
-- **Three.js**: Cho 3D elements
+- Hạn chế animation nặng nếu ảnh hưởng performance trên máy/màn hình refresh thấp
 
 ### Naming
 

@@ -1,6 +1,6 @@
 # 🚀 Portfolio Website
 
-A modern, interactive portfolio website built with React, Vite, Tailwind CSS, Supabase integrations, and animation-focused UI patterns.
+A recruiter-ready frontend portfolio built with React, Vite, Tailwind CSS, and supporting integrations for blog/content, contact workflows, and optional AI features.
 
 ![Portfolio Preview](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200)
 
@@ -14,19 +14,19 @@ A modern, interactive portfolio website built with React, Vite, Tailwind CSS, Su
 - **Responsive Design** - Works on all devices
 - **Smooth Animations** - Framer Motion & GSAP powered
 
-### 📝 Blog System
+### 📝 Supporting Product Features
 
 - **Full CRUD Operations** - Create, Read, Update, Delete posts
 - **Real-time Sync** - Supabase integration
 - **Image Upload** - Cloudinary support with local fallback
 - **Search & Filter** - Category-based filtering
-- **Admin Panel** - Password-protected management
+- **Admin Panel** - Demo content management workflow
 
-### 🤖 AI Chatbot
+### 🤖 Optional AI Assistant
 
 - **Multiple AI Providers** - Groq, Gemini, Hugging Face, OpenAI
 - **Intelligent Responses** - Context-aware conversations
-- **Portfolio Knowledge** - Knows all skills, services, projects
+- **Portfolio Knowledge** - Answers questions about background, skills, and projects
 - **Fallback System** - Works even without API keys
 - **Real-time Chat** - Live chat interface
 
@@ -40,9 +40,9 @@ A modern, interactive portfolio website built with React, Vite, Tailwind CSS, Su
 
 ### 🎯 Sections
 
-- **Hero** - Animated introduction
-- **About** - Personal information
-- **Skills** - Progress bars with categories
+- **Hero** - Frontend/product-focused introduction
+- **About** - Professional background and working style
+- **Skills** - Practical stack and workflow overview
 - **Services** - 6 service offerings
 - **Projects** - Portfolio showcase
 - **Experience** - Timeline layout
@@ -81,6 +81,14 @@ A modern, interactive portfolio website built with React, Vite, Tailwind CSS, Su
 - **ESLint** - Code linting
 - **PostCSS** - CSS processing
 - **Vite** - Dev server & HMR
+
+## 🎯 Current Focus
+
+- Frontend Engineer opportunities
+- Product-focused teams
+- React / Angular applications
+- Dashboards, admin tools, and internal workflows
+- Clean UI implementation with practical AI enhancement where it adds value
 
 ## 🚀 Quick Start
 
