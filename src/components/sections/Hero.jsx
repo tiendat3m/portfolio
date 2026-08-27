@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { HiArrowDown, HiSparkles, HiLightningBolt, HiShieldCheck } from 'react-icons/hi'
 import TypingText from '../ui/TypingText'
+import MatrixRain from '../ui/MatrixRain'
 
 const highlights = [
     { icon: HiSparkles, label: 'Product-minded frontend' },
@@ -19,6 +20,9 @@ const Hero = () => {
             id="hero"
             className="terminal-section relative min-h-[calc(100vh-7rem)] w-full overflow-hidden pt-16 pb-16 sm:pt-20"
         >
+            {/* Matrix rain background — low opacity, off on mobile/reduced-motion. */}
+            <MatrixRain />
+
             <div className="relative z-10 flex min-h-[calc(100vh-13rem)] items-center">
                 <div className="container-custom">
                     <motion.div
@@ -51,7 +55,7 @@ const Hero = () => {
                         </motion.p>
 
                         <motion.h1
-                            className="terminal-heading mb-6 max-w-5xl text-3xl leading-tight text-terminal-green sm:text-5xl md:text-6xl lg:text-7xl"
+                            className="terminal-heading glitch-hover mb-6 max-w-5xl text-3xl leading-tight text-terminal-green sm:text-5xl md:text-6xl lg:text-7xl"
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.35, duration: 0.7 }}

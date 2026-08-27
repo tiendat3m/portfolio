@@ -30,7 +30,7 @@ const Toast = ({ message, type = 'info', duration = 3000, onClose }) => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className={`fixed bottom-24 right-8 z-[400] px-6 py-4 rounded-lg border backdrop-blur-xl ${colors[type]} flex items-center gap-3`}
+            className={`fixed bottom-8 left-1/2 z-[400] -translate-x-1/2 px-6 py-4 rounded-lg border backdrop-blur-xl ${colors[type]} flex items-center gap-3`}
         >
             {icons[type]}
             <span className="font-medium">{message}</span>

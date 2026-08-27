@@ -161,7 +161,7 @@ const LiveChat = () => {
                 onMouseEnter={() => {
                     void loadAIService().catch(() => {})
                 }}
-                className="fixed bottom-24 right-8 z-50 flex h-14 w-14 items-center justify-center border border-terminal-border bg-terminal-surface text-terminal-green transition-colors hover:border-terminal-accent hover:text-terminal-accent"
+                className="fixed bottom-36 right-6 z-50 flex h-14 w-14 items-center justify-center border border-terminal-border bg-terminal-surface text-terminal-green transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -192,7 +192,7 @@ const LiveChat = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                        className="fixed bottom-44 right-8 z-50 w-80 md:w-96 glass-card overflow-hidden"
+                        className="fixed bottom-52 right-6 z-50 w-80 md:w-96 overflow-hidden border border-terminal-border bg-terminal-surface/85 backdrop-blur-sm"
                     >
                         {/* Header */}
                         <div className="border-b border-terminal-border bg-terminal-surface p-4">

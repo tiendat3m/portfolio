@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useRef, useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -23,8 +23,11 @@ import Contact from './components/sections/Contact'
 // UI
 import NoiseOverlay from './components/ui/NoiseOverlay'
 import PageLoader from './components/ui/PageLoader'
+import BootSequence from './components/ui/BootSequence'
+import { shouldRunBootSequence } from './utils/bootGuard'
 import ScrollToTop from './components/ui/ScrollToTop'
 import ThemeToggle from './components/ui/ThemeToggle'
+import CommandPalette from './components/ui/CommandPalette'
 
 const BlogPage = lazy(() => import('./pages/BlogPage'))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'))
@@ -49,19 +52,40 @@ const ScrollToTopOnRoute = () => {
     return null
 }
 
-// Home Page Component
-const HomePage = () => {
-    const [isLoading, setIsLoading] = useState(true)
-    const mainRef = useRef(null)
+// "clear" transition — brief one-frame black flash when the route changes,
+// mimicking a terminal `clear` command. Subtle and reduced-motion aware.
+const ClearTransition = () => {
+    const { pathname } = useLocation()
+    const [flash, setFlash] = useState(false)
 
     useEffect(() => {
-        // Keep the entrance lightweight so slower/60Hz displays feel responsive.
-        const timer = setTimeout(() => {
-            setIsLoading(false)
-        }, 800)
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+        setFlash(true)
+        const t = setTimeout(() => setFlash(false), 160)
+        return () => clearTimeout(t)
+    }, [pathname])
 
-        return () => clearTimeout(timer)
-    }, [])
+    return (
+        <AnimatePresence>
+            {flash && (
+                <motion.div
+                    key="clear-flash"
+                    className="pointer-events-none fixed inset-0 z-[80] bg-terminal-bg"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.12 }}
+                />
+            )}
+        </AnimatePresence>
+    )
+}
+
+// Home Page Component
+const HomePage = () => {
+    // Boot sequence runs once per session; otherwise mount content immediately.
+    const [isLoading, setIsLoading] = useState(() => shouldRunBootSequence())
+    const mainRef = useRef(null)
 
     useEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -100,7 +124,9 @@ const HomePage = () => {
     return (
         <>
             <AnimatePresence mode="wait">
-                {isLoading && <PageLoader key="loader" />}
+                {isLoading && (
+                    <BootSequence key="boot" onComplete={() => setIsLoading(false)} />
+                )}
             </AnimatePresence>
 
             {!isLoading && (
@@ -150,6 +176,8 @@ const HomePage = () => {
 
                     <ScrollToTop />
 
+                    <CommandPalette />
+
                     <Suspense fallback={null}>
                         <LiveChat />
                     </Suspense>
@@ -165,6 +193,7 @@ function App() {
         <AuthProvider>
             <Router>
                 <ScrollToTopOnRoute />
+                <ClearTransition />
                 <Suspense fallback={<PageLoader />}>
                     <Routes>
                         <Route path="/" element={<HomePage />} />

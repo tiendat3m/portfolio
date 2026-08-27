@@ -15,16 +15,11 @@ const Contact = () => {
         message: ''
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isSubmitted, setIsSubmitted] = useState(false)
+    // Terminal-style send log lines (replaces toast notifications).
+    const [logLines, setLogLines] = useState([])
 
-    // Helper function to show toast notification
-    const showToast = (message, type = 'info') => {
-        window.dispatchEvent(
-            new CustomEvent('show-toast', {
-                detail: { message, type }
-            })
-        )
-    }
+    const addLog = (text, kind = 'out') =>
+        setLogLines((prev) => [...prev, { text, kind }])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -35,11 +30,12 @@ const Contact = () => {
         e.preventDefault()
 
         if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-            showToast('Please fill in all fields', 'error')
+            addLog('Error: all fields are required', 'err')
             return
         }
 
         setIsSubmitting(true)
+        addLog('> Sending message...')
 
         try {
             // Save to localStorage
@@ -73,37 +69,30 @@ const Contact = () => {
             if (isEmailConfiguredFlag && emailSent) {
                 // Email sent successfully
                 if (subscriberResult.isAlreadySubscribed) {
-                    showToast("Message sent! You're already subscribed to updates.", 'success')
+                    addLog('[OK] Message sent. You are already subscribed to updates.')
                 } else if (subscriberResult.error) {
-                    showToast('Message sent! (Newsletter subscription unavailable)', 'success')
+                    addLog('[OK] Message sent. (Newsletter subscription unavailable.)')
                 } else {
-                    showToast("Message sent! You've been subscribed to updates.", 'success')
+                    addLog("[OK] Message sent. You've been subscribed to updates.")
                 }
             } else if (isEmailConfiguredFlag && !emailSent) {
                 // Email configured but failed - still saved locally
-                showToast(
-                    'Message saved locally. Email delivery failed - please try again later.',
-                    'error'
-                )
+                addLog('Error: connection timeout — message saved locally only.')
             } else {
                 // Email not configured - saved locally only
                 if (subscriberResult.isAlreadySubscribed) {
-                    showToast("Message saved! You're already subscribed.", 'success')
+                    addLog('[OK] Message saved. You are already subscribed.')
                 } else if (subscriberResult.error) {
-                    showToast('Message saved successfully!', 'success')
+                    addLog('[OK] Message saved locally.')
                 } else {
-                    showToast("Message saved! You've been subscribed to updates.", 'success')
+                    addLog("[OK] Message saved. You've been subscribed to updates.")
                 }
             }
 
-            setIsSubmitted(true)
             setFormData({ name: '', email: '', message: '' })
-
-            // Reset after 5 seconds
-            setTimeout(() => setIsSubmitted(false), 5000)
         } catch (error) {
             console.error('Error sending message:', error)
-            showToast('Failed to send message. Please try again.', 'error')
+            addLog('Error: connection timeout — please try again later.', 'err')
         } finally {
             setIsSubmitting(false)
         }
@@ -227,25 +216,7 @@ const Contact = () => {
                             Start a Conversation
                         </h3>
 
-                        {isSubmitted ? (
-                            <motion.div
-                                initial={{ scale: 0.95, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                className="glass-card p-8 text-center"
-                            >
-                                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center border border-terminal-border bg-terminal-bg">
-                                    <HiPaperAirplane className="h-8 w-8 text-terminal-accent" />
-                                </div>
-                                <h4 className="mb-2 text-xl font-medium text-terminal-green">
-                                    Message Sent!
-                                </h4>
-                                <p className="text-terminal-text/70">
-                                    Thanks for reaching out. I’ll review your message and get back
-                                    to you as soon as possible.
-                                </p>
-                            </motion.div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="space-y-5">
+                        <form onSubmit={handleSubmit} className="space-y-5">
                                 {[
                                     {
                                         label: 'Name',
@@ -303,8 +274,31 @@ const Contact = () => {
                                         </>
                                     )}
                                 </button>
+
+                                {/* Terminal-style send log (replaces toast notifications). */}
+                                {logLines.length > 0 && (
+                                    <div
+                                        className="mt-2 border border-terminal-border bg-terminal-bg p-3 font-mono text-sm"
+                                        role="status"
+                                        aria-live="polite"
+                                    >
+                                        {logLines.map((line, i) => (
+                                            <p
+                                                key={i}
+                                                className={
+                                                    line.kind === 'err'
+                                                        ? 'text-red-400'
+                                                        : line.text.startsWith('[OK]')
+                                                          ? 'text-terminal-green'
+                                                          : 'text-terminal-text/80'
+                                                }
+                                            >
+                                                {line.text}
+                                            </p>
+                                        ))}
+                                    </div>
+                                )}
                             </form>
-                        )}
                     </motion.div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiCode, HiDesktopComputer, HiDatabase, HiSparkles } from 'react-icons/hi'
+import SkillBar from '../ui/SkillBar'
 
 const skillCategories = [
     {
@@ -11,12 +12,12 @@ const skillCategories = [
         summary:
             'Build responsive product interfaces, dashboards, and admin workflows with modern component-based frontend architecture.',
         skills: [
-            'React / Next.js',
-            'Angular',
-            'JavaScript / TypeScript',
-            'HTML5 / CSS3',
-            'Tailwind CSS',
-            'Framer Motion'
+            { name: 'React / Next.js', level: 92 },
+            { name: 'Angular', level: 78 },
+            { name: 'JavaScript / TypeScript', level: 90 },
+            { name: 'HTML5 / CSS3', level: 93 },
+            { name: 'Tailwind CSS', level: 95 },
+            { name: 'Framer Motion', level: 80 }
         ]
     },
     {
@@ -26,12 +27,12 @@ const skillCategories = [
         summary:
             'Comfortable working with API integration, admin systems, and supporting backend tasks when product delivery requires it.',
         skills: [
-            'Node.js / Express',
-            'Laravel / PHP',
-            'RESTful APIs',
-            'MySQL / PostgreSQL',
-            'Supabase',
-            'Git / GitHub'
+            { name: 'Node.js / Express', level: 72 },
+            { name: 'Laravel / PHP', level: 68 },
+            { name: 'RESTful APIs', level: 88 },
+            { name: 'MySQL / PostgreSQL', level: 75 },
+            { name: 'Supabase', level: 82 },
+            { name: 'Git / GitHub', level: 90 }
         ]
     },
     {
@@ -40,7 +41,14 @@ const skillCategories = [
         color: 'accent-tertiary',
         summary:
             'Used to shipping features in team environments with version control, review flows, and practical debugging/tooling habits.',
-        skills: ['VS Code', 'Git / GitHub', 'Docker', 'Postman', 'Vite / Webpack', 'Agile / Scrum']
+        skills: [
+            { name: 'VS Code', level: 94 },
+            { name: 'Git / GitHub', level: 90 },
+            { name: 'Docker', level: 65 },
+            { name: 'Postman', level: 85 },
+            { name: 'Vite / Webpack', level: 80 },
+            { name: 'Agile / Scrum', level: 82 }
+        ]
     },
     {
         title: 'Design & Collaboration',
@@ -49,12 +57,12 @@ const skillCategories = [
         summary:
             'Focus on clear UI implementation, responsive behaviour, and collaboration with teammates, designers, and product stakeholders.',
         skills: [
-            'Figma',
-            'Responsive Design',
-            'UI/UX Principles',
-            'Cross-browser Testing',
-            'Performance Optimization',
-            'Team Collaboration'
+            { name: 'Figma', level: 80 },
+            { name: 'Responsive Design', level: 92 },
+            { name: 'UI/UX Principles', level: 85 },
+            { name: 'Cross-browser Testing', level: 86 },
+            { name: 'Performance Optimization', level: 83 },
+            { name: 'Team Collaboration', level: 90 }
         ]
     }
 ]
@@ -130,14 +138,14 @@ const Skills = () => {
                                     <span className="text-terminal-muted">{'// '}</span>
                                     {category.summary}
                                 </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {category.skills.map((skill) => (
-                                        <span
-                                            key={skill}
-                                            className="border border-terminal-border bg-terminal-bg px-3 py-1 text-sm text-terminal-text"
-                                        >
-                                            &gt; {skill}
-                                        </span>
+                                <div>
+                                    {category.skills.map((skill, sIndex) => (
+                                        <SkillBar
+                                            key={skill.name}
+                                            label={skill.name}
+                                            level={skill.level}
+                                            delay={sIndex * 120}
+                                        />
                                     ))}
                                 </div>
                             </div>

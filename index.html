@@ -40,19 +40,24 @@
         />
         <meta property="twitter:image" content="/og-image.png" />
 
-        <!-- Theme Color -->
-        <meta name="theme-color" content="#020617" />
-        <meta name="msapplication-TileColor" content="#020617" />
+        <!-- Theme Color — sync with terminal background (#0a0a0a) -->
+        <meta name="theme-color" content="#0a0a0a" />
+        <meta name="msapplication-TileColor" content="#0a0a0a" />
 
         <!-- Canonical URL -->
         <link rel="canonical" href="https://portfolio.com/" />
 
-        <!-- Fonts -->
+        <!-- Fonts — Fira Code (monospace). preload+display=swap to avoid FOUT/FOIT -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
+        />
+        <link
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
         />
     </head>
     <body>
