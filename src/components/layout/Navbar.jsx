@@ -98,6 +98,7 @@ const Navbar = () => {
     const renderNavLink = (link, index, isMobile = false) => {
         const isActive = link.type === 'hash' && activeSection === link.href.substring(1)
         const isCurrentRoute = link.type === 'route' && location.pathname === link.href
+        const marker = `[${index + 1}]`
 
         if (link.type === 'route') {
             return (
@@ -106,15 +107,16 @@ const Navbar = () => {
                     to={link.href}
                     className={
                         isMobile
-                            ? `text-3xl font-bold py-4 ${isCurrentRoute ? 'text-white' : 'text-white/80 hover:text-white'}`
-                            : `relative text-sm font-medium transition-colors duration-300 ${isCurrentRoute ? 'text-white' : 'text-white/60 hover:text-white'}`
+                            ? `py-3 text-2xl font-medium ${isCurrentRoute ? 'text-terminal-accent' : 'text-terminal-text hover:text-terminal-accent'}`
+                            : `terminal-row-link relative text-xs font-medium transition-colors duration-200 ${isCurrentRoute ? 'text-terminal-accent' : 'text-terminal-text/70 hover:text-terminal-accent'}`
                     }
                     onClick={() => setIsMobileMenuOpen(false)}
                 >
-                    {link.name}
+                    <span className="text-terminal-green">{marker}</span>{' '}
+                    <span className="terminal-underline">{link.name.toLowerCase()}</span>
                     {isCurrentRoute && !isMobile && (
                         <motion.div
-                            className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-accent-primary to-accent-secondary"
+                            className="absolute -bottom-2 left-0 right-0 border-b border-dashed border-terminal-accent"
                             layoutId="activeSection"
                             transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
@@ -129,13 +131,14 @@ const Navbar = () => {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link)}
-                    className={`text-3xl font-bold py-4 ${isActive ? 'text-white' : 'text-white/80 hover:text-white'}`}
+                    className={`py-3 text-2xl font-medium ${isActive ? 'text-terminal-accent' : 'text-terminal-text hover:text-terminal-accent'}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ x: 10 }}
                 >
-                    {link.name}
+                    <span className="text-terminal-green">{marker}</span>{' '}
+                    <span className="terminal-underline">{link.name.toLowerCase()}</span>
                 </motion.a>
             )
         }
@@ -145,16 +148,17 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link)}
-                className={`relative text-sm font-medium transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/60 hover:text-white'}`}
+                className={`terminal-row-link relative text-xs font-medium transition-colors duration-200 ${isActive ? 'text-terminal-accent' : 'text-terminal-text/70 hover:text-terminal-accent'}`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.3 }}
                 whileHover={{ y: -2 }}
             >
-                {link.name}
+                <span className="text-terminal-green">{marker}</span>{' '}
+                <span className="terminal-underline">{link.name.toLowerCase()}</span>
                 {isActive && (
                     <motion.div
-                        className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-accent-primary to-accent-secondary"
+                        className="absolute -bottom-2 left-0 right-0 border-b border-dashed border-terminal-accent"
                         layoutId="activeSection"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
@@ -166,10 +170,10 @@ const Navbar = () => {
     return (
         <>
             <motion.header
-                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+                className={`sticky top-[44px] z-[100] transition-all duration-300 ${
                     isScrolled
-                        ? 'py-4 bg-dark-950/80 backdrop-blur-xl border-b border-white/5'
-                        : 'py-6 bg-transparent'
+                        ? 'bg-terminal-bg/95 py-3 backdrop-blur-xl'
+                        : 'bg-terminal-bg/80 py-4 backdrop-blur-sm'
                 }`}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
@@ -185,14 +189,14 @@ const Navbar = () => {
                     >
                         <span className="text-2xl font-bold gradient-text">Portfolio</span>
                         <motion.div
-                            className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-accent-primary to-accent-secondary"
+                            className="absolute -bottom-1 left-0 border-b border-dashed border-terminal-accent"
                             initial={{ width: 0 }}
                             whileHover={{ width: '100%' }}
                             transition={{ duration: 0.3 }}
                         />
                     </motion.a>
 
-                    <div className="hidden md:flex items-center gap-8">
+                    <div className="hidden md:flex items-center gap-5">
                         {navLinks.map((link, index) => renderNavLink(link, index))}
 
                         <motion.a
@@ -205,14 +209,15 @@ const Navbar = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            Let's Talk
+                            contact --send
                         </motion.a>
                     </div>
 
                     <motion.button
-                        className="md:hidden p-2 text-white"
+                        className="border border-terminal-border bg-terminal-surface p-2 text-terminal-green md:hidden"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         whileTap={{ scale: 0.9 }}
+                        aria-label="Toggle command menu"
                     >
                         {isMobileMenuOpen ? (
                             <HiX className="w-6 h-6" />
@@ -232,7 +237,7 @@ const Navbar = () => {
                         exit={{ opacity: 0 }}
                     >
                         <motion.div
-                            className="absolute inset-0 bg-dark-950/95 backdrop-blur-xl"
+                            className="absolute inset-0 bg-terminal-bg/95 backdrop-blur-xl"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -240,7 +245,7 @@ const Navbar = () => {
                         />
 
                         <motion.div
-                            className="relative flex flex-col items-center justify-center h-full"
+                            className="relative flex h-full flex-col items-center justify-center"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 50 }}
@@ -258,7 +263,7 @@ const Navbar = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
                             >
-                                Let's Talk
+                                contact --send
                             </motion.a>
                         </motion.div>
                     </motion.div>

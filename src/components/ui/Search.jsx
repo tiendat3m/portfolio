@@ -32,7 +32,7 @@ const Search = ({ posts, onSelectPost }) => {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="p-2 rounded-lg hover:bg-white/10 text-white/60 hover:text-white transition-colors"
+                className="border border-terminal-border bg-terminal-surface p-2 text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                 title="Search"
             >
                 <HiSearch className="w-5 h-5" />
@@ -44,7 +44,7 @@ const Search = ({ posts, onSelectPost }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[300] flex items-start justify-center pt-24 px-4 bg-dark-950/95 backdrop-blur-sm"
+                        className="fixed inset-0 z-[300] flex items-start justify-center bg-terminal-bg/95 px-4 pt-24 backdrop-blur-sm"
                         onClick={() => setIsOpen(false)}
                     >
                         <motion.div
@@ -56,20 +56,20 @@ const Search = ({ posts, onSelectPost }) => {
                         >
                             <div className="glass-card overflow-hidden">
                                 {/* Search Input */}
-                                <div className="p-4 border-b border-white/10">
+                                <div className="border-b border-terminal-border p-4">
                                     <div className="flex items-center gap-3">
-                                        <HiSearch className="w-6 h-6 text-white/50" />
+                                        <HiSearch className="h-6 w-6 text-terminal-accent" />
                                         <input
                                             type="text"
                                             value={query}
                                             onChange={(e) => setQuery(e.target.value)}
                                             placeholder="Search articles..."
-                                            className="flex-1 bg-transparent text-white text-lg placeholder-white/40 focus:outline-none"
+                                            className="flex-1 bg-transparent text-lg text-terminal-green placeholder-terminal-muted focus:outline-none"
                                             autoFocus
                                         />
                                         <button
                                             onClick={() => setIsOpen(false)}
-                                            className="p-2 rounded-lg hover:bg-white/10 text-white/60 hover:text-white transition-colors"
+                                            className="border border-terminal-border bg-terminal-bg p-2 text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                                         >
                                             <HiX className="w-5 h-5" />
                                         </button>
@@ -84,7 +84,7 @@ const Search = ({ posts, onSelectPost }) => {
                                                 <button
                                                     key={post.id}
                                                     onClick={() => handleSelect(post)}
-                                                    className="w-full p-4 text-left hover:bg-white/5 rounded-lg transition-colors"
+                                                    className="terminal-row-link w-full border border-transparent p-4 text-left transition-colors hover:border-terminal-border hover:bg-terminal-bg"
                                                 >
                                                     <div className="flex items-center gap-4">
                                                         <img
@@ -92,16 +92,16 @@ const Search = ({ posts, onSelectPost }) => {
                                                             alt={post.title}
                                                             loading="lazy"
                                                             decoding="async"
-                                                            className="w-16 h-12 object-cover rounded-lg"
+                                                            className="h-12 w-16 border border-terminal-border object-cover grayscale"
                                                         />
                                                         <div className="flex-1 min-w-0">
-                                                            <h4 className="text-white font-medium truncate">
+                                                            <h4 className="truncate font-medium text-terminal-green">
                                                                 {post.title}
                                                             </h4>
-                                                            <p className="text-white/50 text-sm truncate">
+                                                            <p className="truncate text-sm text-terminal-text/60">
                                                                 {post.excerpt}
                                                             </p>
-                                                            <span className="text-accent-primary text-xs">
+                                                            <span className="text-xs text-terminal-accent">
                                                                 {post.category}
                                                             </span>
                                                         </div>
@@ -111,13 +111,13 @@ const Search = ({ posts, onSelectPost }) => {
                                         </div>
                                     ) : query ? (
                                         <div className="p-8 text-center">
-                                            <p className="text-white/50">
+                                            <p className="text-terminal-muted">
                                                 No results found for "{query}"
                                             </p>
                                         </div>
                                     ) : (
                                         <div className="p-8 text-center">
-                                            <p className="text-white/50">
+                                            <p className="text-terminal-muted">
                                                 Start typing to search...
                                             </p>
                                         </div>

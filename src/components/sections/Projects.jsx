@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiExternalLink, HiCode, HiX } from 'react-icons/hi'
@@ -66,65 +66,67 @@ const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null)
 
     return (
-        <section id="projects" className="section-padding relative">
+        <section id="projects" className="terminal-section section-padding relative">
             <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-16"
+                    className="mb-14"
                 >
-                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
-                        Portfolio
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-black tracking-[-0.04em] text-white">
+                    <span className="terminal-loading">Loading...</span>
+                    <p className="terminal-command mb-4">ls projects/</p>
+                    <h2 className="terminal-heading text-3xl md:text-5xl">
                         Featured <span className="gradient-text">Projects</span>
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-white/60">
+                    <p className="mt-4 max-w-2xl text-terminal-text/80">
                         Selected personal and company work focused on practical UI, admin workflows,
                         and production web delivery.
                     </p>
                 </motion.div>
 
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-5 md:grid-cols-2">
                     {projects.map((project, index) => (
                         <motion.div
                             key={project.id}
                             initial={{ opacity: 0, y: 50 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: index * 0.1 }}
-                            className="group premium-card cursor-pointer rounded-3xl"
+                            transition={{ delay: index * 0.08 }}
+                            className="premium-card terminal-row-link group cursor-pointer"
                             onClick={() => setSelectedProject(project)}
                         >
-                            <div className="relative h-56 overflow-hidden rounded-t-3xl">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-dark-950/70 via-dark-950/10 to-transparent" />
-                            </div>
-                            <div className="relative z-10 p-6">
-                                <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-accent-primary">
-                                    {project.category}
-                                </p>
-                                <h3 className="mb-3 text-2xl font-bold tracking-[-0.03em] text-white">
-                                    {project.title}
-                                </h3>
-                                <p className="mb-5 text-sm leading-6 text-white/60">
-                                    {project.description}
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
+                            <div className="grid md:grid-cols-[11rem_1fr]">
+                                <div className="relative h-48 overflow-hidden border-b border-terminal-border md:h-auto md:border-b-0 md:border-r">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                                    />
+                                    <div className="absolute inset-0 bg-terminal-green/10 mix-blend-screen" />
+                                </div>
+                                <div className="relative z-10 p-5">
+                                    <p className="mb-3 text-xs uppercase text-terminal-accent">
+                                        drwxr-xr-x {project.category}
+                                    </p>
+                                    <h3 className="terminal-underline mb-3 text-2xl font-medium text-terminal-green">
+                                        {project.title}
+                                    </h3>
+                                    <p className="mb-5 text-sm leading-6 text-terminal-text/80">
+                                        <span className="text-terminal-muted">{'// '}</span>
+                                        {project.description}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.tags.map((tag) => (
+                                            <span
+                                                key={tag}
+                                                className="border border-terminal-border bg-terminal-bg px-3 py-1 text-xs text-terminal-text/70"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
@@ -138,14 +140,14 @@ const Projects = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-950/90 backdrop-blur-sm"
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-terminal-bg/95 p-4 backdrop-blur-sm"
                         onClick={() => setSelectedProject(null)}
                     >
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
+                            initial={{ scale: 0.96, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="glass-card max-w-2xl w-full max-h-[90vh] overflow-auto"
+                            exit={{ scale: 0.96, opacity: 0 }}
+                            className="glass-card max-h-[90vh] w-full max-w-2xl overflow-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="relative">
@@ -154,34 +156,39 @@ const Projects = () => {
                                     alt={selectedProject.title}
                                     loading="lazy"
                                     decoding="async"
-                                    className="w-full h-64 object-cover"
+                                    className="h-64 w-full object-cover grayscale"
                                 />
+                                <div className="absolute inset-0 bg-terminal-green/10 mix-blend-screen" />
                                 <button
                                     onClick={() => setSelectedProject(null)}
-                                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-dark-950/50 flex items-center justify-center text-white hover:bg-dark-950"
+                                    className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center border border-terminal-border bg-terminal-bg text-terminal-green hover:text-terminal-accent"
+                                    aria-label="Close project details"
                                 >
                                     <HiX className="w-5 h-5" />
                                 </button>
                             </div>
-                            <div className="p-8">
-                                <p className="text-accent-primary text-sm mb-2">
+                            <div className="relative z-10 p-6 sm:p-8">
+                                <p className="terminal-command mb-2">cat project.md</p>
+                                <p className="mb-2 text-sm text-terminal-accent">
                                     {selectedProject.category}
                                 </p>
-                                <h3 className="text-2xl font-bold text-white mb-4">
+                                <h3 className="mb-4 text-2xl font-medium text-terminal-green">
                                     {selectedProject.title}
                                 </h3>
-                                <p className="text-white/60 mb-6">{selectedProject.description}</p>
-                                <div className="flex flex-wrap gap-2 mb-6">
+                                <p className="mb-6 text-terminal-text/80">
+                                    {selectedProject.description}
+                                </p>
+                                <div className="mb-6 flex flex-wrap gap-2">
                                     {selectedProject.tags.map((tag) => (
                                         <span
                                             key={tag}
-                                            className="text-sm px-4 py-2 bg-white/10 rounded-full text-white/60"
+                                            className="border border-terminal-border bg-terminal-bg px-3 py-1 text-sm text-terminal-text/70"
                                         >
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="flex gap-4 flex-wrap">
+                                <div className="flex flex-wrap gap-4">
                                     <a
                                         href={selectedProject.link}
                                         target="_blank"
@@ -200,7 +207,7 @@ const Projects = () => {
                                             <HiCode /> Source Code
                                         </a>
                                     ) : (
-                                        <span className="btn-outline opacity-60 cursor-not-allowed inline-flex items-center gap-2">
+                                        <span className="btn-outline inline-flex cursor-not-allowed items-center gap-2 opacity-60">
                                             <HiCode /> Private Source
                                         </span>
                                     )}

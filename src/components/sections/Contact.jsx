@@ -110,41 +110,39 @@ const Contact = () => {
     }
 
     return (
-        <section id="contact" className="section-padding relative">
+        <section id="contact" className="terminal-section section-padding relative">
             <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-16"
+                    className="mb-14"
                 >
-                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
-                        Get In Touch
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                    <span className="terminal-loading">Loading...</span>
+                    <p className="terminal-command mb-4">contact --send</p>
+                    <h2 className="terminal-heading text-3xl md:text-5xl">
                         Let's <span className="gradient-text">Connect</span>
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-white/60">
+                    <p className="mt-4 max-w-2xl text-terminal-text/80">
                         I’m open to frontend opportunities, product-focused teams, and selected
                         freelance work where clean delivery and practical UI matter.
                     </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-12">
-                    {/* Contact Info */}
+                <div className="grid gap-10 md:grid-cols-2">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: -34 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.2 }}
                     >
-                        <h3 className="text-2xl font-bold text-white mb-6">
+                        <h3 className="mb-6 text-2xl font-medium text-terminal-green">
                             Open to Opportunities
                         </h3>
 
-                        <div className="premium-card rounded-3xl p-5 mb-6">
+                        <div className="premium-card mb-6 p-5">
                             <div className="relative z-10">
                                 <p className="section-kicker mb-3">Current Focus</p>
-                                <p className="text-white/70 leading-7 text-sm sm:text-base">
+                                <p className="text-sm leading-7 text-terminal-text/80 sm:text-base">
                                     Frontend Engineer roles, product-focused teams, admin/dashboard
                                     interfaces, and modern React or Angular projects with strong UX
                                     and maintainable delivery.
@@ -152,132 +150,134 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-lg bg-accent-primary/20 flex items-center justify-center flex-shrink-0">
-                                    <HiMail className="w-6 h-6 text-accent-primary" />
+                        <div className="space-y-5">
+                            {[
+                                {
+                                    icon: HiMail,
+                                    label: 'Email',
+                                    value: 'phantiendat14012002@gmail.com'
+                                },
+                                {
+                                    icon: HiLocationMarker,
+                                    label: 'Location',
+                                    value: 'Ho Chi Minh City, Vietnam'
+                                },
+                                { icon: HiPhone, label: 'Phone', value: '0343759130' }
+                            ].map(({ icon: Icon, label, value }) => (
+                                <div key={label} className="flex items-start gap-4">
+                                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center border border-terminal-border bg-terminal-surface">
+                                        <Icon className="h-6 w-6 text-terminal-accent" />
+                                    </div>
+                                    <div>
+                                        <h4 className="mb-1 font-medium text-terminal-green">
+                                            {label}
+                                        </h4>
+                                        <p className="break-words text-terminal-text/70">{value}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="text-white font-medium mb-1">Email</h4>
-                                    <p className="text-white/60">phantiendat14012002@gmail.com</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-lg bg-accent-secondary/20 flex items-center justify-center flex-shrink-0">
-                                    <HiLocationMarker className="w-6 h-6 text-accent-secondary" />
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-medium mb-1">Location</h4>
-                                    <p className="text-white/60">Ho Chi Minh City, Vietnam</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-lg bg-accent-tertiary/20 flex items-center justify-center flex-shrink-0">
-                                    <HiPhone className="w-6 h-6 text-accent-tertiary" />
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-medium mb-1">Phone</h4>
-                                    <p className="text-white/60">0343759130</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
 
-                        {/* Social Links */}
                         <div className="mt-8">
-                            <h4 className="text-white font-medium mb-4">Follow Me</h4>
-                            <div className="flex gap-4">
-                                <a
-                                    href="https://github.com/tiendat3m"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors"
-                                >
-                                    <FaGithub className="w-5 h-5" />
-                                </a>
-                                <a
-                                    href="https://www.linkedin.com/in/tiendat3m/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors"
-                                >
-                                    <FaLinkedin className="w-5 h-5" />
-                                </a>
-                                <a
-                                    href="https://x.com/APhan33064"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors"
-                                >
-                                    <FaTwitter className="w-5 h-5" />
-                                </a>
-                                <a
-                                    href="https://www.instagram.com/justdatt.3m/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-accent-primary transition-colors"
-                                >
-                                    <FaInstagram className="w-5 h-5" />
-                                </a>
+                            <h4 className="mb-4 font-medium text-terminal-green">Follow Me</h4>
+                            <div className="flex flex-wrap gap-3">
+                                {[
+                                    {
+                                        icon: FaGithub,
+                                        href: 'https://github.com/tiendat3m',
+                                        label: 'GitHub'
+                                    },
+                                    {
+                                        icon: FaLinkedin,
+                                        href: 'https://www.linkedin.com/in/tiendat3m/',
+                                        label: 'LinkedIn'
+                                    },
+                                    {
+                                        icon: FaTwitter,
+                                        href: 'https://x.com/APhan33064',
+                                        label: 'X (Twitter)'
+                                    },
+                                    {
+                                        icon: FaInstagram,
+                                        href: 'https://www.instagram.com/justdatt.3m/',
+                                        label: 'Instagram'
+                                    }
+                                ].map(({ icon: Icon, href, label }) => (
+                                    <a
+                                        key={label}
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex h-10 w-10 items-center justify-center border border-terminal-border bg-terminal-surface text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent"
+                                        aria-label={label}
+                                    >
+                                        <Icon className="h-5 w-5" />
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: 34 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.3 }}
                     >
-                        <h3 className="text-2xl font-bold text-white mb-6">Start a Conversation</h3>
+                        <h3 className="mb-6 text-2xl font-medium text-terminal-green">
+                            Start a Conversation
+                        </h3>
 
                         {isSubmitted ? (
                             <motion.div
-                                initial={{ scale: 0.8, opacity: 0 }}
+                                initial={{ scale: 0.95, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 className="glass-card p-8 text-center"
                             >
-                                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
-                                    <HiPaperAirplane className="w-8 h-8 text-green-400" />
+                                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center border border-terminal-border bg-terminal-bg">
+                                    <HiPaperAirplane className="h-8 w-8 text-terminal-accent" />
                                 </div>
-                                <h4 className="text-xl font-bold text-white mb-2">Message Sent!</h4>
-                                <p className="text-white/60">
+                                <h4 className="mb-2 text-xl font-medium text-terminal-green">
+                                    Message Sent!
+                                </h4>
+                                <p className="text-terminal-text/70">
                                     Thanks for reaching out. I’ll review your message and get back
                                     to you as soon as possible.
                                 </p>
                             </motion.div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div>
-                                    <label className="block text-white/80 text-sm mb-2">Name</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        placeholder="Your name or company"
-                                        className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-accent-primary"
-                                    />
-                                </div>
+                            <form onSubmit={handleSubmit} className="space-y-5">
+                                {[
+                                    {
+                                        label: 'Name',
+                                        name: 'name',
+                                        type: 'text',
+                                        placeholder: 'Your name or company'
+                                    },
+                                    {
+                                        label: 'Email',
+                                        name: 'email',
+                                        type: 'email',
+                                        placeholder: 'your@email.com'
+                                    }
+                                ].map((field) => (
+                                    <div key={field.name}>
+                                        <label className="mb-2 block text-sm text-terminal-text/80">
+                                            $ set {field.name}
+                                        </label>
+                                        <input
+                                            type={field.type}
+                                            name={field.name}
+                                            value={formData[field.name]}
+                                            onChange={handleChange}
+                                            placeholder={field.placeholder}
+                                            className="w-full border border-terminal-border bg-terminal-surface px-4 py-3 text-terminal-green placeholder-terminal-muted focus:border-terminal-accent focus:outline-none"
+                                        />
+                                    </div>
+                                ))}
 
                                 <div>
-                                    <label className="block text-white/80 text-sm mb-2">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        placeholder="your@email.com"
-                                        className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-accent-primary"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-white/80 text-sm mb-2">
-                                        Message
+                                    <label className="mb-2 block text-sm text-terminal-text/80">
+                                        $ write message
                                     </label>
                                     <textarea
                                         name="message"
@@ -285,20 +285,20 @@ const Contact = () => {
                                         onChange={handleChange}
                                         placeholder="Tell me about the role, product, or project you’d like to discuss..."
                                         rows={5}
-                                        className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-accent-primary resize-none"
+                                        className="w-full resize-none border border-terminal-border bg-terminal-surface px-4 py-3 text-terminal-green placeholder-terminal-muted focus:border-terminal-accent focus:outline-none"
                                     />
                                 </div>
 
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full btn-primary py-4 flex items-center justify-center gap-2 disabled:opacity-50"
+                                    className="btn-primary flex w-full items-center justify-center gap-2 py-4 disabled:opacity-50"
                                 >
                                     {isSubmitting ? (
-                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <div className="h-5 w-5 animate-spin border-2 border-terminal-border border-t-terminal-accent" />
                                     ) : (
                                         <>
-                                            <HiPaperAirplane className="w-5 h-5" />
+                                            <HiPaperAirplane className="h-5 w-5" />
                                             Send Inquiry
                                         </>
                                     )}
@@ -308,9 +308,6 @@ const Contact = () => {
                     </motion.div>
                 </div>
             </div>
-
-            {/* Background decoration */}
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[150px]" />
         </section>
     )
 }

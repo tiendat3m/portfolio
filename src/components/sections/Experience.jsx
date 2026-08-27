@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiBriefcase, HiAcademicCap } from 'react-icons/hi'
@@ -42,62 +42,68 @@ const Experience = () => {
     const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
 
     return (
-        <section id="experience" className="section-padding relative">
+        <section id="experience" className="terminal-section section-padding relative">
             <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-16"
+                    className="mb-14"
                 >
-                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
-                        Journey
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                    <span className="terminal-loading">Loading...</span>
+                    <p className="terminal-command mb-4">history | grep career</p>
+                    <h2 className="terminal-heading text-3xl md:text-5xl">
                         Experience & <span className="gradient-text">Education</span>
                     </h2>
                 </motion.div>
 
-                <div className="relative">
-                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-tertiary" />
+                <div className="relative space-y-5">
+                    <div className="absolute left-4 top-0 bottom-0 w-px bg-terminal-green/30 md:left-1/2" />
 
                     {experiences.map((exp, index) => {
                         const isLeft = index % 2 === 0
                         return (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                                initial={{ opacity: 0, x: isLeft ? -34 : 34 }}
                                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                                transition={{ delay: index * 0.2 }}
-                                className={`relative flex items-start mb-12 ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
+                                transition={{ delay: index * 0.16 }}
+                                className={`relative flex items-start ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
                             >
-                                <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-accent-primary transform -translate-x-1/2 mt-6 ring-4 ring-dark-950 z-10" />
+                                <div className="absolute left-4 z-10 mt-6 h-3 w-3 -translate-x-1/2 border border-terminal-accent bg-terminal-bg md:left-1/2" />
 
                                 <div
-                                    className={`ml-20 md:ml-0 md:w-1/2 ${isLeft ? 'md:pr-12' : 'md:pl-12 md:ml-auto'}`}
+                                    className={`ml-10 md:ml-0 md:w-1/2 ${isLeft ? 'md:pr-10' : 'md:ml-auto md:pl-10'}`}
                                 >
-                                    <div
-                                        className={`glass-card p-6 ${isLeft ? 'md:text-right' : ''}`}
-                                    >
+                                    <div className="glass-card p-5">
                                         <div
-                                            className={`flex items-center gap-2 mb-2 ${isLeft ? 'md:justify-end' : ''}`}
+                                            className={`relative z-10 flex items-center gap-2 mb-2 ${isLeft ? 'md:justify-end' : ''}`}
                                         >
                                             {exp.type === 'work' ? (
-                                                <HiBriefcase className="text-accent-primary" />
+                                                <HiBriefcase className="text-terminal-accent" />
                                             ) : (
-                                                <HiAcademicCap className="text-accent-secondary" />
+                                                <HiAcademicCap className="text-terminal-accent" />
                                             )}
-                                            <span className="text-accent-primary text-sm">
+                                            <span className="text-sm text-terminal-accent">
                                                 {exp.period}
                                             </span>
                                         </div>
-                                        <h3 className="text-xl font-bold text-white mb-1">
-                                            {exp.title}
-                                        </h3>
-                                        <p className="text-accent-secondary font-medium mb-3">
-                                            {exp.company}
-                                        </p>
-                                        <p className="text-white/60 text-sm">{exp.description}</p>
+                                        <div
+                                            className={`relative z-10 ${isLeft ? 'md:text-right' : ''}`}
+                                        >
+                                            <p className="text-xs text-terminal-muted">
+                                                ./timeline/{exp.type}/{index + 1}
+                                            </p>
+                                            <h3 className="mb-1 text-xl font-medium text-terminal-green">
+                                                {exp.title}
+                                            </h3>
+                                            <p className="mb-3 font-medium text-terminal-accent">
+                                                {exp.company}
+                                            </p>
+                                            <p className="text-sm leading-6 text-terminal-text/80">
+                                                {exp.description}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -105,8 +111,6 @@ const Experience = () => {
                     })}
                 </div>
             </div>
-
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[120px]" />
         </section>
     )
 }

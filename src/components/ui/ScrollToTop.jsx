@@ -33,9 +33,10 @@ const ScrollToTop = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.5 }}
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-accent-primary to-accent-secondary flex items-center justify-center text-white shadow-lg shadow-accent-primary/30 hover:shadow-accent-primary/50 transition-shadow"
+                    className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center border border-terminal-border bg-terminal-surface text-terminal-green transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                     whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.9 }}
+                    aria-label="Scroll to top"
                 >
                     <HiChevronUp className="w-6 h-6" />
                 </motion.button>

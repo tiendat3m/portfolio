@@ -406,28 +406,40 @@ const BlogPost = ({ post, onBack }) => {
     return (
         <>
             <ReadingProgress />
+            <div className="terminal-titlebar" aria-hidden="true">
+                <div className="flex items-center gap-2">
+                    <span className="terminal-dot bg-red-500" />
+                    <span className="terminal-dot bg-yellow-400" />
+                    <span className="terminal-dot bg-green-400" />
+                </div>
+                <span className="truncate text-xs text-terminal-text sm:text-sm">
+                    user@portfolio: ~/blog/article$
+                </span>
+                <span className="terminal-cursor ml-auto hidden sm:inline-block">_</span>
+            </div>
             <Navbar />
 
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="min-h-screen bg-dark-950 pt-24 pb-32"
+                className="min-h-screen bg-terminal-bg pt-20 pb-24"
             >
                 {/* Header Image */}
-                <div className="relative h-[400px] overflow-hidden">
+                <div className="relative h-[360px] overflow-hidden border-y border-terminal-border">
                     <img
                         src={post.image}
                         alt={post.title}
                         decoding="async"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover grayscale"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/50 to-transparent" />
+                    <div className="absolute inset-0 bg-terminal-green/10 mix-blend-screen" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-terminal-bg via-terminal-bg/55 to-transparent" />
 
                     {/* Back Button */}
                     <button
                         onClick={onBack}
-                        className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-dark-950/50 backdrop-blur-sm rounded-full text-white hover:bg-dark-950/80 transition-colors"
+                        className="absolute top-8 left-8 flex items-center gap-2 border border-terminal-border bg-terminal-bg/80 px-4 py-2 text-terminal-green backdrop-blur-sm transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                     >
                         <HiArrowLeft className="w-5 h-5" />
                         Back to Blog
@@ -439,51 +451,52 @@ const BlogPost = ({ post, onBack }) => {
                     <article className="max-w-3xl mx-auto">
                         {/* Meta */}
                         <div className="flex flex-wrap items-center gap-4 mb-6">
-                            <span className="px-3 py-1 bg-accent-primary/90 text-white text-sm font-medium rounded-full">
+                            <span className="border border-terminal-accent bg-terminal-bg px-3 py-1 text-sm font-medium text-terminal-accent">
                                 {post.category}
                             </span>
-                            <span className="flex items-center gap-1 text-white/50 text-sm">
+                            <span className="flex items-center gap-1 text-sm text-terminal-muted">
                                 <HiCalendar className="w-4 h-4" />
                                 {post.date}
                             </span>
-                            <span className="flex items-center gap-1 text-white/50 text-sm">
+                            <span className="flex items-center gap-1 text-sm text-terminal-muted">
                                 <HiClock className="w-4 h-4" />
                                 {post.readTime}
                             </span>
                         </div>
 
                         {/* Title */}
-                        <h1 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
+                        <p className="terminal-command mb-4">cat article.md</p>
+                        <h1 className="terminal-heading mb-8 text-3xl leading-tight md:text-5xl">
                             {post.title}
                         </h1>
 
                         {/* Author */}
-                        <div className="flex items-center gap-4 mb-8 pb-8 border-b border-white/10">
+                        <div className="mb-8 flex items-center gap-4 border-b border-terminal-border pb-8">
                             <img
                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
                                 alt="Author"
                                 loading="lazy"
                                 decoding="async"
-                                className="w-12 h-12 rounded-full object-cover"
+                                className="h-12 w-12 border border-terminal-border object-cover grayscale"
                             />
                             <div>
-                                <p className="text-white font-medium">Phan Tiến Đạt</p>
-                                <p className="text-white/50 text-sm">
+                                <p className="font-medium text-terminal-green">Phan Tiến Đạt</p>
+                                <p className="text-sm text-terminal-muted">
                                     Creative Developer & Designer
                                 </p>
                             </div>
                             <div className="ml-auto flex gap-2">
-                                <button className="p-2 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors">
+                                <button className="border border-terminal-border bg-terminal-surface p-2 text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent">
                                     <HiShare className="w-5 h-5" />
                                 </button>
-                                <button className="p-2 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors">
+                                <button className="border border-terminal-border bg-terminal-surface p-2 text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent">
                                     <HiBookmark className="w-5 h-5" />
                                 </button>
                             </div>
                         </div>
 
                         {/* Article Content */}
-                        <div className="prose prose-invert prose-lg max-w-none">
+                        <div className="max-w-none text-terminal-text">
                             {content.split('\n').map((paragraph, index) => {
                                 const trimmed = paragraph.trim()
                                 if (!trimmed) return null
@@ -492,7 +505,7 @@ const BlogPost = ({ post, onBack }) => {
                                     return (
                                         <h2
                                             key={index}
-                                            className="text-2xl font-bold text-white mt-12 mb-4"
+                                            className="terminal-heading mt-12 mb-4 text-2xl"
                                         >
                                             {trimmed.replace('##', '').trim()}
                                         </h2>
@@ -505,7 +518,7 @@ const BlogPost = ({ post, onBack }) => {
 
                                 if (trimmed.startsWith('-') || trimmed.startsWith('*')) {
                                     return (
-                                        <li key={index} className="text-white/70 ml-4 mb-2">
+                                        <li key={index} className="mb-2 ml-4 text-terminal-text/80">
                                             {trimmed.replace(/^[-*]\s*/, '')}
                                         </li>
                                     )
@@ -515,7 +528,7 @@ const BlogPost = ({ post, onBack }) => {
                                     return (
                                         <li
                                             key={index}
-                                            className="text-white/70 ml-4 mb-2 list-decimal"
+                                            className="mb-2 ml-4 list-decimal text-terminal-text/80"
                                         >
                                             {trimmed.replace(/^\d+\.\s*/, '')}
                                         </li>
@@ -523,7 +536,10 @@ const BlogPost = ({ post, onBack }) => {
                                 }
 
                                 return (
-                                    <p key={index} className="text-white/70 mb-6 leading-relaxed">
+                                    <p
+                                        key={index}
+                                        className="mb-6 leading-relaxed text-terminal-text/80"
+                                    >
                                         {trimmed}
                                     </p>
                                 )
@@ -531,14 +547,14 @@ const BlogPost = ({ post, onBack }) => {
                         </div>
 
                         {/* Tags */}
-                        <div className="mt-12 pt-8 border-t border-white/10">
-                            <p className="text-white/50 text-sm mb-4">Tags:</p>
+                        <div className="mt-12 border-t border-terminal-border pt-8">
+                            <p className="mb-4 text-sm text-terminal-muted">Tags:</p>
                             <div className="flex flex-wrap gap-2">
                                 {['React', 'JavaScript', 'Web Development', 'Tutorial'].map(
                                     (tag) => (
                                         <span
                                             key={tag}
-                                            className="px-3 py-1 bg-white/5 text-white/60 text-sm rounded-full hover:bg-white/10 cursor-pointer transition-colors"
+                                            className="cursor-pointer border border-terminal-border bg-terminal-surface px-3 py-1 text-sm text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                                         >
                                             {tag}
                                         </span>
@@ -549,7 +565,9 @@ const BlogPost = ({ post, onBack }) => {
 
                         {/* Share */}
                         <div className="mt-8 p-6 glass-card">
-                            <p className="text-white font-medium mb-4">Enjoyed this article?</p>
+                            <p className="mb-4 font-medium text-terminal-green">
+                                Enjoyed this article?
+                            </p>
                             <div className="flex gap-4">
                                 <button className="btn-primary">Share on Twitter</button>
                                 <button className="btn-outline">Subscribe for More</button>

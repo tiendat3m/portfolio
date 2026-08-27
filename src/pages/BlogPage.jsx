@@ -197,292 +197,310 @@ const BlogPage = () => {
     }
 
     return (
-        <>
-            <Navbar />
+        <div className="relative min-h-screen bg-terminal-bg px-0 py-0 sm:px-2 sm:py-2">
+            <div className="terminal-window">
+                <div className="terminal-titlebar" aria-hidden="true">
+                    <div className="flex items-center gap-2">
+                        <span className="terminal-dot bg-red-500" />
+                        <span className="terminal-dot bg-yellow-400" />
+                        <span className="terminal-dot bg-green-400" />
+                    </div>
+                    <span className="truncate text-xs text-terminal-text sm:text-sm">
+                        user@portfolio: ~/blog$
+                    </span>
+                    <span className="terminal-cursor ml-auto hidden sm:inline-block">_</span>
+                </div>
 
-            <div className="min-h-screen bg-dark-950 pt-24 relative">
-                <ThemeToggle />
+                <Navbar />
 
-                {/* Header */}
-                <div className="container-custom py-12">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mb-12"
-                    >
-                        <Link
-                            to="/"
-                            className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors"
+                <div className="min-h-screen bg-terminal-bg pt-6 relative">
+                    <ThemeToggle />
+
+                    {/* Header */}
+                    <div className="container-custom py-12">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mb-12"
                         >
-                            <HiHome className="w-5 h-5" />
-                            Back to Portfolio
-                        </Link>
+                            <Link
+                                to="/"
+                                className="mb-8 inline-flex items-center gap-2 text-terminal-text/70 transition-colors hover:text-terminal-accent"
+                            >
+                                <HiHome className="w-5 h-5" />
+                                Back to Portfolio
+                            </Link>
 
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                            <div>
-                                <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
-                                    Blog
-                                </p>
-                                <h1 className="text-4xl md:text-5xl font-bold text-white">
-                                    Latest <span className="gradient-text">Articles</span>
-                                </h1>
-                                <p className="text-white/60 mt-4 max-w-xl">
-                                    Thoughts on web development, design, and creative technology.
-                                    Sharing insights from building digital experiences.
-                                </p>
-                                {/* {useSupabase && (
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                                <div>
+                                    <p className="terminal-command mb-4">ls blog/ --sort=time</p>
+                                    <h1 className="terminal-heading text-4xl md:text-5xl">
+                                        Latest <span className="gradient-text">Articles</span>
+                                    </h1>
+                                    <p className="mt-4 max-w-xl text-terminal-text/80">
+                                        Thoughts on web development, design, and creative
+                                        technology. Sharing insights from building digital
+                                        experiences.
+                                    </p>
+                                    {/* {useSupabase && (
                                     <p className='text-green-400 text-sm mt-2 flex items-center gap-2'>
                                         <span className='w-2 h-2 rounded-full bg-green-400 animate-pulse' />
                                         Connected to Supabase
                                     </p>
                                 )} */}
-                            </div>
+                                </div>
 
-                            <div className="flex items-center gap-4">
-                                {/* Search */}
-                                <Search posts={posts} onSelectPost={handleSearchSelect} />
+                                <div className="flex items-center gap-4">
+                                    {/* Search */}
+                                    <Search posts={posts} onSelectPost={handleSearchSelect} />
 
-                                {/* User Info */}
-                                {isAuthenticated && (
-                                    <div className="flex items-center gap-3 px-4 py-2 bg-dark-800/50 rounded-lg border border-white/10">
-                                        <div
-                                            className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                                                isAdmin
-                                                    ? 'bg-gradient-to-r from-accent-primary to-accent-secondary'
-                                                    : 'bg-white/10'
-                                            }`}
-                                        >
-                                            <HiUser className="w-4 h-4 text-white" />
-                                        </div>
-                                        <div>
-                                            <p className="text-white text-sm font-medium">
-                                                {user?.username}
-                                            </p>
-                                            <p
-                                                className={`text-xs ${isAdmin ? 'text-accent-primary' : 'text-white/50'}`}
+                                    {/* User Info */}
+                                    {isAuthenticated && (
+                                        <div className="flex items-center gap-3 border border-terminal-border bg-terminal-surface px-4 py-2">
+                                            <div
+                                                className={`flex h-8 w-8 items-center justify-center border border-terminal-border ${
+                                                    isAdmin
+                                                        ? 'bg-terminal-accent text-terminal-bg'
+                                                        : 'bg-terminal-bg text-terminal-green'
+                                                }`}
                                             >
-                                                {isAdmin ? 'Admin' : 'Guest'}
-                                            </p>
+                                                <HiUser className="w-4 h-4" />
+                                            </div>
+                                            <div>
+                                                <p className="text-terminal-green text-sm font-medium">
+                                                    {user?.username}
+                                                </p>
+                                                <p
+                                                    className={`text-xs ${isAdmin ? 'text-terminal-accent' : 'text-terminal-muted'}`}
+                                                >
+                                                    {isAdmin ? 'Admin' : 'Guest'}
+                                                </p>
+                                            </div>
+                                            <button
+                                                onClick={logout}
+                                                className="ml-2 border border-transparent p-1.5 text-terminal-muted transition-colors hover:border-terminal-border hover:text-terminal-accent"
+                                                title="Logout"
+                                            >
+                                                <HiLogout className="w-4 h-4" />
+                                            </button>
                                         </div>
-                                        <button
-                                            onClick={logout}
-                                            className="ml-2 p-1.5 rounded-lg hover:bg-white/10 text-white/50 hover:text-white transition-colors"
-                                            title="Logout"
+                                    )}
+
+                                    {/* Login Button */}
+                                    {!isAuthenticated && (
+                                        <motion.button
+                                            onClick={() => setShowLoginModal(true)}
+                                            className="btn-outline flex items-center gap-2"
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
                                         >
-                                            <HiLogout className="w-4 h-4" />
-                                        </button>
-                                    </div>
-                                )}
+                                            <HiLogin className="w-5 h-5" />
+                                            Login
+                                        </motion.button>
+                                    )}
 
-                                {/* Login Button */}
-                                {!isAuthenticated && (
-                                    <motion.button
-                                        onClick={() => setShowLoginModal(true)}
-                                        className="btn-outline flex items-center gap-2"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <HiLogin className="w-5 h-5" />
-                                        Login
-                                    </motion.button>
-                                )}
-
-                                {/* Admin Button */}
-                                {isAdmin && (
-                                    <motion.button
-                                        onClick={() => setIsAdminOpen(true)}
-                                        className="btn-primary flex items-center gap-2"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <HiCog className="w-5 h-5" />
-                                        Admin Panel
-                                    </motion.button>
-                                )}
+                                    {/* Admin Button */}
+                                    {isAdmin && (
+                                        <motion.button
+                                            onClick={() => setIsAdminOpen(true)}
+                                            className="btn-primary flex items-center gap-2"
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            <HiCog className="w-5 h-5" />
+                                            Admin Panel
+                                        </motion.button>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Permission Notice */}
-                    {!isAuthenticated && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="mb-8 p-4 glass-card border-l-4 border-accent-primary"
-                        >
-                            <p className="text-white/80">
-                                <span className="text-accent-primary font-medium">Welcome!</span>{' '}
-                                Login to create and manage your own blog posts.
-                            </p>
                         </motion.div>
-                    )}
 
-                    {isGuest && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="mb-8 p-4 glass-card border-l-4 border-accent-secondary"
-                        >
-                            <p className="text-white/80">
-                                <span className="text-accent-secondary font-medium">
-                                    Hello {user?.username}!
-                                </span>{' '}
-                                You're browsing as a guest. Only admins can create or edit posts.
-                            </p>
-                        </motion.div>
-                    )}
-
-                    {/* Category Filter */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="flex flex-wrap gap-3 mb-12"
-                    >
-                        {categories.map((category) => (
-                            <button
-                                key={category}
-                                onClick={() => setSelectedCategory(category)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                                    selectedCategory === category
-                                        ? 'bg-accent-primary text-white'
-                                        : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
-                                }`}
+                        {/* Permission Notice */}
+                        {!isAuthenticated && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="glass-card mb-8 border-l-4 border-terminal-accent p-4"
                             >
-                                {category}
-                            </button>
-                        ))}
-                    </motion.div>
+                                <p className="text-terminal-text/80">
+                                    <span className="font-medium text-terminal-accent">
+                                        Welcome!
+                                    </span>{' '}
+                                    Login to create and manage your own blog posts.
+                                </p>
+                            </motion.div>
+                        )}
 
-                    {/* Loading State */}
-                    {isLoading && (
-                        <div className="text-center py-16">
-                            <div className="w-8 h-8 border-2 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                            <p className="text-white/60">Loading posts...</p>
-                        </div>
-                    )}
+                        {isGuest && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="glass-card mb-8 border-l-4 border-terminal-accent p-4"
+                            >
+                                <p className="text-terminal-text/80">
+                                    <span className="font-medium text-terminal-accent">
+                                        Hello {user?.username}!
+                                    </span>{' '}
+                                    You're browsing as a guest. Only admins can create or edit
+                                    posts.
+                                </p>
+                            </motion.div>
+                        )}
 
-                    {/* Blog Grid */}
-                    {!isLoading && (
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {filteredPosts.map((post, index) => (
-                                <motion.article
-                                    key={post.id}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="glass-card overflow-hidden group cursor-pointer"
-                                    onClick={() => handlePostClick(post)}
-                                    whileHover={{ y: -10 }}
+                        {/* Category Filter */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="flex flex-wrap gap-3 mb-12"
+                        >
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setSelectedCategory(category)}
+                                    className={`border px-4 py-2 text-sm font-medium transition-all ${
+                                        selectedCategory === category
+                                            ? 'border-terminal-accent bg-terminal-accent/10 text-terminal-accent'
+                                            : 'border-terminal-border bg-terminal-surface text-terminal-text/70 hover:border-terminal-accent hover:text-terminal-accent'
+                                    }`}
                                 >
-                                    <div className="relative h-48 overflow-hidden">
-                                        <img
-                                            src={post.image}
-                                            alt={post.title}
-                                            loading="lazy"
-                                            decoding="async"
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                        />
-                                        <div className="absolute top-4 left-4">
-                                            <span className="px-3 py-1 bg-accent-primary/90 text-white text-xs font-medium rounded-full">
-                                                {post.category}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div className="p-6">
-                                        <div className="flex items-center gap-4 text-white/50 text-sm mb-3">
-                                            <span className="flex items-center gap-1">
-                                                <HiCalendar className="w-4 h-4" />
-                                                {post.date ||
-                                                    new Date(post.created_at).toLocaleDateString()}
-                                            </span>
-                                            <span className="flex items-center gap-1">
-                                                <HiClock className="w-4 h-4" />
-                                                {post.readTime}
-                                            </span>
-                                        </div>
-
-                                        <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-accent-primary transition-colors">
-                                            {post.title}
-                                        </h3>
-
-                                        <p className="text-white/60 text-sm mb-4 line-clamp-2">
-                                            {post.excerpt}
-                                        </p>
-
-                                        <div className="flex items-center justify-between">
-                                            <span className="flex items-center gap-2 text-accent-primary text-sm font-medium group-hover:gap-3 transition-all">
-                                                Read More <HiArrowRight className="w-4 h-4" />
-                                            </span>
-                                            {post.author && (
-                                                <span className="text-white/40 text-xs">
-                                                    by {post.author}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </motion.article>
+                                    {category}
+                                </button>
                             ))}
-                        </div>
-                    )}
+                        </motion.div>
 
-                    {!isLoading && filteredPosts.length === 0 && (
-                        <div className="text-center py-16">
-                            <p className="text-white/40 text-lg">No posts found in this category</p>
-                        </div>
-                    )}
-
-                    {/* Stats */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-                    >
-                        {[
-                            { value: posts.length, label: 'Articles Published' },
-                            { value: categories.length - 1, label: 'Categories' },
-                            { value: monthlyReaders, label: 'Monthly Readers' },
-                            { value: totalComments, label: 'Comments' }
-                        ].map((stat, index) => (
-                            <div key={index} className="glass-card p-6 text-center">
-                                <span className="text-3xl font-bold gradient-text block mb-2">
-                                    {stat.value}
-                                </span>
-                                <span className="text-white/60 text-sm">{stat.label}</span>
+                        {/* Loading State */}
+                        {isLoading && (
+                            <div className="text-center py-16">
+                                <div className="mx-auto mb-4 h-8 w-8 animate-spin border-2 border-terminal-border border-t-terminal-accent" />
+                                <p className="text-terminal-muted">Loading posts...</p>
                             </div>
-                        ))}
-                    </motion.div>
+                        )}
+
+                        {/* Blog Grid */}
+                        {!isLoading && (
+                            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                                {filteredPosts.map((post, index) => (
+                                    <motion.article
+                                        key={post.id}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="glass-card terminal-row-link group cursor-pointer overflow-hidden"
+                                        onClick={() => handlePostClick(post)}
+                                        whileHover={{ y: -4 }}
+                                    >
+                                        <div className="relative h-48 overflow-hidden border-b border-terminal-border">
+                                            <img
+                                                src={post.image}
+                                                alt={post.title}
+                                                loading="lazy"
+                                                decoding="async"
+                                                className="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                                            />
+                                            <div className="absolute top-4 left-4">
+                                                <span className="border border-terminal-accent bg-terminal-bg/90 px-3 py-1 text-xs font-medium text-terminal-accent">
+                                                    {post.category}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div className="relative z-10 p-6">
+                                            <div className="flex items-center gap-4 text-terminal-muted text-sm mb-3">
+                                                <span className="flex items-center gap-1">
+                                                    <HiCalendar className="w-4 h-4" />
+                                                    {post.date ||
+                                                        new Date(
+                                                            post.created_at
+                                                        ).toLocaleDateString()}
+                                                </span>
+                                                <span className="flex items-center gap-1">
+                                                    <HiClock className="w-4 h-4" />
+                                                    {post.readTime}
+                                                </span>
+                                            </div>
+
+                                            <h3 className="terminal-underline text-lg font-medium text-terminal-green mb-3 line-clamp-2 group-hover:text-terminal-accent transition-colors">
+                                                {post.title}
+                                            </h3>
+
+                                            <p className="text-terminal-text/75 text-sm mb-4 line-clamp-2">
+                                                {post.excerpt}
+                                            </p>
+
+                                            <div className="flex items-center justify-between">
+                                                <span className="flex items-center gap-2 text-terminal-accent text-sm font-medium group-hover:gap-3 transition-all">
+                                                    Read More <HiArrowRight className="w-4 h-4" />
+                                                </span>
+                                                {post.author && (
+                                                    <span className="text-terminal-muted text-xs">
+                                                        by {post.author}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </motion.article>
+                                ))}
+                            </div>
+                        )}
+
+                        {!isLoading && filteredPosts.length === 0 && (
+                            <div className="text-center py-16">
+                                <p className="text-terminal-muted text-lg">
+                                    No posts found in this category
+                                </p>
+                            </div>
+                        )}
+
+                        {/* Stats */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4"
+                        >
+                            {[
+                                { value: posts.length, label: 'Articles Published' },
+                                { value: categories.length - 1, label: 'Categories' },
+                                { value: monthlyReaders, label: 'Monthly Readers' },
+                                { value: totalComments, label: 'Comments' }
+                            ].map((stat, index) => (
+                                <div key={index} className="glass-card p-6 text-center">
+                                    <span className="mb-2 block text-3xl font-medium text-terminal-accent">
+                                        {stat.value}
+                                    </span>
+                                    <span className="text-sm text-terminal-text/70">
+                                        {stat.label}
+                                    </span>
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+
+                    {/* Login Modal */}
+                    <Suspense fallback={null}>
+                        <LoginModal />
+                    </Suspense>
+
+                    {/* Admin Panel */}
+                    {isAdminOpen && isAdmin && (
+                        <Suspense fallback={null}>
+                            <BlogAdmin
+                                posts={posts}
+                                onSave={handleSavePost}
+                                onDelete={handleDeletePost}
+                                onClose={() => setIsAdminOpen(false)}
+                            />
+                        </Suspense>
+                    )}
                 </div>
 
-                {/* Background decorations */}
-                <div className="absolute top-1/4 left-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[150px]" />
-                <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[150px]" />
-
-                {/* Login Modal */}
-                <Suspense fallback={null}>
-                    <LoginModal />
-                </Suspense>
-
-                {/* Admin Panel */}
-                {isAdminOpen && isAdmin && (
-                    <Suspense fallback={null}>
-                        <BlogAdmin
-                            posts={posts}
-                            onSave={handleSavePost}
-                            onDelete={handleDeletePost}
-                            onClose={() => setIsAdminOpen(false)}
-                        />
-                    </Suspense>
-                )}
+                <Footer />
             </div>
-
-            <Footer />
             <ScrollToTop />
-        </>
+        </div>
     )
 }
 

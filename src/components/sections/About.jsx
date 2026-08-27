@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -16,25 +16,26 @@ const About = () => {
     const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
 
     return (
-        <section id="about" className="section-padding relative overflow-hidden">
+        <section id="about" className="terminal-section section-padding relative overflow-hidden">
             <div className="container-custom">
-                <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
+                <div ref={ref} className="grid items-start gap-12 lg:grid-cols-2">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: -34 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.55, delay: 0.28 }}
                     >
+                        <span className="terminal-loading">Loading...</span>
                         <motion.p
-                            className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4"
+                            className="terminal-command mb-4"
                             initial={{ opacity: 0 }}
                             animate={inView ? { opacity: 1 } : {}}
                             transition={{ delay: 0.2 }}
                         >
-                            About Me
+                            cat about.md
                         </motion.p>
 
                         <motion.h2
-                            className="text-4xl md:text-5xl font-bold text-white mb-6"
+                            className="terminal-heading mb-6 text-3xl md:text-5xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.3 }}
@@ -45,32 +46,35 @@ const About = () => {
                         </motion.h2>
 
                         <motion.div
-                            className="space-y-4 text-white/60 text-lg leading-relaxed"
+                            className="space-y-4 border-l border-terminal-accent bg-terminal-surface/70 px-4 py-4 text-base leading-relaxed text-terminal-text"
                             initial={{ opacity: 0 }}
                             animate={inView ? { opacity: 1 } : {}}
                             transition={{ delay: 0.4 }}
                         >
                             <p>
+                                <span className="text-terminal-muted">{'// '}</span>
                                 I’m a Frontend Developer at S3Corp based in Ho Chi Minh City with 3+
                                 years of experience building web applications used in real business
                                 environments.
                             </p>
                             <p>
+                                <span className="text-terminal-muted">{'// '}</span>
                                 My main strengths are React, Angular, JavaScript/TypeScript, and UI
                                 implementation for dashboards, admin tools, and customer-facing
                                 interfaces. I also work with REST APIs, backend collaboration, and
                                 deployment workflows when needed.
                             </p>
                             <p>
-                                I care about shipping clean, maintainable code and improving the
-                                usability of the products I work on. Recently, I’ve also been
-                                exploring AI integration patterns where they create clear value for
-                                users and teams.
+                                <span className="text-terminal-muted">{'// '}</span>I care about
+                                shipping clean, maintainable code and improving the usability of the
+                                products I work on. Recently, I’ve also been exploring AI
+                                integration patterns where they create clear value for users and
+                                teams.
                             </p>
                         </motion.div>
 
                         <motion.div
-                            className="mt-8 flex gap-4"
+                            className="mt-8 flex flex-wrap gap-4"
                             initial={{ opacity: 0, y: 20 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.5 }}
@@ -85,33 +89,48 @@ const About = () => {
                     </motion.div>
 
                     <motion.div
-                        className="space-y-6"
-                        initial={{ opacity: 0, x: 50 }}
+                        className="premium-card p-5"
+                        initial={{ opacity: 0, x: 34 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        transition={{ duration: 0.55, delay: 0.34 }}
                     >
-                        <h3 className="text-xl font-semibold text-white mb-6">Core Skills</h3>
-                        {skills.map((skill, index) => (
-                            <div key={skill.name} className="space-y-2">
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-white/80">{skill.name}</span>
-                                    <span className="text-accent-primary">{skill.level}%</span>
-                                </div>
-                                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                                    <motion.div
-                                        className="h-full bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full"
-                                        initial={{ width: 0 }}
-                                        animate={inView ? { width: skill.level + '%' } : {}}
-                                        transition={{ duration: 1, delay: 0.3 + index * 0.1 }}
-                                    />
-                                </div>
+                        <div className="relative z-10">
+                            <p className="terminal-command mb-5">ls -la core-skills/</p>
+                            <h3 className="mb-6 text-xl font-medium text-terminal-green">
+                                Core Skills
+                            </h3>
+                            <div className="space-y-4">
+                                {skills.map((skill, index) => (
+                                    <div key={skill.name} className="space-y-2">
+                                        <div className="flex justify-between gap-4 text-sm">
+                                            <span className="text-terminal-text">
+                                                <span className="text-terminal-muted">
+                                                    -rwxr-xr-x
+                                                </span>{' '}
+                                                {skill.name}
+                                            </span>
+                                            <span className="text-terminal-accent">
+                                                {skill.level}%
+                                            </span>
+                                        </div>
+                                        <div className="h-2 overflow-hidden border border-terminal-border bg-terminal-bg">
+                                            <motion.div
+                                                className="h-full bg-terminal-green"
+                                                initial={{ width: 0 }}
+                                                animate={inView ? { width: skill.level + '%' } : {}}
+                                                transition={{
+                                                    duration: 0.75,
+                                                    delay: 0.3 + index * 0.08
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
                     </motion.div>
                 </div>
             </div>
-
-            <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/2" />
         </section>
     )
 }

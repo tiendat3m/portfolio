@@ -4,71 +4,26 @@ import { motion } from 'framer-motion'
 const PageLoader = () => {
     return (
         <motion.div
-            className="fixed inset-0 z-[9999] bg-dark-950 flex items-center justify-center"
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-terminal-bg"
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.35 }}
         >
-            <div className="relative">
-                {/* Animated logo/loader */}
-                <motion.div
-                    className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-primary to-accent-secondary"
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 180, 360],
-                        borderRadius: ['20%', '50%', '20%']
-                    }}
-                    transition={{
-                        duration: 2,
-                        ease: 'easeInOut',
-                        repeat: Infinity
-                    }}
-                />
+            <div className="w-full max-w-md border border-terminal-border bg-terminal-panel p-5">
+                <div className="mb-4 flex items-center gap-2 border-b border-terminal-border pb-3">
+                    <span className="terminal-dot bg-red-500" />
+                    <span className="terminal-dot bg-yellow-400" />
+                    <span className="terminal-dot bg-green-400" />
+                    <span className="ml-2 text-xs text-terminal-text">boot@portfolio: ~$</span>
+                </div>
 
-                {/* Glow effect */}
-                <motion.div
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary to-accent-secondary blur-xl opacity-50"
-                    animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.5, 0.8, 0.5]
-                    }}
-                    transition={{
-                        duration: 2,
-                        ease: 'easeInOut',
-                        repeat: Infinity
-                    }}
-                />
-
-                {/* Loading text */}
                 <motion.p
-                    className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-white/60 text-sm font-medium tracking-widest"
-                    animate={{ opacity: [0.4, 1, 0.4] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="text-sm text-terminal-green"
+                    animate={{ opacity: [0.45, 1, 0.45] }}
+                    transition={{ duration: 1.1, repeat: Infinity }}
                 >
-                    LOADING
+                    $ npm run portfolio:init<span className="terminal-cursor">_</span>
                 </motion.p>
-            </div>
-
-            {/* Background particles */}
-            <div className="absolute inset-0 overflow-hidden">
-                {[...Array(20)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className="absolute w-1 h-1 bg-accent-primary/30 rounded-full"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`
-                        }}
-                        animate={{
-                            y: [0, -100],
-                            opacity: [0, 1, 0]
-                        }}
-                        transition={{
-                            duration: 2 + Math.random() * 2,
-                            repeat: Infinity,
-                            delay: Math.random() * 2
-                        }}
-                    />
-                ))}
+                <p className="mt-3 text-sm text-terminal-muted">&gt; Loading interface...</p>
             </div>
         </motion.div>
     )

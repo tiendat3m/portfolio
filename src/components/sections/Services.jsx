@@ -75,48 +75,57 @@ const Services = () => {
     const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
 
     return (
-        <section id="services" className="section-padding relative">
+        <section id="services" className="terminal-section section-padding relative">
             <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-16"
+                    className="mb-14"
                 >
-                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
-                        What I Offer
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                    <span className="terminal-loading">Loading...</span>
+                    <p className="terminal-command mb-4">cat services.json</p>
+                    <h2 className="terminal-heading text-3xl md:text-5xl">
                         My <span className="gradient-text">Services</span>
                     </h2>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {services.map((service, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ y: -10 }}
-                            className="glass-card p-8 group cursor-pointer"
+                            transition={{ delay: index * 0.08 }}
+                            whileHover={{ y: -4 }}
+                            className="glass-card terminal-row-link group cursor-pointer p-6"
                         >
-                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center mb-6 group-hover:from-accent-primary/30 group-hover:to-accent-secondary/30 transition-colors">
-                                <span className="text-accent-primary group-hover:text-white transition-colors">
+                            <div className="relative z-10 mb-5 flex items-center gap-3">
+                                <div className="border border-terminal-border bg-terminal-bg p-3 text-terminal-accent transition-colors group-hover:text-terminal-green">
                                     {service.icon}
-                                </span>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-terminal-muted">
+                                        service[{index.toString().padStart(2, '0')}]
+                                    </p>
+                                    <h3 className="terminal-underline text-xl font-medium text-terminal-green">
+                                        {service.title}
+                                    </h3>
+                                </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                            <p className="text-white/60 mb-6">{service.description}</p>
+                            <p className="relative z-10 mb-6 text-sm leading-6 text-terminal-text/80">
+                                <span className="text-terminal-muted">{'// '}</span>
+                                {service.description}
+                            </p>
 
-                            <ul className="space-y-2">
+                            <ul className="relative z-10 space-y-2">
                                 {service.features.map((feature, featureIndex) => (
                                     <li
                                         key={featureIndex}
-                                        className="flex items-center gap-2 text-white/70 text-sm"
+                                        className="flex items-center gap-2 text-sm text-terminal-text/75"
                                     >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
+                                        <span className="text-terminal-accent">&gt;</span>
                                         {feature}
                                     </li>
                                 ))}
@@ -125,14 +134,14 @@ const Services = () => {
                     ))}
                 </div>
 
-                {/* CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.6 }}
-                    className="text-center mt-16"
+                    className="mt-14"
                 >
-                    <p className="text-white/60 mb-6">
+                    <p className="mb-6 text-terminal-text/70">
+                        <span className="text-terminal-muted">{'// '}</span>
                         Have a project in mind? Let's work together!
                     </p>
                     <a href="#contact" className="btn-primary">
@@ -140,10 +149,6 @@ const Services = () => {
                     </a>
                 </motion.div>
             </div>
-
-            {/* Background decoration */}
-            <div className="absolute top-1/3 right-0 w-96 h-96 bg-accent-primary/10 rounded-full blur-[150px]" />
-            <div className="absolute bottom-1/3 left-0 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[150px]" />
         </section>
     )
 }

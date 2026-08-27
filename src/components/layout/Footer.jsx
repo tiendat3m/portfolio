@@ -1,8 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa'
-import { HiDownload } from 'react-icons/hi'
-import { HiArrowUp } from 'react-icons/hi'
+import { HiDownload, HiArrowUp } from 'react-icons/hi'
 
 const socialLinks = [
     { icon: FaGithub, href: 'https://github.com/tiendat3m', label: 'GitHub' },
@@ -17,83 +16,74 @@ const Footer = () => {
     }
 
     return (
-        <footer className="relative py-16 border-t border-white/5">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-accent-primary/5 to-transparent pointer-events-none" />
-
+        <footer className="relative border-t border-terminal-border py-12">
             <div className="container-custom relative">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-                    {/* Logo & Copyright */}
-                    <div className="text-center md:text-left">
+                <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+                    <div>
                         <motion.a
                             href="#"
-                            className="text-2xl font-bold gradient-text"
-                            whileHover={{ scale: 1.05 }}
+                            className="text-2xl font-medium text-terminal-accent"
+                            whileHover={{ scale: 1.03 }}
                         >
                             Portfolio
                         </motion.a>
-                        <p className="text-white/40 text-sm mt-2">
+                        <p className="mt-2 text-sm text-terminal-muted">
                             © {new Date().getFullYear()} All rights reserved.
                         </p>
                     </div>
 
-                    {/* Social Links */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
                         {socialLinks.map((social, index) => (
                             <motion.a
                                 key={social.label}
                                 href={social.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-accent-primary/20 hover:border-accent-primary/50 transition-all duration-300"
+                                className="flex h-10 w-10 items-center justify-center border border-terminal-border bg-terminal-surface text-terminal-text/70 transition-all duration-200 hover:border-terminal-accent hover:text-terminal-accent"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                whileHover={{ scale: 1.1, y: -2 }}
+                                whileHover={{ y: -2 }}
                                 aria-label={social.label}
                             >
-                                <social.icon className="w-4 h-4" />
+                                <social.icon className="h-4 w-4" />
                             </motion.a>
                         ))}
 
-                        {/* Resume Download */}
                         <motion.a
                             href="/resume.html"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ml-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent-primary to-accent-secondary text-white text-sm font-medium flex items-center gap-2 hover:shadow-lg hover:shadow-accent-primary/30 transition-all duration-300"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            className="btn-primary ml-0 flex items-center gap-2 sm:ml-2"
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
                         >
-                            <HiDownload className="w-4 h-4" />
+                            <HiDownload className="h-4 w-4" />
                             Resume
                         </motion.a>
                     </div>
 
-                    {/* Back to Top */}
                     <motion.button
                         onClick={scrollToTop}
-                        className="group flex items-center gap-2 text-white/60 hover:text-white transition-colors duration-300"
+                        className="group flex items-center gap-2 text-terminal-text/70 transition-colors duration-200 hover:text-terminal-accent"
                         whileHover={{ y: -2 }}
                     >
                         <span className="text-sm">Back to top</span>
-                        <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-primary/20 group-hover:border-accent-primary/50 transition-all duration-300">
-                            <HiArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                        </div>
+                        <span className="flex h-8 w-8 items-center justify-center border border-terminal-border bg-terminal-surface transition-colors group-hover:border-terminal-accent">
+                            <HiArrowUp className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5" />
+                        </span>
                     </motion.button>
                 </div>
 
-                {/* Bottom line */}
                 <motion.div
-                    className="mt-12 pt-8 border-t border-white/5 text-center"
+                    className="mt-10 border-t border-terminal-border pt-6"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                 >
-                    <p className="text-white/30 text-sm">
-                        Designed & Built with <span className="text-accent-tertiary">♥</span> using
-                        React, AI Integration & Modern Web Stack
+                    <p className="text-sm text-terminal-muted">
+                        Process finished with exit code 0 — connection secure
                     </p>
                 </motion.div>
             </div>

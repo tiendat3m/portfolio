@@ -104,30 +104,48 @@ const HomePage = () => {
             </AnimatePresence>
 
             {!isLoading && (
-                <div ref={mainRef} className="relative">
+                <div
+                    ref={mainRef}
+                    className="relative min-h-screen bg-terminal-bg px-0 py-0 sm:px-2 sm:py-2"
+                >
                     <NoiseOverlay />
                     <ThemeToggle />
 
-                    <Navbar />
+                    <div className="terminal-window">
+                        <div className="terminal-titlebar" aria-hidden="true">
+                            <div className="flex items-center gap-2">
+                                <span className="terminal-dot bg-red-500" />
+                                <span className="terminal-dot bg-yellow-400" />
+                                <span className="terminal-dot bg-green-400" />
+                            </div>
+                            <span className="truncate text-xs text-terminal-text sm:text-sm">
+                                user@portfolio: ~$
+                            </span>
+                            <span className="terminal-cursor ml-auto hidden sm:inline-block">
+                                _
+                            </span>
+                        </div>
 
-                    <main className="relative">
-                        <Hero />
-                        <About />
-                        <Skills />
-                        <Services />
-                        <Projects />
-                        <Experience />
-                        <Testimonials />
-                        <Blog />
-                        <Contact />
-                    </main>
+                        <Navbar />
 
-                    <Footer />
+                        <main className="relative">
+                            <Hero />
+                            <About />
+                            <Skills />
+                            <Services />
+                            <Projects />
+                            <Experience />
+                            <Testimonials />
+                            <Blog />
+                            <Contact />
+                        </main>
 
-                    {/* Gradient overlays for depth */}
+                        <Footer />
+                    </div>
+
                     <div className="fixed inset-0 pointer-events-none z-50">
-                        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-dark-950 to-transparent opacity-50" />
-                        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark-950 to-transparent opacity-50" />
+                        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-terminal-bg to-transparent opacity-70" />
+                        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-terminal-bg to-transparent opacity-70" />
                     </div>
 
                     <ScrollToTop />

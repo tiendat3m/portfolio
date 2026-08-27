@@ -64,34 +64,31 @@ const Testimonials = () => {
     }
 
     return (
-        <section id="testimonials" className="section-padding relative overflow-hidden">
+        <section
+            id="testimonials"
+            className="terminal-section section-padding relative overflow-hidden"
+        >
             <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-16"
+                    className="mb-14"
                 >
-                    <p className="text-accent-glow text-sm font-medium tracking-[0.3em] uppercase mb-4">
-                        Feedback
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                    <span className="terminal-loading">Loading...</span>
+                    <p className="terminal-command mb-4">tail -f reviews.log</p>
+                    <h2 className="terminal-heading text-3xl md:text-5xl">
                         Work <span className="gradient-text">Reviews</span>
                     </h2>
                 </motion.div>
 
-                {/* Main Testimonial */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.2 }}
-                    className="relative max-w-4xl mx-auto"
+                    className="relative mx-auto max-w-4xl"
                 >
-                    <div className="glass-card p-8 md:p-12">
-                        <div className="absolute top-6 left-8 text-6xl text-accent-primary/20 font-serif">
-                            "
-                        </div>
-
+                    <div className="glass-card p-6 md:p-10">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentIndex}
@@ -101,33 +98,28 @@ const Testimonials = () => {
                                 transition={{ duration: 0.3 }}
                                 className="relative z-10"
                             >
-                                {/* Rating */}
-                                <div className="flex justify-center gap-1 mb-6">
+                                <div className="mb-6 flex justify-center gap-1">
                                     {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                                        <HiStar
-                                            key={i}
-                                            className="w-5 h-5 text-yellow-400 fill-current"
-                                        />
+                                        <HiStar key={i} className="h-5 w-5 text-terminal-accent" />
                                     ))}
                                 </div>
 
-                                {/* Content */}
-                                <p className="text-white/80 text-lg md:text-xl text-center mb-8 leading-relaxed">
+                                <p className="mb-8 text-center text-lg leading-relaxed text-terminal-text md:text-xl">
+                                    <span className="text-terminal-muted">&gt; </span>
                                     {testimonials[currentIndex].content}
                                 </p>
 
-                                {/* Author */}
                                 <div className="flex items-center justify-center gap-4">
                                     <img
                                         src={testimonials[currentIndex].image}
                                         alt={testimonials[currentIndex].name}
-                                        className="w-14 h-14 rounded-full object-cover ring-2 ring-accent-primary"
+                                        className="h-14 w-14 border border-terminal-border object-cover grayscale"
                                     />
                                     <div className="text-left">
-                                        <h4 className="text-white font-semibold">
+                                        <h4 className="font-medium text-terminal-green">
                                             {testimonials[currentIndex].name}
                                         </h4>
-                                        <p className="text-accent-primary text-sm">
+                                        <p className="text-sm text-terminal-accent">
                                             {testimonials[currentIndex].role}
                                         </p>
                                     </div>
@@ -136,51 +128,51 @@ const Testimonials = () => {
                         </AnimatePresence>
                     </div>
 
-                    {/* Navigation Buttons */}
-                    <div className="flex justify-center gap-4 mt-8">
+                    <div className="mt-8 flex justify-center gap-4">
                         <button
                             onClick={prevSlide}
-                            className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:text-accent-primary transition-colors"
+                            className="glass-card flex h-12 w-12 items-center justify-center text-terminal-green transition-colors hover:text-terminal-accent"
+                            aria-label="Previous review"
                         >
-                            <HiChevronLeft className="w-6 h-6" />
+                            <HiChevronLeft className="h-6 w-6" />
                         </button>
                         <button
                             onClick={nextSlide}
-                            className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-white hover:text-accent-primary transition-colors"
+                            className="glass-card flex h-12 w-12 items-center justify-center text-terminal-green transition-colors hover:text-terminal-accent"
+                            aria-label="Next review"
                         >
-                            <HiChevronRight className="w-6 h-6" />
+                            <HiChevronRight className="h-6 w-6" />
                         </button>
                     </div>
 
-                    {/* Dots Indicator */}
-                    <div className="flex justify-center gap-2 mt-6">
+                    <div className="mt-6 flex justify-center gap-2">
                         {testimonials.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => setCurrentIndex(index)}
-                                className={`w-2 h-2 rounded-full transition-colors ${
-                                    index === currentIndex ? 'bg-accent-primary' : 'bg-white/20'
+                                className={`h-2 w-6 border transition-colors ${
+                                    index === currentIndex
+                                        ? 'border-terminal-accent bg-terminal-accent'
+                                        : 'border-terminal-border bg-terminal-bg'
                                 }`}
+                                aria-label={`Show review ${index + 1}`}
                             />
                         ))}
                     </div>
                 </motion.div>
 
-                {/* Technologies Worked With */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.5 }}
-                    className="mt-16"
+                    className="mt-14"
                 >
-                    <p className="text-center text-white/40 text-sm mb-8">
-                        Technologies worked with
-                    </p>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50">
+                    <p className="terminal-command mb-6">cat tech-history.txt</p>
+                    <div className="flex flex-wrap items-center gap-4 md:gap-8">
                         {['React', 'Vue', 'Tailwind', 'Node.js', 'TypeScript'].map((tech) => (
                             <span
                                 key={tech}
-                                className="text-2xl font-bold text-white/30 hover:text-white/50 transition-colors"
+                                className="border border-terminal-border bg-terminal-surface px-4 py-2 text-xl font-medium text-terminal-text/60 transition-colors hover:text-terminal-accent"
                             >
                                 {tech}
                             </span>
@@ -188,10 +180,6 @@ const Testimonials = () => {
                     </div>
                 </motion.div>
             </div>
-
-            {/* Background decorations */}
-            <div className="absolute top-1/4 left-0 w-72 h-72 bg-accent-secondary/10 rounded-full blur-[120px]" />
-            <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-accent-primary/10 rounded-full blur-[120px]" />
         </section>
     )
 }

@@ -83,54 +83,60 @@ const Skills = () => {
     const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
 
     return (
-        <section id="skills" className="section-padding relative">
+        <section id="skills" className="terminal-section section-padding relative">
             <div className="container-custom">
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, y: 50 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-16"
+                    className="mb-14"
                 >
-                    <p className="section-kicker mb-4">Expertise</p>
-                    <h2 className="text-4xl md:text-5xl font-black tracking-[-0.04em] text-white">
+                    <span className="terminal-loading">Loading...</span>
+                    <p className="terminal-command mb-4">ls -la skills/</p>
+                    <h2 className="terminal-heading text-3xl md:text-5xl">
                         Skills & <span className="gradient-text">Technologies</span>
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-white/60">
+                    <p className="mt-4 max-w-2xl text-terminal-text/80">
                         A practical overview of the tools, workflows, and product-facing frontend
                         capabilities I use most in day-to-day work.
                     </p>
                 </motion.div>
 
-                {/* Skill Categories */}
-                <div className="grid md:grid-cols-2 gap-6 mb-16">
+                <div className="mb-14 grid gap-5 md:grid-cols-2">
                     {skillCategories.map((category, catIndex) => (
                         <motion.div
                             key={catIndex}
                             initial={{ opacity: 0, y: 30 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: catIndex * 0.1 }}
-                            className="premium-card rounded-3xl p-6"
+                            className="premium-card p-5"
                         >
-                            <div className="relative z-10 flex items-center gap-3 mb-6">
-                                <div
-                                    className={`rounded-2xl bg-white/5 p-3 text-${category.color}`}
-                                >
+                            <div className="relative z-10 mb-5 flex items-center gap-3">
+                                <div className="border border-terminal-border bg-terminal-bg p-3 text-terminal-accent">
                                     {category.icon}
                                 </div>
-                                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+                                <div>
+                                    <p className="text-xs text-terminal-muted">
+                                        drwxr-xr-x ./skills/{catIndex + 1}
+                                    </p>
+                                    <h3 className="text-xl font-medium text-terminal-green">
+                                        {category.title}
+                                    </h3>
+                                </div>
                             </div>
 
                             <div className="relative z-10">
-                                <p className="mb-5 text-sm leading-6 text-white/60">
+                                <p className="mb-5 text-sm leading-6 text-terminal-text/80">
+                                    <span className="text-terminal-muted">{'// '}</span>
                                     {category.summary}
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                     {category.skills.map((skill) => (
                                         <span
                                             key={skill}
-                                            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/75"
+                                            className="border border-terminal-border bg-terminal-bg px-3 py-1 text-sm text-terminal-text"
                                         >
-                                            {skill}
+                                            &gt; {skill}
                                         </span>
                                     ))}
                                 </div>
@@ -139,22 +145,20 @@ const Skills = () => {
                     ))}
                 </div>
 
-                {/* Technologies Cloud */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.5 }}
-                    className="text-center"
                 >
-                    <h3 className="text-xl font-bold text-white mb-8">Technologies I Work With</h3>
-                    <div className="flex flex-wrap justify-center gap-3">
+                    <p className="terminal-command mb-6">find technologies -type f</p>
+                    <div className="flex flex-wrap gap-3">
                         {technologies.map((tech, index) => (
                             <motion.span
                                 key={tech}
-                                initial={{ opacity: 0, scale: 0.8 }}
+                                initial={{ opacity: 0, scale: 0.95 }}
                                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                                 transition={{ delay: 0.6 + index * 0.03 }}
-                                className="premium-card rounded-full px-4 py-2 text-white/70 hover:text-white cursor-default"
+                                className="premium-card cursor-default px-4 py-2 text-terminal-text hover:text-terminal-accent"
                             >
                                 {tech}
                             </motion.span>
@@ -162,12 +166,11 @@ const Skills = () => {
                     </div>
                 </motion.div>
 
-                {/* Stats */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.7 }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+                    className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4"
                 >
                     {[
                         { value: '3+', label: 'Years Experience' },
@@ -175,24 +178,20 @@ const Skills = () => {
                         { value: '8+', label: 'Happy Clients' },
                         { value: '5+', label: 'Long-term Collaborations' }
                     ].map((stat, index) => (
-                        <div key={index} className="premium-card rounded-3xl p-6 text-center">
+                        <div key={index} className="premium-card p-5 text-center">
                             <motion.span
                                 initial={{ opacity: 0 }}
                                 animate={inView ? { opacity: 1 } : {}}
                                 transition={{ delay: 0.8 + index * 0.1 }}
-                                className="text-4xl md:text-5xl font-bold gradient-text block mb-2"
+                                className="mb-2 block text-3xl font-medium text-terminal-accent md:text-4xl"
                             >
                                 {stat.value}
                             </motion.span>
-                            <span className="text-white/60 text-sm">{stat.label}</span>
+                            <span className="text-sm text-terminal-text/70">{stat.label}</span>
                         </div>
                     ))}
                 </motion.div>
             </div>
-
-            {/* Background decorations */}
-            <div className="absolute top-1/4 left-0 w-72 h-72 bg-accent-primary/10 rounded-full blur-[120px]" />
-            <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-accent-secondary/10 rounded-full blur-[120px]" />
         </section>
     )
 }

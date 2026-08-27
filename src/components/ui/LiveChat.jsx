@@ -161,11 +161,7 @@ const LiveChat = () => {
                 onMouseEnter={() => {
                     void loadAIService().catch(() => {})
                 }}
-                className={`fixed bottom-24 right-8 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-shadow ${
-                    aiStatus.configured
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 shadow-purple-500/30 hover:shadow-purple-500/50'
-                        : 'bg-gradient-to-r from-green-500 to-green-600 shadow-green-500/30 hover:shadow-green-500/50'
-                }`}
+                className="fixed bottom-24 right-8 z-50 flex h-14 w-14 items-center justify-center border border-terminal-border bg-terminal-surface text-terminal-green transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -182,7 +178,7 @@ const LiveChat = () => {
                             <HiChat className="w-6 h-6" />
                         )}
                         {aiStatus.configured && (
-                            <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                            <span className="absolute -top-1 -right-1 h-3 w-3 animate-pulse border border-terminal-accent bg-terminal-accent" />
                         )}
                     </div>
                 )}
@@ -199,34 +195,28 @@ const LiveChat = () => {
                         className="fixed bottom-44 right-8 z-50 w-80 md:w-96 glass-card overflow-hidden"
                     >
                         {/* Header */}
-                        <div
-                            className={`p-4 ${
-                                aiStatus.configured
-                                    ? 'bg-gradient-to-r from-purple-500 to-pink-500'
-                                    : 'bg-gradient-to-r from-green-500 to-green-600'
-                            }`}
-                        >
+                        <div className="border-b border-terminal-border bg-terminal-surface p-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <div className="flex h-10 w-10 items-center justify-center border border-terminal-border bg-terminal-bg">
                                     {aiStatus.configured ? (
-                                        <HiSparkles className="w-5 h-5 text-white" />
+                                        <HiSparkles className="w-5 h-5 text-terminal-accent" />
                                     ) : (
-                                        <HiChat className="w-5 h-5 text-white" />
+                                        <HiChat className="w-5 h-5 text-terminal-accent" />
                                     )}
                                 </div>
                                 <div>
-                                    <h4 className="text-white font-medium">
+                                    <h4 className="font-medium text-terminal-green">
                                         {aiStatus.configured ? 'AI Assistant' : 'Live Chat'}
                                     </h4>
-                                    <p className="text-white/70 text-xs">
-                                        {aiStatus.configured ? `Powered by ${providerLabel}` : 'Đang hoạt động'}
+                                    <p className="text-xs text-terminal-text/70">
+                                        {aiStatus.configured
+                                            ? `Powered by ${providerLabel}`
+                                            : 'Đang hoạt động'}
                                     </p>
                                 </div>
                                 <div className="ml-auto flex items-center gap-1">
-                                    <span
-                                        className={`w-2 h-2 rounded-full animate-pulse ${aiStatus.configured ? 'bg-purple-300' : 'bg-green-300'}`}
-                                    />
-                                    <span className="text-white/70 text-xs">Online</span>
+                                    <span className="h-2 w-2 animate-pulse bg-terminal-accent" />
+                                    <span className="text-xs text-terminal-text/70">Online</span>
                                 </div>
                             </div>
                         </div>
@@ -244,25 +234,23 @@ const LiveChat = () => {
                                         <div
                                             className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                                                 message.type === 'user'
-                                                    ? 'bg-accent-primary'
-                                                    : message.isAI
-                                                      ? 'bg-gradient-to-r from-purple-500 to-pink-500'
-                                                      : 'bg-green-500'
+                                                    ? 'border border-terminal-accent bg-terminal-accent text-terminal-bg'
+                                                    : 'border border-terminal-border bg-terminal-bg text-terminal-green'
                                             }`}
                                         >
                                             {message.type === 'user' ? (
-                                                <HiUser className="w-4 h-4 text-white" />
+                                                <HiUser className="w-4 h-4" />
                                             ) : message.isAI ? (
-                                                <HiSparkles className="w-4 h-4 text-white" />
+                                                <HiSparkles className="w-4 h-4 text-terminal-accent" />
                                             ) : (
-                                                <HiChat className="w-4 h-4 text-white" />
+                                                <HiChat className="w-4 h-4 text-terminal-accent" />
                                             )}
                                         </div>
                                         <div
                                             className={`rounded-2xl px-4 py-2 ${
                                                 message.type === 'user'
-                                                    ? 'bg-accent-primary text-white rounded-br-none'
-                                                    : 'bg-dark-800 text-white rounded-bl-none'
+                                                    ? 'border border-terminal-accent bg-terminal-accent/10 text-terminal-accent'
+                                                    : 'border border-terminal-border bg-terminal-surface text-terminal-text'
                                             }`}
                                         >
                                             <p className="text-sm whitespace-pre-wrap">
@@ -271,7 +259,7 @@ const LiveChat = () => {
                                             <div className="flex items-center gap-2 mt-1">
                                                 <p className="text-xs opacity-50">{message.time}</p>
                                                 {message.isAI && (
-                                                    <span className="text-xs text-purple-400 flex items-center gap-1">
+                                                    <span className="flex items-center gap-1 text-xs text-terminal-accent">
                                                         <HiSparkles className="w-3 h-3" /> AI
                                                     </span>
                                                 )}
@@ -287,28 +275,28 @@ const LiveChat = () => {
                                         <div
                                             className={`w-8 h-8 rounded-full flex items-center justify-center ${
                                                 aiStatus.configured
-                                                    ? 'bg-gradient-to-r from-purple-500 to-pink-500'
-                                                    : 'bg-green-500'
+                                                    ? 'border border-terminal-border bg-terminal-bg'
+                                                    : 'border border-terminal-border bg-terminal-bg'
                                             }`}
                                         >
                                             {aiStatus.configured ? (
-                                                <HiSparkles className="w-4 h-4 text-white" />
+                                                <HiSparkles className="w-4 h-4 text-terminal-accent" />
                                             ) : (
-                                                <HiChat className="w-4 h-4 text-white" />
+                                                <HiChat className="w-4 h-4 text-terminal-accent" />
                                             )}
                                         </div>
-                                        <div className="bg-dark-800 rounded-2xl rounded-bl-none px-4 py-3">
+                                        <div className="border border-terminal-border bg-terminal-surface px-4 py-3">
                                             <div className="flex gap-1">
                                                 <span
-                                                    className="w-2 h-2 bg-white/50 rounded-full animate-bounce"
+                                                    className="h-2 w-2 animate-bounce bg-terminal-muted"
                                                     style={{ animationDelay: '0ms' }}
                                                 />
                                                 <span
-                                                    className="w-2 h-2 bg-white/50 rounded-full animate-bounce"
+                                                    className="h-2 w-2 animate-bounce bg-terminal-muted"
                                                     style={{ animationDelay: '150ms' }}
                                                 />
                                                 <span
-                                                    className="w-2 h-2 bg-white/50 rounded-full animate-bounce"
+                                                    className="h-2 w-2 animate-bounce bg-terminal-muted"
                                                     style={{ animationDelay: '300ms' }}
                                                 />
                                             </div>
@@ -320,7 +308,7 @@ const LiveChat = () => {
                         </div>
 
                         {/* Input */}
-                        <div className="p-4 border-t border-white/10">
+                        <div className="border-t border-terminal-border p-4">
                             <div className="flex gap-2">
                                 <input
                                     type="text"
@@ -328,12 +316,12 @@ const LiveChat = () => {
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyDown={handleKeyPress}
                                     placeholder="Nhập tin nhắn..."
-                                    className="flex-1 px-4 py-2 bg-dark-800 border border-white/10 rounded-full text-white placeholder-white/40 focus:outline-none focus:border-green-500 text-sm"
+                                    className="flex-1 border border-terminal-border bg-terminal-surface px-4 py-2 text-sm text-terminal-green placeholder-terminal-muted focus:border-terminal-accent focus:outline-none"
                                 />
                                 <button
                                     onClick={handleSend}
                                     disabled={!inputValue.trim() || isTyping}
-                                    className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="flex h-10 w-10 items-center justify-center border border-terminal-border bg-terminal-surface text-terminal-green transition-colors hover:border-terminal-accent hover:text-terminal-accent disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     <HiPaperAirplane className="w-5 h-5" />
                                 </button>
@@ -347,7 +335,7 @@ const LiveChat = () => {
                                             'Mình cần Đạt tư vấn giải pháp phù hợp cho website/app của mình'
                                         )
                                     }
-                                    className="px-3 py-1 bg-white/5 rounded-full text-white/60 text-xs hover:bg-white/10 hover:text-white transition-colors"
+                                    className="border border-terminal-border bg-terminal-surface px-3 py-1 text-xs text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                                 >
                                     Tư vấn
                                 </button>
@@ -357,7 +345,7 @@ const LiveChat = () => {
                                             'Đạt có thể hỗ trợ mình nâng cấp UI và tích hợp AI chatbox không?'
                                         )
                                     }
-                                    className="px-3 py-1 bg-white/5 rounded-full text-white/60 text-xs hover:bg-white/10 hover:text-white transition-colors"
+                                    className="border border-terminal-border bg-terminal-surface px-3 py-1 text-xs text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                                 >
                                     Hỗ trợ
                                 </button>
@@ -367,7 +355,7 @@ const LiveChat = () => {
                                             'Mình muốn trao đổi nhanh với Đạt về dự án, bắt đầu như thế nào?'
                                         )
                                     }
-                                    className="px-3 py-1 bg-white/5 rounded-full text-white/60 text-xs hover:bg-white/10 hover:text-white transition-colors"
+                                    className="border border-terminal-border bg-terminal-surface px-3 py-1 text-xs text-terminal-text/70 transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                                 >
                                     Hợp tác
                                 </button>
@@ -380,7 +368,7 @@ const LiveChat = () => {
                                 href="https://zalo.me/0343759130"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2 w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                                className="flex w-full items-center justify-center gap-2 border border-terminal-border bg-terminal-surface py-2 text-terminal-green transition-colors hover:border-terminal-accent hover:text-terminal-accent"
                             >
                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
